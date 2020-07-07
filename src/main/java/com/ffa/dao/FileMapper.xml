@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ffa.dao.FileMapper">
+  <resultMap id="BaseResultMap" type="com.ffa.po.File">
+    <id column="file_id" jdbcType="INTEGER" property="fileId" />
+    <result column="unitID" jdbcType="INTEGER" property="unitid" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="file_type_id" jdbcType="INTEGER" property="fileTypeId" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="file_storage_path" jdbcType="VARCHAR" property="fileStoragePath" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    file_id, unitID, create_time, file_type_id, file_name, file_storage_path
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from file
+    where file_id = #{fileId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from file
+    where file_id = #{fileId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ffa.po.File">
+    insert into file (file_id, unitID, create_time, 
+      file_type_id, file_name, file_storage_path
+      )
+    values (#{fileId,jdbcType=INTEGER}, #{unitid,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, 
+      #{fileTypeId,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{fileStoragePath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ffa.po.File">
+    insert into file
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        file_id,
+      </if>
+      <if test="unitid != null">
+        unitID,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="fileTypeId != null">
+        file_type_id,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="fileStoragePath != null">
+        file_storage_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fileId != null">
+        #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="unitid != null">
+        #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fileTypeId != null">
+        #{fileTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileStoragePath != null">
+        #{fileStoragePath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.File">
+    update file
+    <set>
+      <if test="unitid != null">
+        unitID = #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fileTypeId != null">
+        file_type_id = #{fileTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileStoragePath != null">
+        file_storage_path = #{fileStoragePath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where file_id = #{fileId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ffa.po.File">
+    update file
+    set unitID = #{unitid,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      file_type_id = #{fileTypeId,jdbcType=INTEGER},
+      file_name = #{fileName,jdbcType=VARCHAR},
+      file_storage_path = #{fileStoragePath,jdbcType=VARCHAR}
+    where file_id = #{fileId,jdbcType=INTEGER}
+  </update>
+</mapper>

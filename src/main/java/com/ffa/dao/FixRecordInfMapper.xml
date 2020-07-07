@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ffa.dao.FixRecordInfMapper">
+  <resultMap id="BaseResultMap" type="com.ffa.po.FixRecordInf">
+    <result column="facility_id" jdbcType="INTEGER" property="facilityId" />
+    <result column="facility_name" jdbcType="VARCHAR" property="facilityName" />
+    <result column="unitID" jdbcType="INTEGER" property="unitid" />
+    <result column="fix_time" jdbcType="VARCHAR" property="fixTime" />
+    <result column="fix_state" jdbcType="INTEGER" property="fixState" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ffa.po.FixRecordInf">
+    insert into fix_record_inf (facility_id, facility_name, unitID, 
+      fix_time, fix_state)
+    values (#{facilityId,jdbcType=INTEGER}, #{facilityName,jdbcType=VARCHAR}, #{unitid,jdbcType=INTEGER}, 
+      #{fixTime,jdbcType=VARCHAR}, #{fixState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ffa.po.FixRecordInf">
+    insert into fix_record_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="facilityId != null">
+        facility_id,
+      </if>
+      <if test="facilityName != null">
+        facility_name,
+      </if>
+      <if test="unitid != null">
+        unitID,
+      </if>
+      <if test="fixTime != null">
+        fix_time,
+      </if>
+      <if test="fixState != null">
+        fix_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="facilityId != null">
+        #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityName != null">
+        #{facilityName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null">
+        #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="fixTime != null">
+        #{fixTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fixState != null">
+        #{fixState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ffa.dao.FacilityInfMapper">
+  <resultMap id="BaseResultMap" type="com.ffa.po.FacilityInf">
+    <id column="facility_id" jdbcType="INTEGER" property="facilityId" />
+    <result column="facility_name" jdbcType="VARCHAR" property="facilityName" />
+    <result column="unitID" jdbcType="INTEGER" property="unitid" />
+    <result column="facility_type_id" jdbcType="INTEGER" property="facilityTypeId" />
+    <result column="facility_type_name" jdbcType="VARCHAR" property="facilityTypeName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    facility_id, facility_name, unitID, facility_type_id, facility_type_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from facility_inf
+    where facility_id = #{facilityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from facility_inf
+    where facility_id = #{facilityId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ffa.po.FacilityInf">
+    insert into facility_inf (facility_id, facility_name, unitID, 
+      facility_type_id, facility_type_name)
+    values (#{facilityId,jdbcType=INTEGER}, #{facilityName,jdbcType=VARCHAR}, #{unitid,jdbcType=INTEGER}, 
+      #{facilityTypeId,jdbcType=INTEGER}, #{facilityTypeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ffa.po.FacilityInf">
+    insert into facility_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="facilityId != null">
+        facility_id,
+      </if>
+      <if test="facilityName != null">
+        facility_name,
+      </if>
+      <if test="unitid != null">
+        unitID,
+      </if>
+      <if test="facilityTypeId != null">
+        facility_type_id,
+      </if>
+      <if test="facilityTypeName != null">
+        facility_type_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="facilityId != null">
+        #{facilityId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityName != null">
+        #{facilityName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null">
+        #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="facilityTypeId != null">
+        #{facilityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityTypeName != null">
+        #{facilityTypeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.FacilityInf">
+    update facility_inf
+    <set>
+      <if test="facilityName != null">
+        facility_name = #{facilityName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null">
+        unitID = #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="facilityTypeId != null">
+        facility_type_id = #{facilityTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="facilityTypeName != null">
+        facility_type_name = #{facilityTypeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where facility_id = #{facilityId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ffa.po.FacilityInf">
+    update facility_inf
+    set facility_name = #{facilityName,jdbcType=VARCHAR},
+      unitID = #{unitid,jdbcType=INTEGER},
+      facility_type_id = #{facilityTypeId,jdbcType=INTEGER},
+      facility_type_name = #{facilityTypeName,jdbcType=VARCHAR}
+    where facility_id = #{facilityId,jdbcType=INTEGER}
+  </update>
+</mapper>

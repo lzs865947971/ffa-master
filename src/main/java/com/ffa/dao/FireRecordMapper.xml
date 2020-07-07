@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ffa.dao.FireRecordMapper">
+  <resultMap id="BaseResultMap" type="com.ffa.po.FireRecord">
+    <id column="fire_id" jdbcType="INTEGER" property="fireId" />
+    <result column="unitName" jdbcType="VARCHAR" property="unitname" />
+    <result column="unitID" jdbcType="INTEGER" property="unitid" />
+    <result column="fire_name" jdbcType="VARCHAR" property="fireName" />
+    <result column="fire_time" jdbcType="VARCHAR" property="fireTime" />
+    <result column="fire_cost" jdbcType="INTEGER" property="fireCost" />
+    <result column="death_num" jdbcType="INTEGER" property="deathNum" />
+    <result column="injured_num" jdbcType="INTEGER" property="injuredNum" />
+    <result column="fire_record_person_name" jdbcType="VARCHAR" property="fireRecordPersonName" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    fire_id, unitName, unitID, fire_name, fire_time, fire_cost, death_num, injured_num, 
+    fire_record_person_name, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fire_record
+    where fire_id = #{fireId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fire_record
+    where fire_id = #{fireId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ffa.po.FireRecord">
+    insert into fire_record (fire_id, unitName, unitID, 
+      fire_name, fire_time, fire_cost, 
+      death_num, injured_num, fire_record_person_name, 
+      description)
+    values (#{fireId,jdbcType=INTEGER}, #{unitname,jdbcType=VARCHAR}, #{unitid,jdbcType=INTEGER}, 
+      #{fireName,jdbcType=VARCHAR}, #{fireTime,jdbcType=VARCHAR}, #{fireCost,jdbcType=INTEGER}, 
+      #{deathNum,jdbcType=INTEGER}, #{injuredNum,jdbcType=INTEGER}, #{fireRecordPersonName,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ffa.po.FireRecord">
+    insert into fire_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fireId != null">
+        fire_id,
+      </if>
+      <if test="unitname != null">
+        unitName,
+      </if>
+      <if test="unitid != null">
+        unitID,
+      </if>
+      <if test="fireName != null">
+        fire_name,
+      </if>
+      <if test="fireTime != null">
+        fire_time,
+      </if>
+      <if test="fireCost != null">
+        fire_cost,
+      </if>
+      <if test="deathNum != null">
+        death_num,
+      </if>
+      <if test="injuredNum != null">
+        injured_num,
+      </if>
+      <if test="fireRecordPersonName != null">
+        fire_record_person_name,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fireId != null">
+        #{fireId,jdbcType=INTEGER},
+      </if>
+      <if test="unitname != null">
+        #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null">
+        #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="fireName != null">
+        #{fireName,jdbcType=VARCHAR},
+      </if>
+      <if test="fireTime != null">
+        #{fireTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCost != null">
+        #{fireCost,jdbcType=INTEGER},
+      </if>
+      <if test="deathNum != null">
+        #{deathNum,jdbcType=INTEGER},
+      </if>
+      <if test="injuredNum != null">
+        #{injuredNum,jdbcType=INTEGER},
+      </if>
+      <if test="fireRecordPersonName != null">
+        #{fireRecordPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.FireRecord">
+    update fire_record
+    <set>
+      <if test="unitname != null">
+        unitName = #{unitname,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null">
+        unitID = #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="fireName != null">
+        fire_name = #{fireName,jdbcType=VARCHAR},
+      </if>
+      <if test="fireTime != null">
+        fire_time = #{fireTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fireCost != null">
+        fire_cost = #{fireCost,jdbcType=INTEGER},
+      </if>
+      <if test="deathNum != null">
+        death_num = #{deathNum,jdbcType=INTEGER},
+      </if>
+      <if test="injuredNum != null">
+        injured_num = #{injuredNum,jdbcType=INTEGER},
+      </if>
+      <if test="fireRecordPersonName != null">
+        fire_record_person_name = #{fireRecordPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fire_id = #{fireId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ffa.po.FireRecord">
+    update fire_record
+    set unitName = #{unitname,jdbcType=VARCHAR},
+      unitID = #{unitid,jdbcType=INTEGER},
+      fire_name = #{fireName,jdbcType=VARCHAR},
+      fire_time = #{fireTime,jdbcType=VARCHAR},
+      fire_cost = #{fireCost,jdbcType=INTEGER},
+      death_num = #{deathNum,jdbcType=INTEGER},
+      injured_num = #{injuredNum,jdbcType=INTEGER},
+      fire_record_person_name = #{fireRecordPersonName,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where fire_id = #{fireId,jdbcType=INTEGER}
+  </update>
+</mapper>

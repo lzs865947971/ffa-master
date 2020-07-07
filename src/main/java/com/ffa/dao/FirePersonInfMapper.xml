@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ffa.dao.FirePersonInfMapper">
+  <resultMap id="BaseResultMap" type="com.ffa.po.FirePersonInf">
+    <result column="fire_person_id" jdbcType="INTEGER" property="firePersonId" />
+    <result column="unitID" jdbcType="INTEGER" property="unitid" />
+    <result column="fire_person_name" jdbcType="VARCHAR" property="firePersonName" />
+    <result column="fire_person_pic_id" jdbcType="INTEGER" property="firePersonPicId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ffa.po.FirePersonInf">
+    insert into fire_person_inf (fire_person_id, unitID, fire_person_name, 
+      fire_person_pic_id)
+    values (#{firePersonId,jdbcType=INTEGER}, #{unitid,jdbcType=INTEGER}, #{firePersonName,jdbcType=VARCHAR}, 
+      #{firePersonPicId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ffa.po.FirePersonInf">
+    insert into fire_person_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="firePersonId != null">
+        fire_person_id,
+      </if>
+      <if test="unitid != null">
+        unitID,
+      </if>
+      <if test="firePersonName != null">
+        fire_person_name,
+      </if>
+      <if test="firePersonPicId != null">
+        fire_person_pic_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="firePersonId != null">
+        #{firePersonId,jdbcType=INTEGER},
+      </if>
+      <if test="unitid != null">
+        #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="firePersonName != null">
+        #{firePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="firePersonPicId != null">
+        #{firePersonPicId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

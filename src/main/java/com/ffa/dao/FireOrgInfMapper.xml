@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ffa.dao.FireOrgInfMapper">
+  <resultMap id="BaseResultMap" type="com.ffa.po.FireOrgInf">
+    <id column="fire_org_id" jdbcType="INTEGER" property="fireOrgId" />
+    <result column="unitID" jdbcType="INTEGER" property="unitid" />
+    <result column="fire_org_name" jdbcType="VARCHAR" property="fireOrgName" />
+    <result column="fire_org_type_id" jdbcType="INTEGER" property="fireOrgTypeId" />
+    <result column="fire_org_type_name" jdbcType="VARCHAR" property="fireOrgTypeName" />
+    <result column="fire_org_date" jdbcType="VARCHAR" property="fireOrgDate" />
+    <result column="fire_org_register" jdbcType="VARCHAR" property="fireOrgRegister" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    fire_org_id, unitID, fire_org_name, fire_org_type_id, fire_org_type_name, fire_org_date, 
+    fire_org_register, note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fire_org_inf
+    where fire_org_id = #{fireOrgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fire_org_inf
+    where fire_org_id = #{fireOrgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ffa.po.FireOrgInf">
+    insert into fire_org_inf (fire_org_id, unitID, fire_org_name, 
+      fire_org_type_id, fire_org_type_name, fire_org_date, 
+      fire_org_register, note)
+    values (#{fireOrgId,jdbcType=INTEGER}, #{unitid,jdbcType=INTEGER}, #{fireOrgName,jdbcType=VARCHAR}, 
+      #{fireOrgTypeId,jdbcType=INTEGER}, #{fireOrgTypeName,jdbcType=VARCHAR}, #{fireOrgDate,jdbcType=VARCHAR}, 
+      #{fireOrgRegister,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ffa.po.FireOrgInf">
+    insert into fire_org_inf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fireOrgId != null">
+        fire_org_id,
+      </if>
+      <if test="unitid != null">
+        unitID,
+      </if>
+      <if test="fireOrgName != null">
+        fire_org_name,
+      </if>
+      <if test="fireOrgTypeId != null">
+        fire_org_type_id,
+      </if>
+      <if test="fireOrgTypeName != null">
+        fire_org_type_name,
+      </if>
+      <if test="fireOrgDate != null">
+        fire_org_date,
+      </if>
+      <if test="fireOrgRegister != null">
+        fire_org_register,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fireOrgId != null">
+        #{fireOrgId,jdbcType=INTEGER},
+      </if>
+      <if test="unitid != null">
+        #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="fireOrgName != null">
+        #{fireOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="fireOrgTypeId != null">
+        #{fireOrgTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="fireOrgTypeName != null">
+        #{fireOrgTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fireOrgDate != null">
+        #{fireOrgDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fireOrgRegister != null">
+        #{fireOrgRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.FireOrgInf">
+    update fire_org_inf
+    <set>
+      <if test="unitid != null">
+        unitID = #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="fireOrgName != null">
+        fire_org_name = #{fireOrgName,jdbcType=VARCHAR},
+      </if>
+      <if test="fireOrgTypeId != null">
+        fire_org_type_id = #{fireOrgTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="fireOrgTypeName != null">
+        fire_org_type_name = #{fireOrgTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fireOrgDate != null">
+        fire_org_date = #{fireOrgDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fireOrgRegister != null">
+        fire_org_register = #{fireOrgRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fire_org_id = #{fireOrgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ffa.po.FireOrgInf">
+    update fire_org_inf
+    set unitID = #{unitid,jdbcType=INTEGER},
+      fire_org_name = #{fireOrgName,jdbcType=VARCHAR},
+      fire_org_type_id = #{fireOrgTypeId,jdbcType=INTEGER},
+      fire_org_type_name = #{fireOrgTypeName,jdbcType=VARCHAR},
+      fire_org_date = #{fireOrgDate,jdbcType=VARCHAR},
+      fire_org_register = #{fireOrgRegister,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR}
+    where fire_org_id = #{fireOrgId,jdbcType=INTEGER}
+  </update>
+</mapper>

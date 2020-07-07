@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ffa.dao.SecurityRisksMapper">
+  <resultMap id="BaseResultMap" type="com.ffa.po.SecurityRisks">
+    <result column="unitID" jdbcType="INTEGER" property="unitid" />
+    <result column="risk_register_id" jdbcType="INTEGER" property="riskRegisterId" />
+    <result column="risk_type_id" jdbcType="INTEGER" property="riskTypeId" />
+    <result column="risk_key_part_id" jdbcType="INTEGER" property="riskKeyPartId" />
+    <result column="unitName" jdbcType="VARCHAR" property="unitname" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ffa.po.SecurityRisks">
+    insert into security_risks (unitID, risk_register_id, risk_type_id, 
+      risk_key_part_id, unitName)
+    values (#{unitid,jdbcType=INTEGER}, #{riskRegisterId,jdbcType=INTEGER}, #{riskTypeId,jdbcType=INTEGER}, 
+      #{riskKeyPartId,jdbcType=INTEGER}, #{unitname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ffa.po.SecurityRisks">
+    insert into security_risks
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="unitid != null">
+        unitID,
+      </if>
+      <if test="riskRegisterId != null">
+        risk_register_id,
+      </if>
+      <if test="riskTypeId != null">
+        risk_type_id,
+      </if>
+      <if test="riskKeyPartId != null">
+        risk_key_part_id,
+      </if>
+      <if test="unitname != null">
+        unitName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="unitid != null">
+        #{unitid,jdbcType=INTEGER},
+      </if>
+      <if test="riskRegisterId != null">
+        #{riskRegisterId,jdbcType=INTEGER},
+      </if>
+      <if test="riskTypeId != null">
+        #{riskTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="riskKeyPartId != null">
+        #{riskKeyPartId,jdbcType=INTEGER},
+      </if>
+      <if test="unitname != null">
+        #{unitname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
