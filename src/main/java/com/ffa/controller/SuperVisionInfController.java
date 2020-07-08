@@ -16,10 +16,10 @@ public class SuperVisionInfController {
     @Autowired
     SuperVisionInfService superVisionInfService;
 
-    //获取全部用户
+
     @GetMapping("/")
     public List<SuperVisionInf> getAllSuperVisionInf(){
-        return superVisionInfService.getSuperVisionInf();
+        return superVisionInfService.getAllSuperVisionInf();
     }
     @PostMapping("/")
     public RespBean addSuperVisionInf(@RequestBody SuperVisionInf superVisionInf) {

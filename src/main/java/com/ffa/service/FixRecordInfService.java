@@ -26,7 +26,7 @@ public class FixRecordInfService {
         return fixRecordInfMapper.insertSelective(fixRecordInf);
     }
 
-    public Integer deleteUserInfFixRecordInfById(Integer id){
+    public Integer deleteFixRecordInfById(Integer id){
         return fixRecordInfMapper.deleteByPrimaryKey(id);
     }
 
