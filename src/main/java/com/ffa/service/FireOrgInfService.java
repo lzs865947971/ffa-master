@@ -1,9 +1,5 @@
 package com.ffa.service;
 
-import com.ffa.dao.FireOrgInfMapper;
-import com.ffa.dao.UserInfMapper;
-import com.ffa.po.FireOrgInf;
-import com.ffa.po.UserInf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

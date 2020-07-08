@@ -3,9 +3,9 @@ package com.ffa.po;
 public class FireRecord {
     private Integer fireId;
 
-    private String unitname;
+    private String unitName;
 
-    private Integer unitid;
+    private Integer unitId;
 
     private String fireName;
 
@@ -29,20 +29,20 @@ public class FireRecord {
         this.fireId = fireId;
     }
 
-    public String getUnitname() {
-        return unitname;
+    public String getUnitName() {
+        return unitName;
     }
 
-    public void setUnitname(String unitname) {
-        this.unitname = unitname == null ? null : unitname.trim();
+    public void setUnitName(String unitName) {
+        this.unitName = unitName == null ? null : unitName.trim();
     }
 
-    public Integer getUnitid() {
-        return unitid;
+    public Integer getUnitId() {
+        return unitId;
     }
 
-    public void setUnitid(Integer unitid) {
-        this.unitid = unitid;
+    public void setUnitId(Integer unitId) {
+        this.unitId = unitId;
     }
 
     public String getFireName() {

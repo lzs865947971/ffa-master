@@ -1,9 +1,9 @@
 package com.ffa.po;
 
 public class UserInf {
-    private Integer userid;
+    private Integer userId;
 
-    private String username;
+    private String userName;
 
     private String password;
 
@@ -13,24 +13,24 @@ public class UserInf {
 
     private String email;
 
-    private Integer powernumber;
+    private Integer powerNumber;
 
-    private Integer unitid;
+    private Integer unitId;
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 
     public String getPassword() {
@@ -65,19 +65,19 @@ public class UserInf {
         this.email = email == null ? null : email.trim();
     }
 
-    public Integer getPowernumber() {
-        return powernumber;
+    public Integer getPowerNumber() {
+        return powerNumber;
     }
 
-    public void setPowernumber(Integer powernumber) {
-        this.powernumber = powernumber;
+    public void setPowerNumber(Integer powerNumber) {
+        this.powerNumber = powerNumber;
     }
 
-    public Integer getUnitid() {
-        return unitid;
+    public Integer getUnitId() {
+        return unitId;
     }
 
-    public void setUnitid(Integer unitid) {
-        this.unitid = unitid;
+    public void setUnitId(Integer unitId) {
+        this.unitId = unitId;
     }
 }

@@ -3,7 +3,7 @@ package com.ffa.po;
 public class FireOrgInf {
     private Integer fireOrgId;
 
-    private Integer unitid;
+    private Integer unitId;
 
     private String fireOrgName;
 
@@ -25,12 +25,12 @@ public class FireOrgInf {
         this.fireOrgId = fireOrgId;
     }
 
-    public Integer getUnitid() {
-        return unitid;
+    public Integer getUnitId() {
+        return unitId;
     }
 
-    public void setUnitid(Integer unitid) {
-        this.unitid = unitid;
+    public void setUnitId(Integer unitId) {
+        this.unitId = unitId;
     }
 
     public String getFireOrgName() {

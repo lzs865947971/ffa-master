@@ -3,14 +3,14 @@
 <mapper namespace="com.ffa.dao.FileMapper">
   <resultMap id="BaseResultMap" type="com.ffa.po.File">
     <id column="file_id" jdbcType="INTEGER" property="fileId" />
-    <result column="unitID" jdbcType="INTEGER" property="unitid" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
     <result column="create_time" jdbcType="VARCHAR" property="createTime" />
     <result column="file_type_id" jdbcType="INTEGER" property="fileTypeId" />
     <result column="file_name" jdbcType="VARCHAR" property="fileName" />
     <result column="file_storage_path" jdbcType="VARCHAR" property="fileStoragePath" />
   </resultMap>
   <sql id="Base_Column_List">
-    file_id, unitID, create_time, file_type_id, file_name, file_storage_path
+    file_id, unit_id, create_time, file_type_id, file_name, file_storage_path
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,10 +23,10 @@
     where file_id = #{fileId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.File">
-    insert into file (file_id, unitID, create_time, 
+    insert into file (file_id, unit_id, create_time, 
       file_type_id, file_name, file_storage_path
       )
-    values (#{fileId,jdbcType=INTEGER}, #{unitid,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, 
+    values (#{fileId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, 
       #{fileTypeId,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{fileStoragePath,jdbcType=VARCHAR}
       )
   </insert>
@@ -36,8 +36,8 @@
       <if test="fileId != null">
         file_id,
       </if>
-      <if test="unitid != null">
-        unitID,
+      <if test="unitId != null">
+        unit_id,
       </if>
       <if test="createTime != null">
         create_time,
@@ -56,8 +56,8 @@
       <if test="fileId != null">
         #{fileId,jdbcType=INTEGER},
       </if>
-      <if test="unitid != null">
-        #{unitid,jdbcType=INTEGER},
+      <if test="unitId != null">
+        #{unitId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=VARCHAR},
@@ -76,8 +76,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.File">
     update file
     <set>
-      <if test="unitid != null">
-        unitID = #{unitid,jdbcType=INTEGER},
+      <if test="unitId != null">
+        unit_id = #{unitId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=VARCHAR},
@@ -96,7 +96,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ffa.po.File">
     update file
-    set unitID = #{unitid,jdbcType=INTEGER},
+    set unit_id = #{unitId,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=VARCHAR},
       file_type_id = #{fileTypeId,jdbcType=INTEGER},
       file_name = #{fileName,jdbcType=VARCHAR},

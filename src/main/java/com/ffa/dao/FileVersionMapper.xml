@@ -2,19 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ffa.dao.FileVersionMapper">
   <resultMap id="BaseResultMap" type="com.ffa.po.FileVersion">
+    <id column="serial_number" jdbcType="INTEGER" property="serialNumber" />
     <result column="file_id" jdbcType="INTEGER" property="fileId" />
     <result column="file_modify_time" jdbcType="VARCHAR" property="fileModifyTime" />
     <result column="file_modify_person_name" jdbcType="VARCHAR" property="fileModifyPersonName" />
   </resultMap>
+  <sql id="Base_Column_List">
+    serial_number, file_id, file_modify_time, file_modify_person_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from file_version
+    where serial_number = #{serialNumber,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from file_version
+    where serial_number = #{serialNumber,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.ffa.po.FileVersion">
-    insert into file_version (file_id, file_modify_time, file_modify_person_name
-      )
-    values (#{fileId,jdbcType=INTEGER}, #{fileModifyTime,jdbcType=VARCHAR}, #{fileModifyPersonName,jdbcType=VARCHAR}
-      )
+    insert into file_version (serial_number, file_id, file_modify_time, 
+      file_modify_person_name)
+    values (#{serialNumber,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}, #{fileModifyTime,jdbcType=VARCHAR}, 
+      #{fileModifyPersonName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FileVersion">
     insert into file_version
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serialNumber != null">
+        serial_number,
+      </if>
       <if test="fileId != null">
         file_id,
       </if>
@@ -26,6 +43,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serialNumber != null">
+        #{serialNumber,jdbcType=INTEGER},
+      </if>
       <if test="fileId != null">
         #{fileId,jdbcType=INTEGER},
       </if>
@@ -37,4 +57,26 @@
       </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.FileVersion">
+    update file_version
+    <set>
+      <if test="fileId != null">
+        file_id = #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="fileModifyTime != null">
+        file_modify_time = #{fileModifyTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fileModifyPersonName != null">
+        file_modify_person_name = #{fileModifyPersonName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where serial_number = #{serialNumber,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ffa.po.FileVersion">
+    update file_version
+    set file_id = #{fileId,jdbcType=INTEGER},
+      file_modify_time = #{fileModifyTime,jdbcType=VARCHAR},
+      file_modify_person_name = #{fileModifyPersonName,jdbcType=VARCHAR}
+    where serial_number = #{serialNumber,jdbcType=INTEGER}
+  </update>
 </mapper>

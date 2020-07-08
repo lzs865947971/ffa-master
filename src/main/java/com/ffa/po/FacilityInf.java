@@ -5,7 +5,7 @@ public class FacilityInf {
 
     private String facilityName;
 
-    private Integer unitid;
+    private Integer unitId;
 
     private Integer facilityTypeId;
 
@@ -27,12 +27,12 @@ public class FacilityInf {
         this.facilityName = facilityName == null ? null : facilityName.trim();
     }
 
-    public Integer getUnitid() {
-        return unitid;
+    public Integer getUnitId() {
+        return unitId;
     }
 
-    public void setUnitid(Integer unitid) {
-        this.unitid = unitid;
+    public void setUnitId(Integer unitId) {
+        this.unitId = unitId;
     }
 
     public Integer getFacilityTypeId() {

@@ -2,26 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ffa.dao.SecurityRisksMapper">
   <resultMap id="BaseResultMap" type="com.ffa.po.SecurityRisks">
-    <result column="unitID" jdbcType="INTEGER" property="unitid" />
-    <result column="risk_register_id" jdbcType="INTEGER" property="riskRegisterId" />
+    <id column="risk_register_id" jdbcType="INTEGER" property="riskRegisterId" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
     <result column="risk_type_id" jdbcType="INTEGER" property="riskTypeId" />
     <result column="risk_key_part_id" jdbcType="INTEGER" property="riskKeyPartId" />
-    <result column="unitName" jdbcType="VARCHAR" property="unitname" />
+    <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
   </resultMap>
+  <sql id="Base_Column_List">
+    risk_register_id, unit_id, risk_type_id, risk_key_part_id, unit_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from security_risks
+    where risk_register_id = #{riskRegisterId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from security_risks
+    where risk_register_id = #{riskRegisterId,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.ffa.po.SecurityRisks">
-    insert into security_risks (unitID, risk_register_id, risk_type_id, 
-      risk_key_part_id, unitName)
-    values (#{unitid,jdbcType=INTEGER}, #{riskRegisterId,jdbcType=INTEGER}, #{riskTypeId,jdbcType=INTEGER}, 
-      #{riskKeyPartId,jdbcType=INTEGER}, #{unitname,jdbcType=VARCHAR})
+    insert into security_risks (risk_register_id, unit_id, risk_type_id, 
+      risk_key_part_id, unit_name)
+    values (#{riskRegisterId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{riskTypeId,jdbcType=INTEGER}, 
+      #{riskKeyPartId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.SecurityRisks">
     insert into security_risks
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="unitid != null">
-        unitID,
-      </if>
       <if test="riskRegisterId != null">
         risk_register_id,
+      </if>
+      <if test="unitId != null">
+        unit_id,
       </if>
       <if test="riskTypeId != null">
         risk_type_id,
@@ -29,16 +42,16 @@
       <if test="riskKeyPartId != null">
         risk_key_part_id,
       </if>
-      <if test="unitname != null">
-        unitName,
+      <if test="unitName != null">
+        unit_name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="unitid != null">
-        #{unitid,jdbcType=INTEGER},
-      </if>
       <if test="riskRegisterId != null">
         #{riskRegisterId,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null">
+        #{unitId,jdbcType=INTEGER},
       </if>
       <if test="riskTypeId != null">
         #{riskTypeId,jdbcType=INTEGER},
@@ -46,9 +59,35 @@
       <if test="riskKeyPartId != null">
         #{riskKeyPartId,jdbcType=INTEGER},
       </if>
-      <if test="unitname != null">
-        #{unitname,jdbcType=VARCHAR},
+      <if test="unitName != null">
+        #{unitName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.SecurityRisks">
+    update security_risks
+    <set>
+      <if test="unitId != null">
+        unit_id = #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="riskTypeId != null">
+        risk_type_id = #{riskTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="riskKeyPartId != null">
+        risk_key_part_id = #{riskKeyPartId,jdbcType=INTEGER},
+      </if>
+      <if test="unitName != null">
+        unit_name = #{unitName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where risk_register_id = #{riskRegisterId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ffa.po.SecurityRisks">
+    update security_risks
+    set unit_id = #{unitId,jdbcType=INTEGER},
+      risk_type_id = #{riskTypeId,jdbcType=INTEGER},
+      risk_key_part_id = #{riskKeyPartId,jdbcType=INTEGER},
+      unit_name = #{unitName,jdbcType=VARCHAR}
+    where risk_register_id = #{riskRegisterId,jdbcType=INTEGER}
+  </update>
 </mapper>

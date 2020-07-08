@@ -1,10 +1,7 @@
 package com.ffa.controller;
 
-import com.ffa.po.FixRecordInf;
 import com.ffa.po.RespBean;
-import com.ffa.po.UserInf;
 import com.ffa.service.FixRecordInfService;
-import com.ffa.service.UserInfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

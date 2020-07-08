@@ -1,13 +1,13 @@
 package com.ffa.po;
 
 public class KeyUnit {
-    private Integer unitid;
+    private Integer unitId;
 
-    private String unitname;
+    private String unitName;
 
-    private Integer principalid;
+    private Integer principalId;
 
-    private String principalname;
+    private String principalName;
 
     private String unitAddress;
 
@@ -19,36 +19,36 @@ public class KeyUnit {
 
     private Integer facilitiyId;
 
-    public Integer getUnitid() {
-        return unitid;
+    public Integer getUnitId() {
+        return unitId;
     }
 
-    public void setUnitid(Integer unitid) {
-        this.unitid = unitid;
+    public void setUnitId(Integer unitId) {
+        this.unitId = unitId;
     }
 
-    public String getUnitname() {
-        return unitname;
+    public String getUnitName() {
+        return unitName;
     }
 
-    public void setUnitname(String unitname) {
-        this.unitname = unitname == null ? null : unitname.trim();
+    public void setUnitName(String unitName) {
+        this.unitName = unitName == null ? null : unitName.trim();
     }
 
-    public Integer getPrincipalid() {
-        return principalid;
+    public Integer getPrincipalId() {
+        return principalId;
     }
 
-    public void setPrincipalid(Integer principalid) {
-        this.principalid = principalid;
+    public void setPrincipalId(Integer principalId) {
+        this.principalId = principalId;
     }
 
-    public String getPrincipalname() {
-        return principalname;
+    public String getPrincipalName() {
+        return principalName;
     }
 
-    public void setPrincipalname(String principalname) {
-        this.principalname = principalname == null ? null : principalname.trim();
+    public void setPrincipalName(String principalName) {
+        this.principalName = principalName == null ? null : principalName.trim();
     }
 
     public String getUnitAddress() {

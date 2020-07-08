@@ -3,7 +3,7 @@ package com.ffa.po;
 public class KeyPartInf {
     private Integer keyPartId;
 
-    private Integer unitid;
+    private Integer unitId;
 
     private String keyPartName;
 
@@ -17,12 +17,12 @@ public class KeyPartInf {
         this.keyPartId = keyPartId;
     }
 
-    public Integer getUnitid() {
-        return unitid;
+    public Integer getUnitId() {
+        return unitId;
     }
 
-    public void setUnitid(Integer unitid) {
-        this.unitid = unitid;
+    public void setUnitId(Integer unitId) {
+        this.unitId = unitId;
     }
 
     public String getKeyPartName() {

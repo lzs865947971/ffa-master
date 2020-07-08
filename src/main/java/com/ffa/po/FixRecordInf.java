@@ -1,15 +1,25 @@
 package com.ffa.po;
 
 public class FixRecordInf {
+    private Integer serialNumber;
+
     private Integer facilityId;
 
     private String facilityName;
 
-    private Integer unitid;
+    private Integer unitId;
 
     private String fixTime;
 
     private Integer fixState;
+
+    public Integer getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(Integer serialNumber) {
+        this.serialNumber = serialNumber;
+    }
 
     public Integer getFacilityId() {
         return facilityId;
@@ -27,12 +37,12 @@ public class FixRecordInf {
         this.facilityName = facilityName == null ? null : facilityName.trim();
     }
 
-    public Integer getUnitid() {
-        return unitid;
+    public Integer getUnitId() {
+        return unitId;
     }
 
-    public void setUnitid(Integer unitid) {
-        this.unitid = unitid;
+    public void setUnitId(Integer unitId) {
+        this.unitId = unitId;
     }
 
     public String getFixTime() {

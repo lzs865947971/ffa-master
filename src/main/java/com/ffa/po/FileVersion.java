@@ -1,11 +1,21 @@
 package com.ffa.po;
 
 public class FileVersion {
+    private Integer serialNumber;
+
     private Integer fileId;
 
     private String fileModifyTime;
 
     private String fileModifyPersonName;
+
+    public Integer getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(Integer serialNumber) {
+        this.serialNumber = serialNumber;
+    }
 
     public Integer getFileId() {
         return fileId;

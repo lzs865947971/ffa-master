@@ -2,16 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ffa.dao.FirePersonInfMapper">
   <resultMap id="BaseResultMap" type="com.ffa.po.FirePersonInf">
-    <result column="fire_person_id" jdbcType="INTEGER" property="firePersonId" />
-    <result column="unitID" jdbcType="INTEGER" property="unitid" />
+    <id column="fire_person_id" jdbcType="INTEGER" property="firePersonId" />
+    <result column="fire_org_id" jdbcType="INTEGER" property="fireOrgId" />
     <result column="fire_person_name" jdbcType="VARCHAR" property="firePersonName" />
     <result column="fire_person_pic_id" jdbcType="INTEGER" property="firePersonPicId" />
+    <result column="fire_record_id" jdbcType="INTEGER" property="fireRecordId" />
   </resultMap>
+  <sql id="Base_Column_List">
+    fire_person_id, fire_org_id, fire_person_name, fire_person_pic_id, fire_record_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fire_person_inf
+    where fire_person_id = #{firePersonId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fire_person_inf
+    where fire_person_id = #{firePersonId,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.ffa.po.FirePersonInf">
-    insert into fire_person_inf (fire_person_id, unitID, fire_person_name, 
-      fire_person_pic_id)
-    values (#{firePersonId,jdbcType=INTEGER}, #{unitid,jdbcType=INTEGER}, #{firePersonName,jdbcType=VARCHAR}, 
-      #{firePersonPicId,jdbcType=INTEGER})
+    insert into fire_person_inf (fire_person_id, fire_org_id, fire_person_name, 
+      fire_person_pic_id, fire_record_id)
+    values (#{firePersonId,jdbcType=INTEGER}, #{fireOrgId,jdbcType=INTEGER}, #{firePersonName,jdbcType=VARCHAR}, 
+      #{firePersonPicId,jdbcType=INTEGER}, #{fireRecordId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FirePersonInf">
     insert into fire_person_inf
@@ -19,8 +33,8 @@
       <if test="firePersonId != null">
         fire_person_id,
       </if>
-      <if test="unitid != null">
-        unitID,
+      <if test="fireOrgId != null">
+        fire_org_id,
       </if>
       <if test="firePersonName != null">
         fire_person_name,
@@ -28,13 +42,16 @@
       <if test="firePersonPicId != null">
         fire_person_pic_id,
       </if>
+      <if test="fireRecordId != null">
+        fire_record_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="firePersonId != null">
         #{firePersonId,jdbcType=INTEGER},
       </if>
-      <if test="unitid != null">
-        #{unitid,jdbcType=INTEGER},
+      <if test="fireOrgId != null">
+        #{fireOrgId,jdbcType=INTEGER},
       </if>
       <if test="firePersonName != null">
         #{firePersonName,jdbcType=VARCHAR},
@@ -42,6 +59,35 @@
       <if test="firePersonPicId != null">
         #{firePersonPicId,jdbcType=INTEGER},
       </if>
+      <if test="fireRecordId != null">
+        #{fireRecordId,jdbcType=INTEGER},
+      </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.FirePersonInf">
+    update fire_person_inf
+    <set>
+      <if test="fireOrgId != null">
+        fire_org_id = #{fireOrgId,jdbcType=INTEGER},
+      </if>
+      <if test="firePersonName != null">
+        fire_person_name = #{firePersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="firePersonPicId != null">
+        fire_person_pic_id = #{firePersonPicId,jdbcType=INTEGER},
+      </if>
+      <if test="fireRecordId != null">
+        fire_record_id = #{fireRecordId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where fire_person_id = #{firePersonId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ffa.po.FirePersonInf">
+    update fire_person_inf
+    set fire_org_id = #{fireOrgId,jdbcType=INTEGER},
+      fire_person_name = #{firePersonName,jdbcType=VARCHAR},
+      fire_person_pic_id = #{firePersonPicId,jdbcType=INTEGER},
+      fire_record_id = #{fireRecordId,jdbcType=INTEGER}
+    where fire_person_id = #{firePersonId,jdbcType=INTEGER}
+  </update>
 </mapper>

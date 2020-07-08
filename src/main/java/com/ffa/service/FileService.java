@@ -1,9 +1,5 @@
 package com.ffa.service;
 
-import com.ffa.dao.FileMapper;
-import com.ffa.dao.UserInfMapper;
-import com.ffa.po.File;
-import com.ffa.po.UserInf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

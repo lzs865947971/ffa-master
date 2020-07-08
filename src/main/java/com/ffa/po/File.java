@@ -3,7 +3,7 @@ package com.ffa.po;
 public class File {
     private Integer fileId;
 
-    private Integer unitid;
+    private Integer unitId;
 
     private String createTime;
 
@@ -21,12 +21,12 @@ public class File {
         this.fileId = fileId;
     }
 
-    public Integer getUnitid() {
-        return unitid;
+    public Integer getUnitId() {
+        return unitId;
     }
 
-    public void setUnitid(Integer unitid) {
-        this.unitid = unitid;
+    public void setUnitId(Integer unitId) {
+        this.unitId = unitId;
     }
 
     public String getCreateTime() {

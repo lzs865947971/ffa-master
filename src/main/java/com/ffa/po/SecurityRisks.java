@@ -1,23 +1,15 @@
 package com.ffa.po;
 
 public class SecurityRisks {
-    private Integer unitid;
-
     private Integer riskRegisterId;
+
+    private Integer unitId;
 
     private Integer riskTypeId;
 
     private Integer riskKeyPartId;
 
-    private String unitname;
-
-    public Integer getUnitid() {
-        return unitid;
-    }
-
-    public void setUnitid(Integer unitid) {
-        this.unitid = unitid;
-    }
+    private String unitName;
 
     public Integer getRiskRegisterId() {
         return riskRegisterId;
@@ -25,6 +17,14 @@ public class SecurityRisks {
 
     public void setRiskRegisterId(Integer riskRegisterId) {
         this.riskRegisterId = riskRegisterId;
+    }
+
+    public Integer getUnitId() {
+        return unitId;
+    }
+
+    public void setUnitId(Integer unitId) {
+        this.unitId = unitId;
     }
 
     public Integer getRiskTypeId() {
@@ -43,11 +43,11 @@ public class SecurityRisks {
         this.riskKeyPartId = riskKeyPartId;
     }
 
-    public String getUnitname() {
-        return unitname;
+    public String getUnitName() {
+        return unitName;
     }
 
-    public void setUnitname(String unitname) {
-        this.unitname = unitname == null ? null : unitname.trim();
+    public void setUnitName(String unitName) {
+        this.unitName = unitName == null ? null : unitName.trim();
     }
 }

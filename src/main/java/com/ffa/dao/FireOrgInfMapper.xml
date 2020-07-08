@@ -3,7 +3,7 @@
 <mapper namespace="com.ffa.dao.FireOrgInfMapper">
   <resultMap id="BaseResultMap" type="com.ffa.po.FireOrgInf">
     <id column="fire_org_id" jdbcType="INTEGER" property="fireOrgId" />
-    <result column="unitID" jdbcType="INTEGER" property="unitid" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
     <result column="fire_org_name" jdbcType="VARCHAR" property="fireOrgName" />
     <result column="fire_org_type_id" jdbcType="INTEGER" property="fireOrgTypeId" />
     <result column="fire_org_type_name" jdbcType="VARCHAR" property="fireOrgTypeName" />
@@ -12,7 +12,7 @@
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
   <sql id="Base_Column_List">
-    fire_org_id, unitID, fire_org_name, fire_org_type_id, fire_org_type_name, fire_org_date, 
+    fire_org_id, unit_id, fire_org_name, fire_org_type_id, fire_org_type_name, fire_org_date, 
     fire_org_register, note
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -26,10 +26,10 @@
     where fire_org_id = #{fireOrgId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.FireOrgInf">
-    insert into fire_org_inf (fire_org_id, unitID, fire_org_name, 
+    insert into fire_org_inf (fire_org_id, unit_id, fire_org_name, 
       fire_org_type_id, fire_org_type_name, fire_org_date, 
       fire_org_register, note)
-    values (#{fireOrgId,jdbcType=INTEGER}, #{unitid,jdbcType=INTEGER}, #{fireOrgName,jdbcType=VARCHAR}, 
+    values (#{fireOrgId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{fireOrgName,jdbcType=VARCHAR}, 
       #{fireOrgTypeId,jdbcType=INTEGER}, #{fireOrgTypeName,jdbcType=VARCHAR}, #{fireOrgDate,jdbcType=VARCHAR}, 
       #{fireOrgRegister,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
   </insert>
@@ -39,8 +39,8 @@
       <if test="fireOrgId != null">
         fire_org_id,
       </if>
-      <if test="unitid != null">
-        unitID,
+      <if test="unitId != null">
+        unit_id,
       </if>
       <if test="fireOrgName != null">
         fire_org_name,
@@ -65,8 +65,8 @@
       <if test="fireOrgId != null">
         #{fireOrgId,jdbcType=INTEGER},
       </if>
-      <if test="unitid != null">
-        #{unitid,jdbcType=INTEGER},
+      <if test="unitId != null">
+        #{unitId,jdbcType=INTEGER},
       </if>
       <if test="fireOrgName != null">
         #{fireOrgName,jdbcType=VARCHAR},
@@ -91,8 +91,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.FireOrgInf">
     update fire_org_inf
     <set>
-      <if test="unitid != null">
-        unitID = #{unitid,jdbcType=INTEGER},
+      <if test="unitId != null">
+        unit_id = #{unitId,jdbcType=INTEGER},
       </if>
       <if test="fireOrgName != null">
         fire_org_name = #{fireOrgName,jdbcType=VARCHAR},
@@ -117,7 +117,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ffa.po.FireOrgInf">
     update fire_org_inf
-    set unitID = #{unitid,jdbcType=INTEGER},
+    set unit_id = #{unitId,jdbcType=INTEGER},
       fire_org_name = #{fireOrgName,jdbcType=VARCHAR},
       fire_org_type_id = #{fireOrgTypeId,jdbcType=INTEGER},
       fire_org_type_name = #{fireOrgTypeName,jdbcType=VARCHAR},
