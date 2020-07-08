@@ -14,11 +14,8 @@
   <sql id="Base_Column_List">
     UserID, username, password, name, tel, email, powernumber, unitID
   </sql>
-  <select id="getAllUseInf" resultMap="BaseResultMap">
-    select * from user_inf
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
+    select 
     <include refid="Base_Column_List" />
     from user_inf
     where UserID = #{userid,jdbcType=INTEGER}
@@ -28,11 +25,11 @@
     where UserID = #{userid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.UserInf">
-    insert into user_inf (UserID, username, password,
-      name, tel, email, powernumber,
+    insert into user_inf (UserID, username, password, 
+      name, tel, email, powernumber, 
       unitID)
-    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-      #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{powernumber,jdbcType=INTEGER},
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{powernumber,jdbcType=INTEGER}, 
       #{unitid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.UserInf">

@@ -1,11 +1,7 @@
 package com.ffa.dao;
 
 import com.ffa.po.UserInf;
-import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
-
-@Mapper
 public interface UserInfMapper {
     int deleteByPrimaryKey(Integer userid);
 
@@ -18,6 +14,4 @@ public interface UserInfMapper {
     int updateByPrimaryKeySelective(UserInf record);
 
     int updateByPrimaryKey(UserInf record);
-
-    List<UserInf> getAllUseInf();
 }

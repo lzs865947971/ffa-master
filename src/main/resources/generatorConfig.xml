@@ -63,7 +63,7 @@
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
         <table tableName="supervision_inf"
-               domainObjectName="SupervisionInf"
+               domainObjectName="SuperVisionInf"
                enableInsert="true"
                enableSelectByPrimaryKey="true"
                enableUpdateByPrimaryKey="true"

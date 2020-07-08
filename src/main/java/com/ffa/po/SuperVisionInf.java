@@ -1,6 +1,6 @@
 package com.ffa.po;
 
-public class SupervisionInf {
+public class SuperVisionInf {
     private Integer supervisionId;
 
     private String supervisionName;
