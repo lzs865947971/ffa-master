@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ffa.dao.SupervisionInfMapper">
-  <resultMap id="BaseResultMap" type="com.ffa.po.SupervisionInf">
+<mapper namespace="com.ffa.dao.SuperVisionInfMapper">
+  <resultMap id="BaseResultMap" type="com.ffa.po.SuperVisionInf">
     <id column="Supervision_id" jdbcType="INTEGER" property="supervisionId" />
     <result column="Supervision_name" jdbcType="VARCHAR" property="supervisionName" />
   </resultMap>
@@ -18,11 +18,11 @@
     delete from supervision_inf
     where Supervision_id = #{supervisionId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ffa.po.SupervisionInf">
+  <insert id="insert" parameterType="com.ffa.po.SuperVisionInf">
     insert into supervision_inf (Supervision_id, Supervision_name)
     values (#{supervisionId,jdbcType=INTEGER}, #{supervisionName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ffa.po.SupervisionInf">
+  <insert id="insertSelective" parameterType="com.ffa.po.SuperVisionInf">
     insert into supervision_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="supervisionId != null">
@@ -41,7 +41,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.SupervisionInf">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.SuperVisionInf">
     update supervision_inf
     <set>
       <if test="supervisionName != null">
@@ -50,7 +50,7 @@
     </set>
     where Supervision_id = #{supervisionId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ffa.po.SupervisionInf">
+  <update id="updateByPrimaryKey" parameterType="com.ffa.po.SuperVisionInf">
     update supervision_inf
     set Supervision_name = #{supervisionName,jdbcType=VARCHAR}
     where Supervision_id = #{supervisionId,jdbcType=INTEGER}

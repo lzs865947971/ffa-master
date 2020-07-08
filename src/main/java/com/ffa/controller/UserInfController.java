@@ -1,7 +1,5 @@
 package com.ffa.controller;
 
-import com.ffa.po.RespBean;
-import com.ffa.po.UserInf;
 import com.ffa.service.UserInfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +28,7 @@ public class UserInfController {
     }
 
     @DeleteMapping("/{id}")
-    public RespBean deleteSalaryById(@PathVariable Integer id) {
+    public RespBean deleteUser_infById(@PathVariable Integer id) {
         if (userInfService.deleteUserInfById(id) == 1) {
             return RespBean.ok("删除成功！");
         }
@@ -38,7 +36,7 @@ public class UserInfController {
     }
 
     @PutMapping("/")
-    public RespBean updateSalaryById(@RequestBody UserInf userInf) {
+    public RespBean updateUser_infById(@RequestBody UserInf userInf) {
         if (userInfService.updateUserInfById(userInf) == 1) {
             return RespBean.ok("更新成功!");
         }
