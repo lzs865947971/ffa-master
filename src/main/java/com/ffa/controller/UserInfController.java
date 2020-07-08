@@ -17,11 +17,11 @@ public class UserInfController {
 
     //获取全部用户
     @GetMapping("/")
-    public List<UserInf> getAllUser_inf(){
+    public List<UserInf> getAllUserInf(){
         return userInfService.getAllUseInf();
     }
     @PostMapping("/")
-    public RespBean addUser_inf(@RequestBody UserInf userInf) {
+    public RespBean addUserInf(@RequestBody UserInf userInf) {
         if (userInfService.addUserInf(userInf) == 1) {
             return RespBean.ok("添加成功!");
         }
@@ -29,7 +29,7 @@ public class UserInfController {
     }
 
     @DeleteMapping("/{id}")
-    public RespBean deleteUser_infById(@PathVariable Integer id) {
+    public RespBean deleteUserInfById(@PathVariable Integer id) {
         if (userInfService.deleteUserInfById(id) == 1) {
             return RespBean.ok("删除成功！");
         }
@@ -37,7 +37,7 @@ public class UserInfController {
     }
 
     @PutMapping("/")
-    public RespBean updateUser_infById(@RequestBody UserInf userInf) {
+    public RespBean updateUserInfById(@RequestBody UserInf userInf) {
         if (userInfService.updateUserInfById(userInf) == 1) {
             return RespBean.ok("更新成功!");
         }
