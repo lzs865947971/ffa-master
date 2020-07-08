@@ -1,6 +1,9 @@
 package com.ffa.controller;
 
+import com.ffa.po.FireRecord;
+import com.ffa.po.RespBean;
 import com.ffa.po.UserInf;
+import com.ffa.service.FireRecordService;
 import com.ffa.service.UserInfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +18,10 @@ public class FireRecordController {
     @Autowired
     FireRecordService fireRecordService;
 
-    //获取全部用户
+
     @GetMapping("/")
     public List<FireRecord> getAllFireRecord(){
-        return fireRecordService.getAllFireRecordService();
+        return fireRecordService.getAllFireRecord();
     }
     @PostMapping("/")
     public RespBean addFireRecord(@RequestBody FireRecord fireRecord) {
