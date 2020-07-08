@@ -1,5 +1,6 @@
 package com.ffa.controller;
 
+import com.ffa.po.KeyPartInf;
 import com.ffa.po.RespBean;
 import com.ffa.service.KeyPartInfService;
 import org.springframework.beans.factory.annotation.Autowired;

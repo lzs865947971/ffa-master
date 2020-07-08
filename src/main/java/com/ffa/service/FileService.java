@@ -1,5 +1,6 @@
 package com.ffa.service;
 
+import com.ffa.dao.FileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
