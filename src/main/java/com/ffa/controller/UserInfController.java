@@ -30,7 +30,7 @@ public class UserInfController {
     }
 
     @DeleteMapping("/{id}")
-    public RespBean deleteSalaryById(@PathVariable Integer id) {
+    public RespBean deleteUserInfById(@PathVariable Integer id) {
         if (userInfService.deleteUserInfById(id) == 1) {
             return RespBean.ok("删除成功！");
         }
@@ -38,7 +38,7 @@ public class UserInfController {
     }
 
     @PutMapping("/")
-    public RespBean updateSalaryById(@RequestBody UserInf userInf) {
+    public RespBean updateUserInfById(@RequestBody UserInf userInf) {
         if (userInfService.updateUserInfById(userInf) == 1) {
             return RespBean.ok("更新成功!");
         }
