@@ -1,6 +1,8 @@
 package com.ffa.controller;
 
+import com.ffa.po.FixRecordInf;
 import com.ffa.po.UserInf;
+import com.ffa.service.FixRecordInfService;
 import com.ffa.service.UserInfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,20 +11,20 @@ import java.util.List;
 
 @RestController
 //@CrossOrigin可解决跨域
-@RequestMapping("/user")
-public class UserInfController {
+@RequestMapping("/fixrecordinf")
+public class FixRecordInfController {
 
     @Autowired
-    UserInfService userInfService;
+    FixRecordInfService fixRecordInfService;
 
     //获取全部用户
     @GetMapping("/")
-    public List<UserInf> getAllUser_inf(){
-        return userInfService.getAllUseInf();
+    public List<FixRecordInf> getAllFixRecordInf(){
+        return fixRecordInfService.getAllFixRecordInf();
     }
     @PostMapping("/")
-    public RespBean addUser_inf(@RequestBody UserInf userInf) {
-        if (userInfService.addUserInf(userInf) == 1) {
+    public RespBean addUser_inf(@RequestBody FixRecordInf fixRecordInf) {
+        if (fixRecordInfService.addFixRecordInf(fixRecordInf) == 1) {
             return RespBean.ok("添加成功!");
         }
         return RespBean.error("添加失败!");
@@ -30,15 +32,15 @@ public class UserInfController {
 
     @DeleteMapping("/{id}")
     public RespBean deleteUser_infById(@PathVariable Integer id) {
-        if (userInfService.deleteUserInfById(id) == 1) {
+        if (fixRecordInfService.deleteFixRecordInfById(id) == 1) {
             return RespBean.ok("删除成功！");
         }
         return RespBean.error("删除失败！");
     }
 
     @PutMapping("/")
-    public RespBean updateUser_infById(@RequestBody UserInf userInf) {
-        if (userInfService.updateUserInfById(userInf) == 1) {
+    public RespBean updateUser_infById(@RequestBody FixRecordInf fixRecordInf) {
+        if (fixRecordInfService.updateFixRecordInfById(fixRecordInf) == 1) {
             return RespBean.ok("更新成功!");
         }
         return RespBean.error("更新失败!");

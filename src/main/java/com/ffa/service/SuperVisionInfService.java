@@ -16,7 +16,7 @@ public class SuperVisionInfService {
     @Autowired
     SuperVisionInfMapper superVisionInfMapper;
 
-    public List<SuperVisionInfService> getAllSuperVisionInf(){
+    public List<SuperVisionInf> getAllSuperVisionInf(){
         return superVisionInfMapper.getAllSuperVisionInf();
     }
 
