@@ -2,6 +2,8 @@ package com.ffa.dao;
 
 import com.ffa.po.KeyPartInf;
 
+import java.util.List;
+
 public interface KeyPartInfMapper {
     int deleteByPrimaryKey(Integer keyPartId);
 
@@ -10,6 +12,8 @@ public interface KeyPartInfMapper {
     int insertSelective(KeyPartInf record);
 
     KeyPartInf selectByPrimaryKey(Integer keyPartId);
+
+    List<KeyPartInf> getAllKeyPartInf(KeyPartInf record);
 
     int updateByPrimaryKeySelective(KeyPartInf record);
 

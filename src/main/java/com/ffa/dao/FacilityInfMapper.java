@@ -1,7 +1,11 @@
 package com.ffa.dao;
 
 import com.ffa.po.FacilityInf;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface FacilityInfMapper {
     int deleteByPrimaryKey(Integer facilityId);
 
@@ -16,4 +20,5 @@ public interface FacilityInfMapper {
     int updateByPrimaryKey(FacilityInf record);
 
 
+    List<FacilityInf> getAllFacilityInf(FacilityInf record);
 }

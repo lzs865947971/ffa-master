@@ -1,6 +1,7 @@
 package com.ffa.controller;
 
 import com.ffa.po.RespBean;
+import com.ffa.po.SuperVisionInf;
 import com.ffa.service.SuperVisionInfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,8 @@ public class SuperVisionInfController {
 
 
     @GetMapping("/")
-    public List<SuperVisionInf> getAllSuperVisionInf(){
-        return superVisionInfService.getAllSuperVisionInf();
+    public List<SuperVisionInf> getAllSuperVisionInf(@RequestBody SuperVisionInf superVisionInf){
+        return superVisionInfService.getAllSuperVisionInf(superVisionInf);
     }
     @PostMapping("/")
     public RespBean addSuperVisionInf(@RequestBody SuperVisionInf superVisionInf) {

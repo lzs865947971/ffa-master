@@ -16,10 +16,9 @@ public class KeyPartInfController {
     @Autowired
     KeyPartInfService keyPartInfService;
 
-
     @GetMapping("/")
-    public List<KeyPartInf> getAllKeyPartInf(){
-        return keyPartInfService.getAllKeyPartInf();
+    public List<KeyPartInf> getAllKeyPartInf(@RequestBody KeyPartInf keyPartInf){
+        return keyPartInfService.getAllKeyPartInf(keyPartInf);
     }
     @PostMapping("/")
     public RespBean addKeyPartInf(@RequestBody KeyPartInf keyPartInf) {
@@ -44,5 +43,4 @@ public class KeyPartInfController {
         }
         return RespBean.error("更新失败!");
     }
-
 }

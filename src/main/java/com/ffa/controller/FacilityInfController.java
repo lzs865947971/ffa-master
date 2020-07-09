@@ -1,5 +1,6 @@
 package com.ffa.controller;
 
+import com.ffa.po.FacilityInf;
 import com.ffa.po.RespBean;
 import com.ffa.service.FacilityInfService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class FacilityInfController {
 
     //获取全部用户
     @GetMapping("/")
-    public List<FacilityInf> getAllFacilityInf(){
-        return facilityInfService.getAllFacilityInf();
+    public List<FacilityInf> getAllFacilityInf(@RequestBody FacilityInf facilityInf){
+        return facilityInfService.getAllFacilityInf(facilityInf);
     }
     @PostMapping("/")
     public RespBean addFacilityInf(@RequestBody FacilityInf facilityInf) {

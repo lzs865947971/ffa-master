@@ -21,6 +21,7 @@ public class UserInfController {
     public List<UserInf> getAllUserInf(@RequestBody UserInf userInf){
         return userInfService.getAllUserInf(userInf);
     }
+
     @PostMapping("/")
     public RespBean addUserInf(@RequestBody UserInf userInf) {
         if (userInfService.addUserInf(userInf) == 1) {

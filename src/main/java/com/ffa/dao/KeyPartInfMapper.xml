@@ -17,6 +17,19 @@
     from key_part_inf
     where key_part_id = #{keyPartId,jdbcType=INTEGER}
   </select>
+
+  <select id="getAllKeyPartInf" resultType="com.ffa.po.KeyPartInf">
+    select * from key_part_inf
+    <where>
+      <if test="key_part_id != null" >
+        key_part_id = #{keyPartId,jdbcType=INTEGER}
+      </if>
+      <if test="key_part_name != null" >
+        and key_part_name = #{keyPartName,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from key_part_inf
     where key_part_id = #{keyPartId,jdbcType=INTEGER}

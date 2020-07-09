@@ -18,8 +18,8 @@ public class KeyUnitController {
 
 
     @GetMapping("/")
-    public List<KeyUnit> getAllKeyUnit(){
-        return keyUnitService.getAllKeyUnit();
+    public List<KeyUnit> getAllKeyUnit(@RequestBody KeyUnit keyUnit){
+        return keyUnitService.getAllKeyUnit(keyUnit);
     }
     @PostMapping("/")
     public RespBean addKeyUnit(@RequestBody KeyUnit keyUnit) {

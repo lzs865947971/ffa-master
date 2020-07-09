@@ -20,10 +20,10 @@
   <sql id="selectUserNotNUll">
     <where>
       <if test="user_id != null" >
-        user_id = ${userId,jdbcType=INTEGER}
+        user_id = #{userId,jdbcType=INTEGER}
       </if>
       <if test="account_password != null" >
-        and user_name = ${userName,jdbcType=VARCHAR}
+        and user_name = #{userName,jdbcType=VARCHAR}
       </if>
     </where>
   </sql>
