@@ -25,6 +25,9 @@
         <if test="riskKeyPartId != null">
           and risk_key_part_id = #{riskTypeId}
         </if>
+        <if test="unitId != null" >
+          and unit_id = #{unitId,jdbcType=INTEGER}
+        </if>
       </where>
 
   </select>

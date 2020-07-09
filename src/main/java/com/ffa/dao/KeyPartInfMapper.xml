@@ -27,6 +27,12 @@
       <if test="keyPartName != null" >
         and key_part_name = #{keyPartName,jdbcType=VARCHAR}
       </if>
+      <if test="unitId != null" >
+        and unit_id = #{unitId,jdbcType=INTEGER}
+      </if>
+      <if test="unitName != null" >
+        and unit_name = #{unitName,jdbcType=VARCHAR}
+      </if>
     </where>
   </select>
 

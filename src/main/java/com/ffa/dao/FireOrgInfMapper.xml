@@ -31,11 +31,20 @@
       <if test="unitName != null">
         unit_name like '%${unitName}%'
       </if>
+      <if test="unitId != null" >
+        and unit_id = #{unitId,jdbcType=INTEGER}
+      </if>
       <if test="fireOrgName != null">
         and fire_org_name like '%${fireOrgName}%'
       </if>
+      <if test="fireOrgId != null">
+        and fire_org_id = #{fireOrgId}
+      </if>
       <if test="fireOrgTypeName != null">
         and fire_org_type_name = #{fireOrgTypeName}
+      </if>
+      <if test="fireOrgTypeId != null">
+        and fire_org_type_id = #{fireOrgTypeId}
       </if>
     </where>
   </select>

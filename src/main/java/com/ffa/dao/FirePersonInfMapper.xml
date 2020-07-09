@@ -27,8 +27,11 @@
       <if test="fireOrgName != null">
         fire_org_name = #{fireOrgName}
       </if>
-      <if test="unitName != null">
-        and unit_name like '%${unitName}%'
+      <if test="fireOrgId != null">
+        and fire_org_id = #{fireOrgId}
+      </if>
+      <if test="firePersonName != null">
+        and fire_person_name like '%${firePersonName}%'
       </if>
     </where>
   </select>

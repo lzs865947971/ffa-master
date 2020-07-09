@@ -27,8 +27,14 @@
         <if test="unitName != null">
           unit_name like '%${unitName}%'
         </if>
+        <if test="unitId != null" >
+          and unit_id = #{unitId,jdbcType=INTEGER}
+        </if>
         <if test="facilityName != null">
           and facility_name like '%${facilityName}%'
+        </if>
+        <if test="facilityId != null" >
+          and facility_id = #{facilityId,jdbcType=INTEGER}
         </if>
       </where>
     </select>

@@ -31,6 +31,9 @@
       <if test="unitName != null">
         unit_name like '%${unitName}%'
       </if>
+      <if test="unitId != null" >
+        and unit_id = #{unitId,jdbcType=INTEGER}
+      </if>
     </where>
 
   </select>

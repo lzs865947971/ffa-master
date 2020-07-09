@@ -33,6 +33,10 @@
         <if test="fireTypeId != null">
           and file_type_id = #{fireTypeId}
         </if>
+        <if test="unitId != null" >
+          and unit_id = #{unitId,jdbcType=INTEGER}
+        </if>
+
       </where>
 
     </select>
