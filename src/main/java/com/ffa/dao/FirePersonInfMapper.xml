@@ -10,24 +10,37 @@
     <result column="fire_record_id" jdbcType="INTEGER" property="fireRecordId" />
   </resultMap>
   <sql id="Base_Column_List">
-    fire_person_id, fire_org_id, fire_org_name, fire_person_name, fire_person_pic_id, 
+    fire_person_id, fire_org_id, fire_org_name, fire_person_name, fire_person_pic_id,
     fire_record_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from fire_person_inf
     where fire_person_id = #{firePersonId,jdbcType=INTEGER}
+  </select>
+  <select id="getAllFirePersonInf" resultType="com.ffa.po.FirePersonInf">
+    select
+    <include refid="Base_Column_List"/>
+    from fire_person_inf
+    <where>
+      <if test="fireOrgName != null">
+        fire_org_name = #{fireOrgName}
+      </if>
+      <if test="unitName != null">
+        unit_name like '%${unitName}%'
+      </if>
+    </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from fire_person_inf
     where fire_person_id = #{firePersonId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.FirePersonInf">
-    insert into fire_person_inf (fire_person_id, fire_org_id, fire_org_name, 
+    insert into fire_person_inf (fire_person_id, fire_org_id, fire_org_name,
       fire_person_name, fire_person_pic_id, fire_record_id
       )
-    values (#{firePersonId,jdbcType=INTEGER}, #{fireOrgId,jdbcType=INTEGER}, #{fireOrgName,jdbcType=VARCHAR}, 
+    values (#{firePersonId,jdbcType=INTEGER}, #{fireOrgId,jdbcType=INTEGER}, #{fireOrgName,jdbcType=VARCHAR},
       #{firePersonName,jdbcType=VARCHAR}, #{firePersonPicId,jdbcType=INTEGER}, #{fireRecordId,jdbcType=INTEGER}
       )
   </insert>

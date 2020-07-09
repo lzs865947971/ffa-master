@@ -1,5 +1,7 @@
 package com.ffa.service;
 
+import com.ffa.dao.FireOrgInfMapper;
+import com.ffa.po.FireOrgInf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ public class FireOrgInfService {
     @Autowired
     FireOrgInfMapper fireOrgInfMapper;
 
-    public List<FireOrgInf> getAllFireOrgInf(){ return fireOrgInfMapper.getAllFireOrgInf(); }
+    public List<FireOrgInf> getAllFireOrgInf(FireOrgInf fireOrgInf){ return fireOrgInfMapper.getAllFireOrgInf(fireOrgInf); }
 
     public Integer addFireOrgInf(FireOrgInf fireOrgInf){
         return fireOrgInfMapper.insertSelective(fireOrgInf);

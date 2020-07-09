@@ -1,5 +1,7 @@
 package com.ffa.service;
 
+import com.ffa.dao.SecurityRisksMapper;
+import com.ffa.po.SecurityRisks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +16,10 @@ public class SecurityRisksService {
     @Autowired
     SecurityRisksMapper securityRisksMapper;
 
-    public List<SecurityRisks> getAllSecurityRisks(){
-        return securityRisksMapper.getAllSecurityRisks();
+    public List<SecurityRisks> getAllSecurityRisks(SecurityRisks securityRisks){
+        return securityRisksMapper.getAllSecurityRisks(securityRisks);
     }
 
-    public List<SecurityRisks>
 
     public Integer addSecurityRisks(SecurityRisks securityRisks){
         return securityRisksMapper.insertSelective(securityRisks);

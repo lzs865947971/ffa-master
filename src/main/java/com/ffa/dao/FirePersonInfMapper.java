@@ -1,7 +1,11 @@
 package com.ffa.dao;
 
 import com.ffa.po.FirePersonInf;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface FirePersonInfMapper {
     int deleteByPrimaryKey(Integer firePersonId);
 
@@ -14,4 +18,6 @@ public interface FirePersonInfMapper {
     int updateByPrimaryKeySelective(FirePersonInf record);
 
     int updateByPrimaryKey(FirePersonInf record);
+
+    List<FirePersonInf> getAllFirePersonInf(FirePersonInf record);
 }

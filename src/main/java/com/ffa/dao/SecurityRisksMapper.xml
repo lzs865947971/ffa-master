@@ -11,20 +11,38 @@
   <sql id="Base_Column_List">
     risk_register_id, unit_id, risk_type_id, risk_key_part_id, unit_name
   </sql>
+  <select id="getAllSecurityRisks" parameterType="com.ffa.po.SecurityRisks" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from security_risks
+      <where>
+        <if test="unitName != null">
+        unit_name like '%${unitName}%'
+      </if>
+        <if test="riskTypeId != null">
+          risk_type_id = #{riskTypeId}
+        </if>
+        <if test="riskKeyPartId != null">
+          risk_key_part_id = #{riskTypeId}
+        </if>
+      </where>
+
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from security_risks
     where risk_register_id = #{riskRegisterId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from security_risks
     where risk_register_id = #{riskRegisterId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.SecurityRisks">
-    insert into security_risks (risk_register_id, unit_id, risk_type_id, 
+    insert into security_risks (risk_register_id, unit_id, risk_type_id,
       risk_key_part_id, unit_name)
-    values (#{riskRegisterId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{riskTypeId,jdbcType=INTEGER}, 
+    values (#{riskRegisterId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{riskTypeId,jdbcType=INTEGER},
       #{riskKeyPartId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.SecurityRisks">

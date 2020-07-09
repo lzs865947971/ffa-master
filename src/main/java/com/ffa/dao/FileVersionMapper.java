@@ -1,7 +1,11 @@
 package com.ffa.dao;
 
 import com.ffa.po.FileVersion;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
+@Mapper
 public interface FileVersionMapper {
     int deleteByPrimaryKey(Integer serialNumber);
 
@@ -14,4 +18,5 @@ public interface FileVersionMapper {
     int updateByPrimaryKeySelective(FileVersion record);
 
     int updateByPrimaryKey(FileVersion record);
+    List<FileVersion> getAllFileVersion(FileVersion record);
 }

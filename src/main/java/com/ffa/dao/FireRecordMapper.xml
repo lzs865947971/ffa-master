@@ -14,27 +14,38 @@
     <result column="description" jdbcType="VARCHAR" property="description" />
   </resultMap>
   <sql id="Base_Column_List">
-    fire_id, unit_name, unit_id, fire_name, fire_time, fire_cost, death_num, injured_num, 
+    fire_id, unit_name, unit_id, fire_name, fire_time, fire_cost, death_num, injured_num,
     fire_record_person_name, description
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from fire_record
     where fire_id = #{fireId,jdbcType=INTEGER}
+  </select>
+  <select id="getAllFireRecord" resultType="com.ffa.po.FireRecord">
+    select
+    <include refid="Base_Column_List"></include>
+    from fire_record
+    <where>
+      <if test="unitName != null">
+        unit_name like '%${unitName}%'
+      </if>
+    </where>
+
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from fire_record
     where fire_id = #{fireId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.FireRecord">
-    insert into fire_record (fire_id, unit_name, unit_id, 
-      fire_name, fire_time, fire_cost, 
-      death_num, injured_num, fire_record_person_name, 
+    insert into fire_record (fire_id, unit_name, unit_id,
+      fire_name, fire_time, fire_cost,
+      death_num, injured_num, fire_record_person_name,
       description)
-    values (#{fireId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, #{unitId,jdbcType=INTEGER}, 
-      #{fireName,jdbcType=VARCHAR}, #{fireTime,jdbcType=VARCHAR}, #{fireCost,jdbcType=INTEGER}, 
-      #{deathNum,jdbcType=INTEGER}, #{injuredNum,jdbcType=INTEGER}, #{fireRecordPersonName,jdbcType=VARCHAR}, 
+    values (#{fireId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, #{unitId,jdbcType=INTEGER},
+      #{fireName,jdbcType=VARCHAR}, #{fireTime,jdbcType=VARCHAR}, #{fireCost,jdbcType=INTEGER},
+      #{deathNum,jdbcType=INTEGER}, #{injuredNum,jdbcType=INTEGER}, #{fireRecordPersonName,jdbcType=VARCHAR},
       #{description,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FireRecord">
