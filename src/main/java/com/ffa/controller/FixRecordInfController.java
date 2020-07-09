@@ -17,11 +17,11 @@ public class FixRecordInfController {
     FixRecordInfService fixRecordInfService;
 
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public List<FixRecordInf> getAllFixRecordInf(@RequestBody FixRecordInf fixRecordInf){
         return fixRecordInfService.getAllFixRecordInf(fixRecordInf);
     }
-    @PostMapping("/add")
+    @PostMapping("/")
     public RespBean addUser_inf(@RequestBody FixRecordInf fixRecordInf) {
         if (fixRecordInfService.addFixRecordInf(fixRecordInf) == 1) {
             return RespBean.ok("添加成功!");
@@ -37,7 +37,7 @@ public class FixRecordInfController {
         return RespBean.error("删除失败！");
     }
 
-    @PutMapping("/update")
+    @PutMapping("/")
     public RespBean updateUser_infById(@RequestBody FixRecordInf fixRecordInf) {
         if (fixRecordInfService.updateFixRecordInfById(fixRecordInf) == 1) {
             return RespBean.ok("更新成功!");

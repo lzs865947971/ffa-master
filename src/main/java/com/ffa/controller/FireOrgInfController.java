@@ -17,11 +17,11 @@ public class FireOrgInfController {
     FireOrgInfService fireOrgInfService;
 
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public List<FireOrgInf> getAllFireOrgInf(@RequestBody FireOrgInf fireOrgInf){
         return fireOrgInfService.getAllFireOrgInf(fireOrgInf);
     }
-    @PostMapping("/add")
+    @PostMapping("/")
     public RespBean addFireOrgInf(@RequestBody FireOrgInf fireOrgInf) {
         if (fireOrgInfService.addFireOrgInf(fireOrgInf) == 1) {
             return RespBean.ok("添加成功!");
@@ -37,7 +37,7 @@ public class FireOrgInfController {
         return RespBean.error("删除失败！");
     }
 
-    @PutMapping("/update")
+    @PutMapping("/")
     public RespBean updateFireOrgInfById(@RequestBody FireOrgInf fireOrgInf) {
         if (fireOrgInfService.updateFireOrgInfById(fireOrgInf) == 1) {
             return RespBean.ok("更新成功!");

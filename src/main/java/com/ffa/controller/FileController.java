@@ -17,11 +17,11 @@ public class FileController {
     FileService fileService;
 
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public List<File> getAllFile(@RequestBody File file){
         return fileService.getAllFile(file);
     }
-    @PostMapping("/add")
+    @PostMapping("/")
     public RespBean addFile(@RequestBody File file) {
         if (fileService.addFile(file) == 1) {
             return RespBean.ok("添加成功!");
@@ -38,7 +38,7 @@ public class FileController {
         return RespBean.error("删除失败！");
     }
 
-    @PutMapping("/update")
+    @PutMapping("/")
     public RespBean updateFileById(@RequestBody File file) {
         if (fileService.updateFileById(file) == 1) {
             return RespBean.ok("更新成功!");

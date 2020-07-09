@@ -17,11 +17,11 @@ public class SecurityRisksController {
     SecurityRisksService securityRisksService;
 
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public List<SecurityRisks> getAllSecurityRisks(@RequestBody SecurityRisks securityRisks){
         return securityRisksService.getAllSecurityRisks(securityRisks);
     }
-    @PostMapping("/add")
+    @PostMapping("/")
     public RespBean addSecurityRisks(@RequestBody SecurityRisks securityRisks) {
         if (securityRisksService.addSecurityRisks(securityRisks) == 1) {
             return RespBean.ok("添加成功!");
@@ -37,7 +37,7 @@ public class SecurityRisksController {
         return RespBean.error("删除失败！");
     }
 
-    @PutMapping("/update")
+    @PutMapping("/")
     public RespBean updateSecurityRisksById(@RequestBody SecurityRisks securityRisks) {
         if (securityRisksService.updateSecurityRisksById(securityRisks) == 1) {
             return RespBean.ok("更新成功!");

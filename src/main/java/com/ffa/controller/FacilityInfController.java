@@ -17,11 +17,11 @@ public class FacilityInfController {
     FacilityInfService facilityInfService;
 
     //获取全部用户
-    @GetMapping("/list")
+    @GetMapping("/")
     public List<FacilityInf> getAllFacilityInf(@RequestBody FacilityInf facilityInf){
         return facilityInfService.getAllFacilityInf(facilityInf);
     }
-    @PostMapping("/add")
+    @PostMapping("/")
     public RespBean addFacilityInf(@RequestBody FacilityInf facilityInf) {
         if (facilityInfService.addFacilityInf(facilityInf) == 1) {
             return RespBean.ok("添加成功!");
@@ -37,7 +37,7 @@ public class FacilityInfController {
         return RespBean.error("删除失败！");
     }
 
-    @PutMapping("/update")
+    @PutMapping("/")
     public RespBean updateFacilityInfById(@RequestBody FacilityInf facilityInf) {
         if (facilityInfService.updateFacilityInfById(facilityInf) == 1) {
             return RespBean.ok("更新成功!");

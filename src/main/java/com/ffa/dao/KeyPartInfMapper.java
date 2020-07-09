@@ -1,9 +1,11 @@
 package com.ffa.dao;
 
 import com.ffa.po.KeyPartInf;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface KeyPartInfMapper {
     int deleteByPrimaryKey(Integer keyPartId);
 

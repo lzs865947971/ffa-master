@@ -16,11 +16,11 @@ public class KeyPartInfController {
     @Autowired
     KeyPartInfService keyPartInfService;
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public List<KeyPartInf> getAllKeyPartInf(@RequestBody KeyPartInf keyPartInf){
         return keyPartInfService.getAllKeyPartInf(keyPartInf);
     }
-    @PostMapping("/add")
+    @PostMapping("/")
     public RespBean addKeyPartInf(@RequestBody KeyPartInf keyPartInf) {
         if (keyPartInfService.addKeyPartInf(keyPartInf) == 1) {
             return RespBean.ok("添加成功!");
@@ -36,7 +36,7 @@ public class KeyPartInfController {
         return RespBean.error("删除失败！");
     }
 
-    @PutMapping("/update")
+    @PutMapping("/")
     public RespBean updateKeyPartInfById(@RequestBody KeyPartInf keyPartInf) {
         if (keyPartInfService.updateKeyPartInfById(keyPartInf) == 1) {
             return RespBean.ok("更新成功!");

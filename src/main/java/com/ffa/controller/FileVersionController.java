@@ -17,11 +17,11 @@ public class FileVersionController {
     FileVersionService fileVersionService;
 
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public List<FileVersion> getAllFileVersion(@RequestBody FileVersion fileVersion){
         return fileVersionService.getAllFileVersion(fileVersion);
     }
-    @PostMapping("/add")
+    @PostMapping("/")
     public RespBean addFileVersion(@RequestBody FileVersion fileVersion) {
         if (fileVersionService.addFileVersion(fileVersion) == 1) {
             return RespBean.ok("添加成功!");
@@ -37,7 +37,7 @@ public class FileVersionController {
         return RespBean.error("删除失败！");
     }
 
-    @PutMapping("/update")
+    @PutMapping("/")
     public RespBean updateFileVersionById(@RequestBody FileVersion fileVersion) {
         if (fileVersionService.updateFileVersionById(fileVersion) == 1) {
             return RespBean.ok("更新成功!");

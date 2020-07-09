@@ -17,11 +17,11 @@ public class KeyUnitController {
     KeyUnitService keyUnitService;
 
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public List<KeyUnit> getAllKeyUnit(@RequestBody KeyUnit keyUnit){
         return keyUnitService.getAllKeyUnit(keyUnit);
     }
-    @PostMapping("/add")
+    @PostMapping("/")
     public RespBean addKeyUnit(@RequestBody KeyUnit keyUnit) {
         if (keyUnitService.addKeyUnit(keyUnit) == 1) {
             return RespBean.ok("添加成功!");
@@ -37,7 +37,7 @@ public class KeyUnitController {
         return RespBean.error("删除失败！");
     }
 
-    @PutMapping("/update")
+    @PutMapping("/")
     public RespBean updateKeyUnitById(@RequestBody KeyUnit keyUnit) {
         if (keyUnitService.updateKeyUnitById(keyUnit) == 1) {
             return RespBean.ok("更新成功!");
