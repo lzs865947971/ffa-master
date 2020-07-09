@@ -14,21 +14,38 @@
     file_id, unit_id, unit_name, create_time, file_type_id, file_name, file_storage_path
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from file
     where file_id = #{fileId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="getAllFile" resultType="com.ffa.po.File">
+      select
+      <include refid="Base_Column_List"/>
+      from file
+      <where>
+        <if test="fileName != null">
+          file_name like '%${fileName}%'
+        </if>
+        <if test="unitName != null">
+          unit_name like '%${unitName}%'
+        </if>
+        <if test="fireTypeId != null">
+          file_type_id = #{fireTypeId}
+        </if>
+      </where>
+
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from file
     where file_id = #{fileId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.File">
-    insert into file (file_id, unit_id, unit_name, 
-      create_time, file_type_id, file_name, 
+    insert into file (file_id, unit_id, unit_name,
+      create_time, file_type_id, file_name,
       file_storage_path)
-    values (#{fileId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=VARCHAR}, #{fileTypeId,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, 
+    values (#{fileId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR},
+      #{createTime,jdbcType=VARCHAR}, #{fileTypeId,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR},
       #{fileStoragePath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.File">

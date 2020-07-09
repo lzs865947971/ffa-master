@@ -2,6 +2,8 @@ package com.ffa.dao;
 
 import com.ffa.po.File;
 
+import java.util.List;
+
 public interface FileMapper {
     int deleteByPrimaryKey(Integer fileId);
 
@@ -14,4 +16,6 @@ public interface FileMapper {
     int updateByPrimaryKeySelective(File record);
 
     int updateByPrimaryKey(File record);
+
+    List<File> getAllFile(File record);
 }

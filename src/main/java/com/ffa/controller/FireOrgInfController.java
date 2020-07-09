@@ -1,5 +1,6 @@
 package com.ffa.controller;
 
+import com.ffa.po.FireOrgInf;
 import com.ffa.po.RespBean;
 import com.ffa.service.FireOrgInfService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class FireOrgInfController {
 
 
     @GetMapping("/")
-    public List<FireOrgInf> getAllFireOrgInf(){
-        return fireOrgInfService.getAllFireOrgInf();
+    public List<FireOrgInf> getAllFireOrgInf(@RequestBody FireOrgInf fireOrgInf){
+        return fireOrgInfService.getAllFireOrgInf(fireOrgInf);
     }
     @PostMapping("/")
     public RespBean addFireOrgInf(@RequestBody FireOrgInf fireOrgInf) {

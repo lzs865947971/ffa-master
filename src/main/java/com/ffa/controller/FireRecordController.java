@@ -1,5 +1,6 @@
 package com.ffa.controller;
 
+import com.ffa.po.FireRecord;
 import com.ffa.po.RespBean;
 import com.ffa.service.FireRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class FireRecordController {
 
 
     @GetMapping("/")
-    public List<FireRecord> getAllFireRecord(){
-        return fireRecordService.getAllFireRecord();
+    public List<FireRecord> getAllFireRecord(@RequestBody FireRecord fireRecord){
+        return fireRecordService.getAllFireRecord(fireRecord);
     }
     @PostMapping("/")
     public RespBean addFireRecord(@RequestBody FireRecord fireRecord) {

@@ -12,19 +12,29 @@
     serial_number, file_id, file_modify_time, file_modify_person_name, perfile
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from file_version
     where serial_number = #{serialNumber,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="getAllFileVersion" resultType="com.ffa.po.FileVersion">
+      select
+      <include refid="Base_Column_List"/>
+      from file_version
+      <where>
+        <if test="fileId != null">
+          file_id = #{fileId}
+        </if>
+      </where>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from file_version
     where serial_number = #{serialNumber,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.FileVersion">
-    insert into file_version (serial_number, file_id, file_modify_time, 
+    insert into file_version (serial_number, file_id, file_modify_time,
       file_modify_person_name, perfile)
-    values (#{serialNumber,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}, #{fileModifyTime,jdbcType=VARCHAR}, 
+    values (#{serialNumber,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}, #{fileModifyTime,jdbcType=VARCHAR},
       #{fileModifyPersonName,jdbcType=VARCHAR}, #{perfile,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FileVersion">

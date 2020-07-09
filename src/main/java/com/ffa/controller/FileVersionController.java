@@ -1,5 +1,6 @@
 package com.ffa.controller;
 
+import com.ffa.po.FileVersion;
 import com.ffa.po.RespBean;
 import com.ffa.service.FileVersionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,10 @@ public class FileVersionController {
     @Autowired
     FileVersionService fileVersionService;
 
-    //获取全部用户
+
     @GetMapping("/")
-    public List<FileVersion> getAllFileVersion(){
-        return fileVersionService.getAllFileVersion();
+    public List<FileVersion> getAllFileVersion(@RequestBody FileVersion fileVersion){
+        return fileVersionService.getAllFileVersion(fileVersion);
     }
     @PostMapping("/")
     public RespBean addFileVersion(@RequestBody FileVersion fileVersion) {

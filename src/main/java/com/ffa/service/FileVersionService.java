@@ -1,5 +1,7 @@
 package com.ffa.service;
 
+import com.ffa.dao.FileVersionMapper;
+import com.ffa.po.FileVersion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,8 @@ public class FileVersionService {
     @Autowired
     FileVersionMapper fileVersionMapper;
 
-    public List<FileVersion> getAllFileVersion(){
-        return fileVersionMapper.getAllFileVersion();
+    public List<FileVersion> getAllFileVersion(FileVersion fileVersion){
+        return fileVersionMapper.getAllFileVersion(fileVersion);
     }
 
     public Integer addFileVersion(FileVersion fileVersion){

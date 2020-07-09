@@ -1,6 +1,7 @@
 package com.ffa.controller;
 
 import com.ffa.po.RespBean;
+import com.ffa.po.SecurityRisks;
 import com.ffa.service.SecurityRisksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,8 @@ public class SecurityRisksController {
 
 
     @GetMapping("/")
-    public List<SecurityRisks> getAllSecurityRisks(){
-        return securityRisksService.getAllSecurityRisks();
+    public List<SecurityRisks> getAllSecurityRisks(@RequestBody SecurityRisks securityRisks){
+        return securityRisksService.getAllSecurityRisks(securityRisks);
     }
     @PostMapping("/")
     public RespBean addSecurityRisks(@RequestBody SecurityRisks securityRisks) {

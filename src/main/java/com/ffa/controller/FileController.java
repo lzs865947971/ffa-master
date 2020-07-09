@@ -1,5 +1,6 @@
 package com.ffa.controller;
 
+import com.ffa.po.File;
 import com.ffa.po.RespBean;
 import com.ffa.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,10 @@ public class FileController {
     @Autowired
     FileService fileService;
 
-    //获取全部用户
+
     @GetMapping("/")
-    public List<File> getAllFile(){
-        return fileService.getAllFile();
+    public List<File> getAllFile(@RequestBody File file){
+        return fileService.getAllFile(file);
     }
     @PostMapping("/")
     public RespBean addFile(@RequestBody File file) {
@@ -27,6 +28,7 @@ public class FileController {
         }
         return RespBean.error("添加失败!");
     }
+
 
     @DeleteMapping("/{id}")
     public RespBean deleteFileById(@PathVariable Integer id) {

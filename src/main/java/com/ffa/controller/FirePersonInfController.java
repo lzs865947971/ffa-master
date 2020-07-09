@@ -1,5 +1,6 @@
 package com.ffa.controller;
 
+import com.ffa.po.FirePersonInf;
 import com.ffa.po.RespBean;
 import com.ffa.service.FirePersonInfService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,10 @@ public class FirePersonInfController {
 
 
     @GetMapping("/")
-    public List<FirePersonInf> getAllFirePersonInf(){
-        return firePersonInfService.getAllFirePersonInf();
+    public List<FirePersonInf> getAllFirePersonInf(@RequestBody FirePersonInf firePersonInf){
+        return firePersonInfService.getAllFirePersonInf(firePersonInf);
     }
+
     @PostMapping("/")
     public RespBean addFirePersonInf(@RequestBody FirePersonInf firePersonInf) {
         if (firePersonInfService.addFirePersonInf(firePersonInf) == 1) {

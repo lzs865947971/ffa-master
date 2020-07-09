@@ -1,6 +1,7 @@
 package com.ffa.service;
 
 import com.ffa.dao.FileMapper;
+import com.ffa.po.File;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,8 @@ public class FileService {
     @Autowired
     FileMapper fileMapper;
 
-    public List<File> getAllFile(){
-        return fileMapper.getAllFile();
+    public List<File> getAllFile(File file){
+        return fileMapper.getAllFile(file);
     }
 
     public Integer addFile(File file){

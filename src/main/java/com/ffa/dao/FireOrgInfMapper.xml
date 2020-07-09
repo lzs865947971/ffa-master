@@ -14,27 +14,43 @@
     <result column="create_time" jdbcType="VARCHAR" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    fire_org_id, unit_id, unit_name, fire_org_name, fire_org_type_id, fire_org_type_name, 
+    fire_org_id, unit_id, unit_name, fire_org_name, fire_org_type_id, fire_org_type_name,
     fire_org_date, fire_org_register, note, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from fire_org_inf
     where fire_org_id = #{fireOrgId,jdbcType=INTEGER}
+  </select>
+  <select id="getAllFireOrgInf" resultType="com.ffa.po.FireOrgInf">
+    select
+    <include refid="Base_Column_List"/>
+    from fire_org_inf
+    <where>
+      <if test="unitName != null">
+        unit_name like '%${unitName}%'
+      </if>
+      <if test="fireOrgName != null">
+        fire_org_name like '%${fireOrgName}%'
+      </if>
+      <if test="fireOrgTypeName != null">
+        fire_org_type_name = #{fireOrgTypeName}
+      </if>
+    </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from fire_org_inf
     where fire_org_id = #{fireOrgId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.FireOrgInf">
-    insert into fire_org_inf (fire_org_id, unit_id, unit_name, 
-      fire_org_name, fire_org_type_id, fire_org_type_name, 
-      fire_org_date, fire_org_register, note, 
+    insert into fire_org_inf (fire_org_id, unit_id, unit_name,
+      fire_org_name, fire_org_type_id, fire_org_type_name,
+      fire_org_date, fire_org_register, note,
       create_time)
-    values (#{fireOrgId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, 
-      #{fireOrgName,jdbcType=VARCHAR}, #{fireOrgTypeId,jdbcType=INTEGER}, #{fireOrgTypeName,jdbcType=VARCHAR}, 
-      #{fireOrgDate,jdbcType=VARCHAR}, #{fireOrgRegister,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+    values (#{fireOrgId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR},
+      #{fireOrgName,jdbcType=VARCHAR}, #{fireOrgTypeId,jdbcType=INTEGER}, #{fireOrgTypeName,jdbcType=VARCHAR},
+      #{fireOrgDate,jdbcType=VARCHAR}, #{fireOrgRegister,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR},
       #{createTime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FireOrgInf">
