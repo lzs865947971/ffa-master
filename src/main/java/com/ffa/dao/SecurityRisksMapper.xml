@@ -20,10 +20,10 @@
         unit_name like '%${unitName}%'
       </if>
         <if test="riskTypeId != null">
-          risk_type_id = #{riskTypeId}
+          and risk_type_id = #{riskTypeId}
         </if>
         <if test="riskKeyPartId != null">
-          risk_key_part_id = #{riskTypeId}
+          and risk_key_part_id = #{riskTypeId}
         </if>
       </where>
 

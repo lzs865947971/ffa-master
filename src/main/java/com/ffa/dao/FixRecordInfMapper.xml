@@ -14,21 +14,34 @@
     serial_number, facility_id, facility_name, unit_id, unit_name, fix_time, fix_state
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from fix_record_inf
     where serial_number = #{serialNumber,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="getAllFixRecordInf" resultType="com.ffa.po.FixRecordInf">
+      select
+      <include refid="Base_Column_List"/>
+      from fix_record_inf
+      <where>
+        <if test="unitName != null">
+          unit_name like '%${unitName}%'
+        </if>
+        <if test="facilityName != null">
+          and facility_name like '%${facilityName}%'
+        </if>
+      </where>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from fix_record_inf
     where serial_number = #{serialNumber,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.FixRecordInf">
-    insert into fix_record_inf (serial_number, facility_id, facility_name, 
-      unit_id, unit_name, fix_time, 
+    insert into fix_record_inf (serial_number, facility_id, facility_name,
+      unit_id, unit_name, fix_time,
       fix_state)
-    values (#{serialNumber,jdbcType=INTEGER}, #{facilityId,jdbcType=INTEGER}, #{facilityName,jdbcType=VARCHAR}, 
-      #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, #{fixTime,jdbcType=VARCHAR}, 
+    values (#{serialNumber,jdbcType=INTEGER}, #{facilityId,jdbcType=INTEGER}, #{facilityName,jdbcType=VARCHAR},
+      #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, #{fixTime,jdbcType=VARCHAR},
       #{fixState,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FixRecordInf">

@@ -13,7 +13,7 @@
     facility_id, facility_name, unit_id, unit_name, facility_type_id, facility_type_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from facility_inf
     where facility_id = #{facilityId,jdbcType=INTEGER}
@@ -22,10 +22,10 @@
   <select id="getAllFacilityInf" resultType="com.ffa.po.FacilityInf">
     select * from facility_inf
     <where>
-      <if test="facility_id != null" >
+      <if test="facilityId != null" >
         facility_id = #{facilityId,jdbcType=INTEGER}
       </if>
-      <if test="facility_name != null" >
+      <if test="facilityName != null" >
         and facility_name = #{facilityName,jdbcType=VARCHAR}
       </if>
     </where>
@@ -37,10 +37,10 @@
   </delete>
 
   <insert id="insert" parameterType="com.ffa.po.FacilityInf">
-    insert into facility_inf (facility_id, facility_name, unit_id, 
+    insert into facility_inf (facility_id, facility_name, unit_id,
       unit_name, facility_type_id, facility_type_name
       )
-    values (#{facilityId,jdbcType=INTEGER}, #{facilityName,jdbcType=VARCHAR}, #{unitId,jdbcType=INTEGER}, 
+    values (#{facilityId,jdbcType=INTEGER}, #{facilityName,jdbcType=VARCHAR}, #{unitId,jdbcType=INTEGER},
       #{unitName,jdbcType=VARCHAR}, #{facilityTypeId,jdbcType=INTEGER}, #{facilityTypeName,jdbcType=VARCHAR}
       )
   </insert>

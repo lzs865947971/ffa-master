@@ -28,10 +28,10 @@
           file_name like '%${fileName}%'
         </if>
         <if test="unitName != null">
-          unit_name like '%${unitName}%'
+          and unit_name like '%${unitName}%'
         </if>
         <if test="fireTypeId != null">
-          file_type_id = #{fireTypeId}
+          and file_type_id = #{fireTypeId}
         </if>
       </where>
 

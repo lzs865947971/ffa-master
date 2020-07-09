@@ -19,17 +19,17 @@
 
   <sql id="selectUserNotNUll">
     <where>
-      <if test="user_id != null" >
+      <if test="userId != null" >
         user_id = #{userId,jdbcType=INTEGER}
       </if>
-      <if test="account_password != null" >
+      <if test="userName != null" >
         and user_name = #{userName,jdbcType=VARCHAR}
       </if>
     </where>
   </sql>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from user_inf
     where user_id = #{userId,jdbcType=INTEGER}
@@ -46,11 +46,11 @@
   </delete>
 
   <insert id="insert" parameterType="com.ffa.po.UserInf">
-    insert into user_inf (user_id, user_name, password, 
-      name, tel, email, power_number, 
+    insert into user_inf (user_id, user_name, password,
+      name, tel, email, power_number,
       unit_id, unit_name)
-    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{powerNumber,jdbcType=INTEGER}, 
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{powerNumber,jdbcType=INTEGER},
       #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR})
   </insert>
 

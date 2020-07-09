@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 //@CrossOrigin可解决跨域
-@RequestMapping("/user")
+@RequestMapping("/facility")
 public class FacilityInfController {
 
     @Autowired

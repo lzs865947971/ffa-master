@@ -13,11 +13,11 @@
     <result column="facilitiy_id" jdbcType="INTEGER" property="facilitiyId" />
   </resultMap>
   <sql id="Base_Column_List">
-    unit_id, unit_name, principal_id, principal_name, unit_address, unit_tel, supervision_id, 
+    unit_id, unit_name, principal_id, principal_name, unit_address, unit_tel, supervision_id,
     overall_picture_id, facilitiy_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from key_unit
     where unit_id = #{unitId,jdbcType=INTEGER}
@@ -26,10 +26,10 @@
   <select id="getAllKeyUnit" resultType="com.ffa.po.KeyUnit">
     select * from key_unit
     <where>
-      <if test="unit_id != null" >
+      <if test="unitId != null" >
         unit_id = #{unitId,jdbcType=INTEGER}
       </if>
-      <if test="unit_name != null" >
+      <if test="unitName != null" >
         and unit_name = #{unitName,jdbcType=VARCHAR}
       </if>
     </where>
@@ -41,12 +41,12 @@
   </delete>
 
   <insert id="insert" parameterType="com.ffa.po.KeyUnit">
-    insert into key_unit (unit_id, unit_name, principal_id, 
-      principal_name, unit_address, unit_tel, 
+    insert into key_unit (unit_id, unit_name, principal_id,
+      principal_name, unit_address, unit_tel,
       supervision_id, overall_picture_id, facilitiy_id
       )
-    values (#{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, #{principalId,jdbcType=INTEGER}, 
-      #{principalName,jdbcType=VARCHAR}, #{unitAddress,jdbcType=VARCHAR}, #{unitTel,jdbcType=VARCHAR}, 
+    values (#{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, #{principalId,jdbcType=INTEGER},
+      #{principalName,jdbcType=VARCHAR}, #{unitAddress,jdbcType=VARCHAR}, #{unitTel,jdbcType=VARCHAR},
       #{supervisionId,jdbcType=INTEGER}, #{overallPictureId,jdbcType=INTEGER}, #{facilitiyId,jdbcType=INTEGER}
       )
   </insert>

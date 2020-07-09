@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 //@CrossOrigin可解决跨域
-@RequestMapping("/user")
+@RequestMapping("/org")
 public class FireOrgInfController {
 
     @Autowired

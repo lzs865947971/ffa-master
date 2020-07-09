@@ -28,7 +28,7 @@
         fire_org_name = #{fireOrgName}
       </if>
       <if test="unitName != null">
-        unit_name like '%${unitName}%'
+        and unit_name like '%${unitName}%'
       </if>
     </where>
   </select>

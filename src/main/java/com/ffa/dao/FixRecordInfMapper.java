@@ -2,6 +2,8 @@ package com.ffa.dao;
 
 import com.ffa.po.FixRecordInf;
 
+import java.util.List;
+
 public interface FixRecordInfMapper {
     int deleteByPrimaryKey(Integer serialNumber);
 
@@ -14,4 +16,6 @@ public interface FixRecordInfMapper {
     int updateByPrimaryKeySelective(FixRecordInf record);
 
     int updateByPrimaryKey(FixRecordInf record);
+
+    List<FixRecordInf> getAllFixRecordInf(FixRecordInf record);
 }

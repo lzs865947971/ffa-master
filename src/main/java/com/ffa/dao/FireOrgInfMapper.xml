@@ -32,10 +32,10 @@
         unit_name like '%${unitName}%'
       </if>
       <if test="fireOrgName != null">
-        fire_org_name like '%${fireOrgName}%'
+        and fire_org_name like '%${fireOrgName}%'
       </if>
       <if test="fireOrgTypeName != null">
-        fire_org_type_name = #{fireOrgTypeName}
+        and fire_org_type_name = #{fireOrgTypeName}
       </if>
     </where>
   </select>

@@ -1,5 +1,6 @@
 package com.ffa.controller;
 
+import com.ffa.po.FixRecordInf;
 import com.ffa.po.RespBean;
 import com.ffa.service.FixRecordInfService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @RestController
 //@CrossOrigin可解决跨域
-@RequestMapping("/fixrecordinf")
+@RequestMapping("/facility/fix")
 public class FixRecordInfController {
 
     @Autowired
@@ -17,8 +18,8 @@ public class FixRecordInfController {
 
 
     @GetMapping("/")
-    public List<FixRecordInf> getAllFixRecordInf(){
-        return fixRecordInfService.getAllFixRecordInf();
+    public List<FixRecordInf> getAllFixRecordInf(@RequestBody FixRecordInf fixRecordInf){
+        return fixRecordInfService.getAllFixRecordInf(fixRecordInf);
     }
     @PostMapping("/")
     public RespBean addUser_inf(@RequestBody FixRecordInf fixRecordInf) {
