@@ -18,8 +18,8 @@ public class UserInfController {
 
     //获取全部用户
     @GetMapping("/")
-    public List<UserInf> getAllUserInf(){
-        return userInfService.getAllUserInf();
+    public List<UserInf> getAllUserInf(@RequestBody UserInf userInf){
+        return userInfService.getAllUserInf(userInf);
     }
     @PostMapping("/")
     public RespBean addUserInf(@RequestBody UserInf userInf) {

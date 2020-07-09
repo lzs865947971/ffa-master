@@ -18,6 +18,8 @@ public class SecurityRisksService {
         return securityRisksMapper.getAllSecurityRisks();
     }
 
+    public List<SecurityRisks>
+
     public Integer addSecurityRisks(SecurityRisks securityRisks){
         return securityRisksMapper.insertSelective(securityRisks);
     }

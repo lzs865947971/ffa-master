@@ -1,6 +1,5 @@
 package com.ffa.controller;
 
-import com.ffa.po.FacilityInf;
 import com.ffa.po.RespBean;
 import com.ffa.service.FacilityInfService;
 import org.springframework.beans.factory.annotation.Autowired;

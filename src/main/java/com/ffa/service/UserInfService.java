@@ -16,8 +16,8 @@ public class UserInfService {
     @Autowired
     UserInfMapper userInfMapper;
 
-    public List<UserInf> getAllUserInf(){
-        return userInfMapper.getAllUserInf();
+    public List<UserInf> getAllUserInf(UserInf userInf){
+        return userInfMapper.getAllUserInf(userInf);
     }
 
     public Integer addUserInf(UserInf userInf){

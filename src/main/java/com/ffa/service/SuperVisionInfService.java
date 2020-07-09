@@ -1,5 +1,7 @@
 package com.ffa.service;
 
+import com.ffa.dao.SuperVisionInfMapper;
+import com.ffa.po.SuperVisionInf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

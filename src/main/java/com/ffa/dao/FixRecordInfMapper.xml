@@ -6,11 +6,12 @@
     <result column="facility_id" jdbcType="INTEGER" property="facilityId" />
     <result column="facility_name" jdbcType="VARCHAR" property="facilityName" />
     <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
     <result column="fix_time" jdbcType="VARCHAR" property="fixTime" />
     <result column="fix_state" jdbcType="INTEGER" property="fixState" />
   </resultMap>
   <sql id="Base_Column_List">
-    serial_number, facility_id, facility_name, unit_id, fix_time, fix_state
+    serial_number, facility_id, facility_name, unit_id, unit_name, fix_time, fix_state
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -24,11 +25,11 @@
   </delete>
   <insert id="insert" parameterType="com.ffa.po.FixRecordInf">
     insert into fix_record_inf (serial_number, facility_id, facility_name, 
-      unit_id, fix_time, fix_state
-      )
+      unit_id, unit_name, fix_time, 
+      fix_state)
     values (#{serialNumber,jdbcType=INTEGER}, #{facilityId,jdbcType=INTEGER}, #{facilityName,jdbcType=VARCHAR}, 
-      #{unitId,jdbcType=INTEGER}, #{fixTime,jdbcType=VARCHAR}, #{fixState,jdbcType=INTEGER}
-      )
+      #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, #{fixTime,jdbcType=VARCHAR}, 
+      #{fixState,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FixRecordInf">
     insert into fix_record_inf
@@ -44,6 +45,9 @@
       </if>
       <if test="unitId != null">
         unit_id,
+      </if>
+      <if test="unitName != null">
+        unit_name,
       </if>
       <if test="fixTime != null">
         fix_time,
@@ -65,6 +69,9 @@
       <if test="unitId != null">
         #{unitId,jdbcType=INTEGER},
       </if>
+      <if test="unitName != null">
+        #{unitName,jdbcType=VARCHAR},
+      </if>
       <if test="fixTime != null">
         #{fixTime,jdbcType=VARCHAR},
       </if>
@@ -85,6 +92,9 @@
       <if test="unitId != null">
         unit_id = #{unitId,jdbcType=INTEGER},
       </if>
+      <if test="unitName != null">
+        unit_name = #{unitName,jdbcType=VARCHAR},
+      </if>
       <if test="fixTime != null">
         fix_time = #{fixTime,jdbcType=VARCHAR},
       </if>
@@ -99,6 +109,7 @@
     set facility_id = #{facilityId,jdbcType=INTEGER},
       facility_name = #{facilityName,jdbcType=VARCHAR},
       unit_id = #{unitId,jdbcType=INTEGER},
+      unit_name = #{unitName,jdbcType=VARCHAR},
       fix_time = #{fixTime,jdbcType=VARCHAR},
       fix_state = #{fixState,jdbcType=INTEGER}
     where serial_number = #{serialNumber,jdbcType=INTEGER}

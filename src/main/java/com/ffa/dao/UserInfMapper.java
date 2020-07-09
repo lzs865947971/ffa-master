@@ -14,7 +14,7 @@ public interface UserInfMapper {
 
     int insertSelective(UserInf record);
 
-    List<UserInf> getAllUserInf();
+    List<UserInf> getAllUserInf(UserInf record);
 
     UserInf selectByPrimaryKey(Integer userId);
 

@@ -6,9 +6,10 @@
     <result column="file_id" jdbcType="INTEGER" property="fileId" />
     <result column="file_modify_time" jdbcType="VARCHAR" property="fileModifyTime" />
     <result column="file_modify_person_name" jdbcType="VARCHAR" property="fileModifyPersonName" />
+    <result column="perfile" jdbcType="VARCHAR" property="perfile" />
   </resultMap>
   <sql id="Base_Column_List">
-    serial_number, file_id, file_modify_time, file_modify_person_name
+    serial_number, file_id, file_modify_time, file_modify_person_name, perfile
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.ffa.po.FileVersion">
     insert into file_version (serial_number, file_id, file_modify_time, 
-      file_modify_person_name)
+      file_modify_person_name, perfile)
     values (#{serialNumber,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}, #{fileModifyTime,jdbcType=VARCHAR}, 
-      #{fileModifyPersonName,jdbcType=VARCHAR})
+      #{fileModifyPersonName,jdbcType=VARCHAR}, #{perfile,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FileVersion">
     insert into file_version
@@ -41,6 +42,9 @@
       <if test="fileModifyPersonName != null">
         file_modify_person_name,
       </if>
+      <if test="perfile != null">
+        perfile,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="serialNumber != null">
@@ -54,6 +58,9 @@
       </if>
       <if test="fileModifyPersonName != null">
         #{fileModifyPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="perfile != null">
+        #{perfile,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="fileModifyPersonName != null">
         file_modify_person_name = #{fileModifyPersonName,jdbcType=VARCHAR},
       </if>
+      <if test="perfile != null">
+        perfile = #{perfile,jdbcType=VARCHAR},
+      </if>
     </set>
     where serial_number = #{serialNumber,jdbcType=INTEGER}
   </update>
@@ -76,7 +86,8 @@
     update file_version
     set file_id = #{fileId,jdbcType=INTEGER},
       file_modify_time = #{fileModifyTime,jdbcType=VARCHAR},
-      file_modify_person_name = #{fileModifyPersonName,jdbcType=VARCHAR}
+      file_modify_person_name = #{fileModifyPersonName,jdbcType=VARCHAR},
+      perfile = #{perfile,jdbcType=VARCHAR}
     where serial_number = #{serialNumber,jdbcType=INTEGER}
   </update>
 </mapper>

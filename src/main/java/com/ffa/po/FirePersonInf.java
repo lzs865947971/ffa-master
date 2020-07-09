@@ -5,6 +5,8 @@ public class FirePersonInf {
 
     private Integer fireOrgId;
 
+    private String fireOrgName;
+
     private String firePersonName;
 
     private Integer firePersonPicId;
@@ -25,6 +27,14 @@ public class FirePersonInf {
 
     public void setFireOrgId(Integer fireOrgId) {
         this.fireOrgId = fireOrgId;
+    }
+
+    public String getFireOrgName() {
+        return fireOrgName;
+    }
+
+    public void setFireOrgName(String fireOrgName) {
+        this.fireOrgName = fireOrgName == null ? null : fireOrgName.trim();
     }
 
     public String getFirePersonName() {

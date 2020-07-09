@@ -1,5 +1,7 @@
 package com.ffa.service;
 
+import com.ffa.dao.KeyUnitMapper;
+import com.ffa.po.KeyUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,8 @@ public class KeyUnitService {
     @Autowired
     KeyUnitMapper keyUnitMapper;
 
-    public List<KeyUnit> getAllKeyUnit(){
-        return keyUnitMapper.getAllKeyUnit();
+    public List<KeyUnit> getAllKeyUnit(KeyUnit keyUnit){
+        return keyUnitMapper.getAllKeyUnit(keyUnit);
     }
 
     public Integer addKeyUnit(KeyUnit keyUnit){

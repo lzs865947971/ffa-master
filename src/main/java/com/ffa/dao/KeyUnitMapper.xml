@@ -22,10 +22,24 @@
     from key_unit
     where unit_id = #{unitId,jdbcType=INTEGER}
   </select>
+
+  <select id="getAllKeyUnit" resultType="com.ffa.po.KeyUnit">
+    select * from key_unit
+    <where>
+      <if test="unit_id != null" >
+        unit_id = #{unitId,jdbcType=INTEGER}
+      </if>
+      <if test="unit_name != null" >
+        and unit_name = #{unitName,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from key_unit
     where unit_id = #{unitId,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.ffa.po.KeyUnit">
     insert into key_unit (unit_id, unit_name, principal_id, 
       principal_name, unit_address, unit_tel, 
@@ -36,6 +50,7 @@
       #{supervisionId,jdbcType=INTEGER}, #{overallPictureId,jdbcType=INTEGER}, #{facilitiyId,jdbcType=INTEGER}
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.ffa.po.KeyUnit">
     insert into key_unit
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -67,6 +82,7 @@
         facilitiy_id,
       </if>
     </trim>
+
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="unitId != null">
         #{unitId,jdbcType=INTEGER},
@@ -97,6 +113,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.KeyUnit">
     update key_unit
     <set>
@@ -127,6 +144,7 @@
     </set>
     where unit_id = #{unitId,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.ffa.po.KeyUnit">
     update key_unit
     set unit_name = #{unitName,jdbcType=VARCHAR},

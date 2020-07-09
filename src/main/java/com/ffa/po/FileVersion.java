@@ -9,6 +9,8 @@ public class FileVersion {
 
     private String fileModifyPersonName;
 
+    private String perfile;
+
     public Integer getSerialNumber() {
         return serialNumber;
     }
@@ -39,5 +41,13 @@ public class FileVersion {
 
     public void setFileModifyPersonName(String fileModifyPersonName) {
         this.fileModifyPersonName = fileModifyPersonName == null ? null : fileModifyPersonName.trim();
+    }
+
+    public String getPerfile() {
+        return perfile;
+    }
+
+    public void setPerfile(String perfile) {
+        this.perfile = perfile == null ? null : perfile.trim();
     }
 }
