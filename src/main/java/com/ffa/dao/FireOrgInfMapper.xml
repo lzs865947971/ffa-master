@@ -4,16 +4,18 @@
   <resultMap id="BaseResultMap" type="com.ffa.po.FireOrgInf">
     <id column="fire_org_id" jdbcType="INTEGER" property="fireOrgId" />
     <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
     <result column="fire_org_name" jdbcType="VARCHAR" property="fireOrgName" />
     <result column="fire_org_type_id" jdbcType="INTEGER" property="fireOrgTypeId" />
     <result column="fire_org_type_name" jdbcType="VARCHAR" property="fireOrgTypeName" />
     <result column="fire_org_date" jdbcType="VARCHAR" property="fireOrgDate" />
     <result column="fire_org_register" jdbcType="VARCHAR" property="fireOrgRegister" />
     <result column="note" jdbcType="VARCHAR" property="note" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    fire_org_id, unit_id, fire_org_name, fire_org_type_id, fire_org_type_name, fire_org_date, 
-    fire_org_register, note
+    fire_org_id, unit_id, unit_name, fire_org_name, fire_org_type_id, fire_org_type_name, 
+    fire_org_date, fire_org_register, note, create_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -26,12 +28,14 @@
     where fire_org_id = #{fireOrgId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.FireOrgInf">
-    insert into fire_org_inf (fire_org_id, unit_id, fire_org_name, 
-      fire_org_type_id, fire_org_type_name, fire_org_date, 
-      fire_org_register, note)
-    values (#{fireOrgId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{fireOrgName,jdbcType=VARCHAR}, 
-      #{fireOrgTypeId,jdbcType=INTEGER}, #{fireOrgTypeName,jdbcType=VARCHAR}, #{fireOrgDate,jdbcType=VARCHAR}, 
-      #{fireOrgRegister,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
+    insert into fire_org_inf (fire_org_id, unit_id, unit_name, 
+      fire_org_name, fire_org_type_id, fire_org_type_name, 
+      fire_org_date, fire_org_register, note, 
+      create_time)
+    values (#{fireOrgId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, 
+      #{fireOrgName,jdbcType=VARCHAR}, #{fireOrgTypeId,jdbcType=INTEGER}, #{fireOrgTypeName,jdbcType=VARCHAR}, 
+      #{fireOrgDate,jdbcType=VARCHAR}, #{fireOrgRegister,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FireOrgInf">
     insert into fire_org_inf
@@ -41,6 +45,9 @@
       </if>
       <if test="unitId != null">
         unit_id,
+      </if>
+      <if test="unitName != null">
+        unit_name,
       </if>
       <if test="fireOrgName != null">
         fire_org_name,
@@ -60,6 +67,9 @@
       <if test="note != null">
         note,
       </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="fireOrgId != null">
@@ -67,6 +77,9 @@
       </if>
       <if test="unitId != null">
         #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="unitName != null">
+        #{unitName,jdbcType=VARCHAR},
       </if>
       <if test="fireOrgName != null">
         #{fireOrgName,jdbcType=VARCHAR},
@@ -86,6 +99,9 @@
       <if test="note != null">
         #{note,jdbcType=VARCHAR},
       </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.FireOrgInf">
@@ -93,6 +109,9 @@
     <set>
       <if test="unitId != null">
         unit_id = #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="unitName != null">
+        unit_name = #{unitName,jdbcType=VARCHAR},
       </if>
       <if test="fireOrgName != null">
         fire_org_name = #{fireOrgName,jdbcType=VARCHAR},
@@ -112,18 +131,23 @@
       <if test="note != null">
         note = #{note,jdbcType=VARCHAR},
       </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
     </set>
     where fire_org_id = #{fireOrgId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ffa.po.FireOrgInf">
     update fire_org_inf
     set unit_id = #{unitId,jdbcType=INTEGER},
+      unit_name = #{unitName,jdbcType=VARCHAR},
       fire_org_name = #{fireOrgName,jdbcType=VARCHAR},
       fire_org_type_id = #{fireOrgTypeId,jdbcType=INTEGER},
       fire_org_type_name = #{fireOrgTypeName,jdbcType=VARCHAR},
       fire_org_date = #{fireOrgDate,jdbcType=VARCHAR},
       fire_org_register = #{fireOrgRegister,jdbcType=VARCHAR},
-      note = #{note,jdbcType=VARCHAR}
+      note = #{note,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR}
     where fire_org_id = #{fireOrgId,jdbcType=INTEGER}
   </update>
 </mapper>

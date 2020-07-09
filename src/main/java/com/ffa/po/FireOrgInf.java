@@ -5,6 +5,8 @@ public class FireOrgInf {
 
     private Integer unitId;
 
+    private String unitName;
+
     private String fireOrgName;
 
     private Integer fireOrgTypeId;
@@ -16,6 +18,8 @@ public class FireOrgInf {
     private String fireOrgRegister;
 
     private String note;
+
+    private String createTime;
 
     public Integer getFireOrgId() {
         return fireOrgId;
@@ -31,6 +35,14 @@ public class FireOrgInf {
 
     public void setUnitId(Integer unitId) {
         this.unitId = unitId;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName == null ? null : unitName.trim();
     }
 
     public String getFireOrgName() {
@@ -79,5 +91,13 @@ public class FireOrgInf {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime == null ? null : createTime.trim();
     }
 }

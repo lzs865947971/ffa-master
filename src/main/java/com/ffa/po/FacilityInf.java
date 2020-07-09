@@ -7,6 +7,8 @@ public class FacilityInf {
 
     private Integer unitId;
 
+    private String unitName;
+
     private Integer facilityTypeId;
 
     private String facilityTypeName;
@@ -33,6 +35,14 @@ public class FacilityInf {
 
     public void setUnitId(Integer unitId) {
         this.unitId = unitId;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName == null ? null : unitName.trim();
     }
 
     public Integer getFacilityTypeId() {

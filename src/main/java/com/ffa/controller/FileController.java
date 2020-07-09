@@ -1,6 +1,5 @@
 package com.ffa.controller;
 
-import com.ffa.po.File;
 import com.ffa.po.RespBean;
 import com.ffa.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
