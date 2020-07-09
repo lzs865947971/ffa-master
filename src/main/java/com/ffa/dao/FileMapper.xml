@@ -4,13 +4,14 @@
   <resultMap id="BaseResultMap" type="com.ffa.po.File">
     <id column="file_id" jdbcType="INTEGER" property="fileId" />
     <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
     <result column="create_time" jdbcType="VARCHAR" property="createTime" />
     <result column="file_type_id" jdbcType="INTEGER" property="fileTypeId" />
     <result column="file_name" jdbcType="VARCHAR" property="fileName" />
     <result column="file_storage_path" jdbcType="VARCHAR" property="fileStoragePath" />
   </resultMap>
   <sql id="Base_Column_List">
-    file_id, unit_id, create_time, file_type_id, file_name, file_storage_path
+    file_id, unit_id, unit_name, create_time, file_type_id, file_name, file_storage_path
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,12 +24,12 @@
     where file_id = #{fileId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.File">
-    insert into file (file_id, unit_id, create_time, 
-      file_type_id, file_name, file_storage_path
-      )
-    values (#{fileId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, 
-      #{fileTypeId,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{fileStoragePath,jdbcType=VARCHAR}
-      )
+    insert into file (file_id, unit_id, unit_name, 
+      create_time, file_type_id, file_name, 
+      file_storage_path)
+    values (#{fileId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=VARCHAR}, #{fileTypeId,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, 
+      #{fileStoragePath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.File">
     insert into file
@@ -38,6 +39,9 @@
       </if>
       <if test="unitId != null">
         unit_id,
+      </if>
+      <if test="unitName != null">
+        unit_name,
       </if>
       <if test="createTime != null">
         create_time,
@@ -59,6 +63,9 @@
       <if test="unitId != null">
         #{unitId,jdbcType=INTEGER},
       </if>
+      <if test="unitName != null">
+        #{unitName,jdbcType=VARCHAR},
+      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=VARCHAR},
       </if>
@@ -79,6 +86,9 @@
       <if test="unitId != null">
         unit_id = #{unitId,jdbcType=INTEGER},
       </if>
+      <if test="unitName != null">
+        unit_name = #{unitName,jdbcType=VARCHAR},
+      </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=VARCHAR},
       </if>
@@ -97,6 +107,7 @@
   <update id="updateByPrimaryKey" parameterType="com.ffa.po.File">
     update file
     set unit_id = #{unitId,jdbcType=INTEGER},
+      unit_name = #{unitName,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=VARCHAR},
       file_type_id = #{fileTypeId,jdbcType=INTEGER},
       file_name = #{fileName,jdbcType=VARCHAR},

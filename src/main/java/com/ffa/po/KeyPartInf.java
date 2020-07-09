@@ -5,6 +5,8 @@ public class KeyPartInf {
 
     private Integer unitId;
 
+    private String unitName;
+
     private String keyPartName;
 
     private Integer keyPartPicId;
@@ -23,6 +25,14 @@ public class KeyPartInf {
 
     public void setUnitId(Integer unitId) {
         this.unitId = unitId;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName == null ? null : unitName.trim();
     }
 
     public String getKeyPartName() {

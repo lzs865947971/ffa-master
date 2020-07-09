@@ -4,12 +4,14 @@
   <resultMap id="BaseResultMap" type="com.ffa.po.FirePersonInf">
     <id column="fire_person_id" jdbcType="INTEGER" property="firePersonId" />
     <result column="fire_org_id" jdbcType="INTEGER" property="fireOrgId" />
+    <result column="fire_org_name" jdbcType="VARCHAR" property="fireOrgName" />
     <result column="fire_person_name" jdbcType="VARCHAR" property="firePersonName" />
     <result column="fire_person_pic_id" jdbcType="INTEGER" property="firePersonPicId" />
     <result column="fire_record_id" jdbcType="INTEGER" property="fireRecordId" />
   </resultMap>
   <sql id="Base_Column_List">
-    fire_person_id, fire_org_id, fire_person_name, fire_person_pic_id, fire_record_id
+    fire_person_id, fire_org_id, fire_org_name, fire_person_name, fire_person_pic_id, 
+    fire_record_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -22,10 +24,12 @@
     where fire_person_id = #{firePersonId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.FirePersonInf">
-    insert into fire_person_inf (fire_person_id, fire_org_id, fire_person_name, 
-      fire_person_pic_id, fire_record_id)
-    values (#{firePersonId,jdbcType=INTEGER}, #{fireOrgId,jdbcType=INTEGER}, #{firePersonName,jdbcType=VARCHAR}, 
-      #{firePersonPicId,jdbcType=INTEGER}, #{fireRecordId,jdbcType=INTEGER})
+    insert into fire_person_inf (fire_person_id, fire_org_id, fire_org_name, 
+      fire_person_name, fire_person_pic_id, fire_record_id
+      )
+    values (#{firePersonId,jdbcType=INTEGER}, #{fireOrgId,jdbcType=INTEGER}, #{fireOrgName,jdbcType=VARCHAR}, 
+      #{firePersonName,jdbcType=VARCHAR}, #{firePersonPicId,jdbcType=INTEGER}, #{fireRecordId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FirePersonInf">
     insert into fire_person_inf
@@ -35,6 +39,9 @@
       </if>
       <if test="fireOrgId != null">
         fire_org_id,
+      </if>
+      <if test="fireOrgName != null">
+        fire_org_name,
       </if>
       <if test="firePersonName != null">
         fire_person_name,
@@ -53,6 +60,9 @@
       <if test="fireOrgId != null">
         #{fireOrgId,jdbcType=INTEGER},
       </if>
+      <if test="fireOrgName != null">
+        #{fireOrgName,jdbcType=VARCHAR},
+      </if>
       <if test="firePersonName != null">
         #{firePersonName,jdbcType=VARCHAR},
       </if>
@@ -70,6 +80,9 @@
       <if test="fireOrgId != null">
         fire_org_id = #{fireOrgId,jdbcType=INTEGER},
       </if>
+      <if test="fireOrgName != null">
+        fire_org_name = #{fireOrgName,jdbcType=VARCHAR},
+      </if>
       <if test="firePersonName != null">
         fire_person_name = #{firePersonName,jdbcType=VARCHAR},
       </if>
@@ -85,6 +98,7 @@
   <update id="updateByPrimaryKey" parameterType="com.ffa.po.FirePersonInf">
     update fire_person_inf
     set fire_org_id = #{fireOrgId,jdbcType=INTEGER},
+      fire_org_name = #{fireOrgName,jdbcType=VARCHAR},
       fire_person_name = #{firePersonName,jdbcType=VARCHAR},
       fire_person_pic_id = #{firePersonPicId,jdbcType=INTEGER},
       fire_record_id = #{fireRecordId,jdbcType=INTEGER}

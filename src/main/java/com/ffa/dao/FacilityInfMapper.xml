@@ -5,11 +5,12 @@
     <id column="facility_id" jdbcType="INTEGER" property="facilityId" />
     <result column="facility_name" jdbcType="VARCHAR" property="facilityName" />
     <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
     <result column="facility_type_id" jdbcType="INTEGER" property="facilityTypeId" />
     <result column="facility_type_name" jdbcType="VARCHAR" property="facilityTypeName" />
   </resultMap>
   <sql id="Base_Column_List">
-    facility_id, facility_name, unit_id, facility_type_id, facility_type_name
+    facility_id, facility_name, unit_id, unit_name, facility_type_id, facility_type_name
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,9 +24,11 @@
   </delete>
   <insert id="insert" parameterType="com.ffa.po.FacilityInf">
     insert into facility_inf (facility_id, facility_name, unit_id, 
-      facility_type_id, facility_type_name)
+      unit_name, facility_type_id, facility_type_name
+      )
     values (#{facilityId,jdbcType=INTEGER}, #{facilityName,jdbcType=VARCHAR}, #{unitId,jdbcType=INTEGER}, 
-      #{facilityTypeId,jdbcType=INTEGER}, #{facilityTypeName,jdbcType=VARCHAR})
+      #{unitName,jdbcType=VARCHAR}, #{facilityTypeId,jdbcType=INTEGER}, #{facilityTypeName,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FacilityInf">
     insert into facility_inf
@@ -38,6 +41,9 @@
       </if>
       <if test="unitId != null">
         unit_id,
+      </if>
+      <if test="unitName != null">
+        unit_name,
       </if>
       <if test="facilityTypeId != null">
         facility_type_id,
@@ -56,6 +62,9 @@
       <if test="unitId != null">
         #{unitId,jdbcType=INTEGER},
       </if>
+      <if test="unitName != null">
+        #{unitName,jdbcType=VARCHAR},
+      </if>
       <if test="facilityTypeId != null">
         #{facilityTypeId,jdbcType=INTEGER},
       </if>
@@ -73,6 +82,9 @@
       <if test="unitId != null">
         unit_id = #{unitId,jdbcType=INTEGER},
       </if>
+      <if test="unitName != null">
+        unit_name = #{unitName,jdbcType=VARCHAR},
+      </if>
       <if test="facilityTypeId != null">
         facility_type_id = #{facilityTypeId,jdbcType=INTEGER},
       </if>
@@ -86,6 +98,7 @@
     update facility_inf
     set facility_name = #{facilityName,jdbcType=VARCHAR},
       unit_id = #{unitId,jdbcType=INTEGER},
+      unit_name = #{unitName,jdbcType=VARCHAR},
       facility_type_id = #{facilityTypeId,jdbcType=INTEGER},
       facility_type_name = #{facilityTypeName,jdbcType=VARCHAR}
     where facility_id = #{facilityId,jdbcType=INTEGER}

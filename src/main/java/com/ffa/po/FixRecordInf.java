@@ -9,6 +9,8 @@ public class FixRecordInf {
 
     private Integer unitId;
 
+    private String unitName;
+
     private String fixTime;
 
     private Integer fixState;
@@ -43,6 +45,14 @@ public class FixRecordInf {
 
     public void setUnitId(Integer unitId) {
         this.unitId = unitId;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName == null ? null : unitName.trim();
     }
 
     public String getFixTime() {
