@@ -17,12 +17,12 @@ public class FirePersonInfController {
     FirePersonInfService firePersonInfService;
 
 
-    @GetMapping("/")
+    @GetMapping("/list")
     public List<FirePersonInf> getAllFirePersonInf(@RequestBody FirePersonInf firePersonInf){
         return firePersonInfService.getAllFirePersonInf(firePersonInf);
     }
 
-    @PostMapping("/")
+    @PostMapping("/add")
     public RespBean addFirePersonInf(@RequestBody FirePersonInf firePersonInf) {
         if (firePersonInfService.addFirePersonInf(firePersonInf) == 1) {
             return RespBean.ok("添加成功!");
@@ -38,7 +38,7 @@ public class FirePersonInfController {
         return RespBean.error("删除失败！");
     }
 
-    @PutMapping("/")
+    @PutMapping("/update")
     public RespBean updateFirePersonInfById(@RequestBody FirePersonInf firePersonInf) {
         if (firePersonInfService.updateFirePersonInfById(firePersonInf) == 1) {
             return RespBean.ok("更新成功!");

@@ -17,11 +17,11 @@ public class FireRecordController {
     FireRecordService fireRecordService;
 
 
-    @GetMapping("/")
+    @GetMapping("/list")
     public List<FireRecord> getAllFireRecord(@RequestBody FireRecord fireRecord){
         return fireRecordService.getAllFireRecord(fireRecord);
     }
-    @PostMapping("/")
+    @PostMapping("/add")
     public RespBean addFireRecord(@RequestBody FireRecord fireRecord) {
         if (fireRecordService.addFireRecord(fireRecord) == 1) {
             return RespBean.ok("添加成功!");
@@ -37,7 +37,7 @@ public class FireRecordController {
         return RespBean.error("删除失败！");
     }
 
-    @PutMapping("/")
+    @PutMapping("/update")
     public RespBean updateFireRecordById(@RequestBody FireRecord fireRecord) {
         if (fireRecordService.updateFireRecordById(fireRecord) == 1) {
             return RespBean.ok("更新成功!");

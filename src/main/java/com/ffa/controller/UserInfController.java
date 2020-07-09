@@ -17,12 +17,12 @@ public class UserInfController {
     UserInfService userInfService;
 
     //获取全部用户
-    @GetMapping("/")
+    @GetMapping("/list")
     public List<UserInf> getAllUserInf(@RequestBody UserInf userInf){
         return userInfService.getAllUserInf(userInf);
     }
 
-    @PostMapping("/")
+    @PostMapping("/add")
     public RespBean addUserInf(@RequestBody UserInf userInf) {
         if (userInfService.addUserInf(userInf) == 1) {
             return RespBean.ok("添加成功!");
@@ -38,7 +38,7 @@ public class UserInfController {
         return RespBean.error("删除失败！");
     }
 
-    @PutMapping("/")
+    @PutMapping("/update")
     public RespBean updateUserInfById(@RequestBody UserInf userInf) {
         if (userInfService.updateUserInfById(userInf) == 1) {
             return RespBean.ok("更新成功!");

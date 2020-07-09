@@ -17,11 +17,11 @@ public class SuperVisionInfController {
     SuperVisionInfService superVisionInfService;
 
 
-    @GetMapping("/")
+    @GetMapping("/list")
     public List<SuperVisionInf> getAllSuperVisionInf(@RequestBody SuperVisionInf superVisionInf){
         return superVisionInfService.getAllSuperVisionInf(superVisionInf);
     }
-    @PostMapping("/")
+    @PostMapping("/add")
     public RespBean addSuperVisionInf(@RequestBody SuperVisionInf superVisionInf) {
         if (superVisionInfService.addSuperVisionInf(superVisionInf) == 1) {
             return RespBean.ok("添加成功!");
@@ -37,7 +37,7 @@ public class SuperVisionInfController {
         return RespBean.error("删除失败！");
     }
 
-    @PutMapping("/")
+    @PutMapping("/update")
     public RespBean updateUser_infById(@RequestBody SuperVisionInf superVisionInf) {
         if (superVisionInfService.updateSuperVisionInfById(superVisionInf) == 1) {
             return RespBean.ok("更新成功!");
