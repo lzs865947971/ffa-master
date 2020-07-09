@@ -17,7 +17,7 @@
     from file_version
     where serial_number = #{serialNumber,jdbcType=INTEGER}
   </select>
-    <select id="getAllFileVersion" resultType="com.ffa.po.FileVersion">
+    <select id="getAllFileVersion" parameterType="com.ffa.po.FileVersion" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List"/>
       from file_version

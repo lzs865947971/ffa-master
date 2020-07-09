@@ -23,7 +23,7 @@
     where unit_id = #{unitId,jdbcType=INTEGER}
   </select>
 
-  <select id="getAllKeyUnit" resultType="com.ffa.po.KeyUnit">
+  <select id="getAllKeyUnit" parameterType="com.ffa.po.KeyUnit" resultMap="BaseResultMap">
     select * from key_unit
     <where>
       <if test="unitId != null" >

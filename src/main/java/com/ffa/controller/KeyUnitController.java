@@ -19,7 +19,10 @@ public class KeyUnitController {
 
     @GetMapping("/")
     public List<KeyUnit> getAllKeyUnit(@RequestBody KeyUnit keyUnit){
-        return keyUnitService.getAllKeyUnit(keyUnit);
+        List<KeyUnit> keyUnitList = keyUnitService.getAllKeyUnit(keyUnit);
+        //keyUnitList.stream(System.out);
+        System.out.println(keyUnitList);
+        return keyUnitList;
     }
     @PostMapping("/")
     public RespBean addKeyUnit(@RequestBody KeyUnit keyUnit) {

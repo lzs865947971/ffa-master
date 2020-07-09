@@ -19,7 +19,7 @@
     from fix_record_inf
     where serial_number = #{serialNumber,jdbcType=INTEGER}
   </select>
-    <select id="getAllFixRecordInf" resultType="com.ffa.po.FixRecordInf">
+    <select id="getAllFixRecordInf" parameterType="com.ffa.po.FixRecordInf" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List"/>
       from fix_record_inf

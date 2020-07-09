@@ -19,7 +19,7 @@
     from fire_person_inf
     where fire_person_id = #{firePersonId,jdbcType=INTEGER}
   </select>
-  <select id="getAllFirePersonInf" resultType="com.ffa.po.FirePersonInf">
+  <select id="getAllFirePersonInf" parameterType="com.ffa.po.FirePersonInf" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from fire_person_inf

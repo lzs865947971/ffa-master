@@ -19,7 +19,7 @@
     where facility_id = #{facilityId,jdbcType=INTEGER}
   </select>
 
-  <select id="getAllFacilityInf" resultType="com.ffa.po.FacilityInf">
+  <select id="getAllFacilityInf" parameterType="com.ffa.po.FacilityInf" resultMap="BaseResultMap">
     select * from facility_inf
     <where>
       <if test="facilityId != null" >

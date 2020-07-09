@@ -18,7 +18,7 @@
     where key_part_id = #{keyPartId,jdbcType=INTEGER}
   </select>
 
-  <select id="getAllKeyPartInf" resultType="com.ffa.po.KeyPartInf">
+  <select id="getAllKeyPartInf" parameterType="com.ffa.po.KeyPartInf" resultMap="BaseResultMap">
     select * from key_part_inf
     <where>
       <if test="keyPartId != null" >

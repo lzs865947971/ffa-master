@@ -23,7 +23,7 @@
     from fire_org_inf
     where fire_org_id = #{fireOrgId,jdbcType=INTEGER}
   </select>
-  <select id="getAllFireOrgInf" resultType="com.ffa.po.FireOrgInf">
+  <select id="getAllFireOrgInf" parameterType="com.ffa.po.FireOrgInf" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from fire_org_inf

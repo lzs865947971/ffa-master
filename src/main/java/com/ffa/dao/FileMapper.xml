@@ -19,7 +19,7 @@
     from file
     where file_id = #{fileId,jdbcType=INTEGER}
   </select>
-    <select id="getAllFile" resultType="com.ffa.po.File">
+    <select id="getAllFile" parameterType="com.ffa.po.File" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List"/>
       from file

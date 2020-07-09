@@ -23,7 +23,7 @@
     from fire_record
     where fire_id = #{fireId,jdbcType=INTEGER}
   </select>
-  <select id="getAllFireRecord" resultType="com.ffa.po.FireRecord">
+  <select id="getAllFireRecord" parameterType="com.ffa.po.FireRecord" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"></include>
     from fire_record

@@ -15,7 +15,7 @@
     where supervision_id = #{supervisionId,jdbcType=INTEGER}
   </select>
 
-  <select id="getAllSuperVisionInf" resultType="com.ffa.po.SuperVisionInf">
+  <select id="getAllSuperVisionInf" parameterType="com.ffa.po.SuperVisionInf" resultMap="BaseResultMap">
       select * from supervision_inf
       <where>
         <if test="supervisionId != null" >
