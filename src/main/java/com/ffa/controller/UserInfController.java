@@ -1,6 +1,7 @@
 package com.ffa.controller;
 
 import com.ffa.po.RespBean;
+import com.ffa.po.UserInf;
 import com.ffa.service.UserInfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class UserInfController {
     //获取全部用户
     @GetMapping("/")
     public List<UserInf> getAllUserInf(){
-        return userInfService.getAllUseInf();
+        return userInfService.getAllUserInf();
     }
     @PostMapping("/")
     public RespBean addUserInf(@RequestBody UserInf userInf) {

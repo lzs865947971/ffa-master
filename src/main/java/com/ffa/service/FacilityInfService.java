@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class FacilityInfService {
-
     /**
      *
      */
@@ -28,5 +27,8 @@ public class FacilityInfService {
         return facilityInfMapper.deleteByPrimaryKey(id);
     }
 
-    public Integer updateFacilityInfById(FacilityInf facilityInf){ return facilityInfMapper.updateByPrimaryKeySelective(facilityInf); }
+    public Integer updateFacilityInfById(FacilityInf facilityInf)
+    {
+        return facilityInfMapper.updateByPrimaryKeySelective(facilityInf);
+    }
 }

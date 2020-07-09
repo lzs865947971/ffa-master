@@ -11,19 +11,26 @@
     <result column="power_number" jdbcType="INTEGER" property="powerNumber" />
     <result column="unit_id" jdbcType="INTEGER" property="unitId" />
   </resultMap>
+
   <sql id="Base_Column_List">
     user_id, user_name, password, name, tel, email, power_number, unit_id
   </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user_inf
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
+
+  <select id="getAllUserInf" resultType="com.ffa.po.UserInf">
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_inf
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.ffa.po.UserInf">
     insert into user_inf (user_id, user_name, password, 
       name, tel, email, power_number, 
@@ -32,6 +39,7 @@
       #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{powerNumber,jdbcType=INTEGER}, 
       #{unitId,jdbcType=INTEGER})
   </insert>
+
   <insert id="insertSelective" parameterType="com.ffa.po.UserInf">
     insert into user_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -60,6 +68,7 @@
         unit_id,
       </if>
     </trim>
+
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
@@ -87,6 +96,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.UserInf">
     update user_inf
     <set>
@@ -114,6 +124,7 @@
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.ffa.po.UserInf">
     update user_inf
     set user_name = #{userName,jdbcType=VARCHAR},
@@ -125,4 +136,5 @@
       unit_id = #{unitId,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
 </mapper>

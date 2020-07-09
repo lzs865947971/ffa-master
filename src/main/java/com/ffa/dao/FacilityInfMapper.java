@@ -14,4 +14,6 @@ public interface FacilityInfMapper {
     int updateByPrimaryKeySelective(FacilityInf record);
 
     int updateByPrimaryKey(FacilityInf record);
+
+
 }

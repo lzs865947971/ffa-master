@@ -1,5 +1,7 @@
 package com.ffa.service;
 
+import com.ffa.dao.UserInfMapper;
+import com.ffa.po.UserInf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,8 @@ public class UserInfService {
     @Autowired
     UserInfMapper userInfMapper;
 
-    public List<UserInf> getAllUseInf(){
-        return userInfMapper.getAllUseInf();
+    public List<UserInf> getAllUserInf(){
+        return userInfMapper.getAllUserInf();
     }
 
     public Integer addUserInf(UserInf userInf){
