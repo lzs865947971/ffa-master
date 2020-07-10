@@ -19,7 +19,7 @@ public class FireOrgInf {
 
     private String note;
 
-    private String createTime;
+
 
     public Integer getFireOrgId() {
         return fireOrgId;
@@ -93,11 +93,4 @@ public class FireOrgInf {
         this.note = note == null ? null : note.trim();
     }
 
-    public String getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime == null ? null : createTime.trim();
-    }
 }

@@ -4,7 +4,6 @@ import com.ffa.dao.FileMapper;
 import com.ffa.dao.FileVersionMapper;
 import com.ffa.po.File;
 import com.ffa.po.FileVersion;
-import com.ffa.po.UserInf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

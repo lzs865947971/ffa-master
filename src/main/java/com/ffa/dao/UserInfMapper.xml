@@ -8,52 +8,60 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />
     <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="power_number" jdbcType="INTEGER" property="powerNumber" />
+    <result column="enabled" jdbcType="TINYINT" property="enabled" />
     <result column="unit_id" jdbcType="INTEGER" property="unitId" />
     <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
   </resultMap>
-
+  <resultMap id="UserWithRoles" type="com.ffa.po.UserInf" extends="BaseResultMap">
+    <collection property="roles" ofType="com.ffa.po.Role">
+      <id column="rid" property="id"/>
+      <result column="rname" property="name"/>
+      <result column="rnameZh" property="nameZh"/>
+    </collection>
+  </resultMap>
   <sql id="Base_Column_List">
-    user_id, user_name, password, name, tel, email, power_number, unit_id, unit_name
+    user_id, user_name, password, name, tel, email, enabled, unit_id, unit_name
   </sql>
+  <select id="getAllUsersExceptCurrentHr" resultMap="BaseResultMap">
+        select * from user_inf where user_id !=#{id};
+    </select>
+  <update id="updatePasswd">
+        update user_inf set password = #{encodePass} where user_id=#{uid};
+    </update>
 
-  <sql id="selectUserNotNUll">
-    <where>
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=INTEGER}
-      </if>
-      <if test="userName != null" >
-        and user_name = #{userName,jdbcType=VARCHAR}
-      </if>
-    </where>
-  </sql>
-
+  <select id="getAllUsers" resultMap="UserWithRoles">
+    select user_inf.user_id, user_inf.user_name, user_inf.name, user_inf.tel, user_inf.email, user_inf.enabled, user_inf.unit_id, user_inf.unit_name,
+    r.`id` as rid,r.`name` as rname,r.`nameZh` as rnameZh from user_inf left join user_role hrr on
+    hr.`id`=hrr.`uid` left join role r on hrr.`rid`=r.`id` where hr.`id`!=#{uid}
+    <if test="keywords!=null">
+      and user_inf.name like '%${keywords}%'
+    </if>
+    order by user_inf.user_id
+  </select>
+  <select id="getUserRolesById" resultType="com.ffa.po.Role">
+    select r.* from role r,user_role hrr where hrr.`rid`=r.`id` and hrr.`uid`=#{id}
+  </select>
+<select id="loadUserByUsername" resultMap="BaseResultMap">
+    select * from user_inf where user_name=#{username}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user_inf
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
-
-  <select id="getAllUserInf" parameterType="com.ffa.po.UserInf" resultMap="BaseResultMap">
-    select * from user_inf
-    <include refid="selectUserNotNUll" />
-  </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_inf
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-
   <insert id="insert" parameterType="com.ffa.po.UserInf">
     insert into user_inf (user_id, user_name, password,
-      name, tel, email, power_number,
+      name, tel, email, enabled,
       unit_id, unit_name)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-      #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{powerNumber,jdbcType=INTEGER},
+      #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{enabled,jdbcType=TINYINT},
       #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR})
   </insert>
-
   <insert id="insertSelective" parameterType="com.ffa.po.UserInf">
     insert into user_inf
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -75,8 +83,8 @@
       <if test="email != null">
         email,
       </if>
-      <if test="powerNumber != null">
-        power_number,
+      <if test="enabled != null">
+        enabled,
       </if>
       <if test="unitId != null">
         unit_id,
@@ -85,7 +93,6 @@
         unit_name,
       </if>
     </trim>
-
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
@@ -105,8 +112,8 @@
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="powerNumber != null">
-        #{powerNumber,jdbcType=INTEGER},
+      <if test="enabled != null">
+        #{enabled,jdbcType=TINYINT},
       </if>
       <if test="unitId != null">
         #{unitId,jdbcType=INTEGER},
@@ -116,7 +123,6 @@
       </if>
     </trim>
   </insert>
-
   <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.UserInf">
     update user_inf
     <set>
@@ -135,8 +141,8 @@
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="powerNumber != null">
-        power_number = #{powerNumber,jdbcType=INTEGER},
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=TINYINT},
       </if>
       <if test="unitId != null">
         unit_id = #{unitId,jdbcType=INTEGER},
@@ -147,7 +153,6 @@
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-
   <update id="updateByPrimaryKey" parameterType="com.ffa.po.UserInf">
     update user_inf
     set user_name = #{userName,jdbcType=VARCHAR},
@@ -155,10 +160,9 @@
       name = #{name,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      power_number = #{powerNumber,jdbcType=INTEGER},
+      enabled = #{enabled,jdbcType=TINYINT},
       unit_id = #{unitId,jdbcType=INTEGER},
       unit_name = #{unitName,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-
 </mapper>

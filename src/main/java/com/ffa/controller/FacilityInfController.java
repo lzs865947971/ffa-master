@@ -16,7 +16,7 @@ public class FacilityInfController {
     @Autowired
     FacilityInfService facilityInfService;
 
-    //获取全部用户
+
     @GetMapping("/")
     public List<FacilityInf> getAllFacilityInf(@RequestBody FacilityInf facilityInf){
         return facilityInfService.getAllFacilityInf(facilityInf);

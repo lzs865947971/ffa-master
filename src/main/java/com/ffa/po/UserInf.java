@@ -1,6 +1,15 @@
 package com.ffa.po;
 
-public class UserInf {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+public class UserInf implements UserDetails {
     private Integer userId;
 
     private String userName;
@@ -13,11 +22,21 @@ public class UserInf {
 
     private String email;
 
-    private Integer powerNumber;
+    private Boolean enabled;
 
     private Integer unitId;
 
     private String unitName;
+
+    private List<Role> roles;
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -35,8 +54,47 @@ public class UserInf {
         this.userName = userName == null ? null : userName.trim();
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setUsername(String username) {
+        this.userName = username == null ? null : username.trim();
+    }
+
+    @Override
+    @JsonIgnore
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>(roles.size());
+        for (Role role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        return authorities;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
     }
 
     public void setPassword(String password) {
@@ -67,12 +125,12 @@ public class UserInf {
         this.email = email == null ? null : email.trim();
     }
 
-    public Integer getPowerNumber() {
-        return powerNumber;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setPowerNumber(Integer powerNumber) {
-        this.powerNumber = powerNumber;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Integer getUnitId() {

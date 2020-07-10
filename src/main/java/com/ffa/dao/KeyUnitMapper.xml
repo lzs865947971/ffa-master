@@ -10,11 +10,11 @@
     <result column="unit_tel" jdbcType="VARCHAR" property="unitTel" />
     <result column="supervision_id" jdbcType="INTEGER" property="supervisionId" />
     <result column="overall_picture_id" jdbcType="INTEGER" property="overallPictureId" />
-    <result column="facilitiy_id" jdbcType="INTEGER" property="facilitiyId" />
+    <result column="facilitiy_num" jdbcType="INTEGER" property="facilitiyNum" />
   </resultMap>
   <sql id="Base_Column_List">
     unit_id, unit_name, principal_id, principal_name, unit_address, unit_tel, supervision_id,
-    overall_picture_id, facilitiy_id
+    overall_picture_id, facilitiy_num
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
@@ -43,11 +43,11 @@
   <insert id="insert" parameterType="com.ffa.po.KeyUnit">
     insert into key_unit (unit_id, unit_name, principal_id,
       principal_name, unit_address, unit_tel,
-      supervision_id, overall_picture_id, facilitiy_id
+      supervision_id, overall_picture_id, facilitiy_num
       )
     values (#{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, #{principalId,jdbcType=INTEGER},
       #{principalName,jdbcType=VARCHAR}, #{unitAddress,jdbcType=VARCHAR}, #{unitTel,jdbcType=VARCHAR},
-      #{supervisionId,jdbcType=INTEGER}, #{overallPictureId,jdbcType=INTEGER}, #{facilitiyId,jdbcType=INTEGER}
+      #{supervisionId,jdbcType=INTEGER}, #{overallPictureId,jdbcType=INTEGER}, #{facilitiyNum,jdbcType=INTEGER}
       )
   </insert>
 
@@ -78,8 +78,8 @@
       <if test="overallPictureId != null">
         overall_picture_id,
       </if>
-      <if test="facilitiyId != null">
-        facilitiy_id,
+      <if test="facilitiyNum != null">
+        facilitiy_num,
       </if>
     </trim>
 
@@ -108,8 +108,8 @@
       <if test="overallPictureId != null">
         #{overallPictureId,jdbcType=INTEGER},
       </if>
-      <if test="facilitiyId != null">
-        #{facilitiyId,jdbcType=INTEGER},
+      <if test="facilitiyNum != null">
+        #{facilitiyNum,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -138,8 +138,8 @@
       <if test="overallPictureId != null">
         overall_picture_id = #{overallPictureId,jdbcType=INTEGER},
       </if>
-      <if test="facilitiyId != null">
-        facilitiy_id = #{facilitiyId,jdbcType=INTEGER},
+      <if test="facilitiyNum != null">
+        facilitiy_num = #{facilitiyNum,jdbcType=INTEGER},
       </if>
     </set>
     where unit_id = #{unitId,jdbcType=INTEGER}
@@ -154,7 +154,7 @@
       unit_tel = #{unitTel,jdbcType=VARCHAR},
       supervision_id = #{supervisionId,jdbcType=INTEGER},
       overall_picture_id = #{overallPictureId,jdbcType=INTEGER},
-      facilitiy_id = #{facilitiyId,jdbcType=INTEGER}
+      facilitiy_num = #{facilitiyNum,jdbcType=INTEGER}
     where unit_id = #{unitId,jdbcType=INTEGER}
   </update>
 </mapper>

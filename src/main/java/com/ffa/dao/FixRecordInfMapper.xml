@@ -36,6 +36,9 @@
         <if test="facilityId != null" >
           and facility_id = #{facilityId,jdbcType=INTEGER}
         </if>
+        <if test="fixState != null" >
+          and fix_state = #{fixState,jdbcType=INTEGER}
+        </if>
       </where>
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

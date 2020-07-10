@@ -17,7 +17,7 @@ public class KeyUnit {
 
     private Integer overallPictureId;
 
-    private Integer facilitiyId;
+    private Integer facilitiyNum;
 
     public Integer getUnitId() {
         return unitId;
@@ -83,11 +83,11 @@ public class KeyUnit {
         this.overallPictureId = overallPictureId;
     }
 
-    public Integer getFacilitiyId() {
-        return facilitiyId;
+    public Integer getFacilitiyNum() {
+        return facilitiyNum;
     }
 
-    public void setFacilitiyId(Integer facilitiyId) {
-        this.facilitiyId = facilitiyId;
+    public void setFacilitiyNum(Integer facilitiyNum) {
+        this.facilitiyNum = facilitiyNum;
     }
 }
