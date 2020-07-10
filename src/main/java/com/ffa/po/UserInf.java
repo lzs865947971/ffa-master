@@ -12,7 +12,7 @@ import java.util.List;
 public class UserInf implements UserDetails {
     private Integer userId;
 
-    private String userName;
+    private String username;
 
     private String password;
 
@@ -46,12 +46,8 @@ public class UserInf implements UserDetails {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public String getUsername() {
+        return username;
     }
 
     @Override
@@ -75,7 +71,7 @@ public class UserInf implements UserDetails {
     }
 
     public void setUsername(String username) {
-        this.userName = username == null ? null : username.trim();
+        this.username = username == null ? null : username.trim();
     }
 
     @Override
@@ -90,11 +86,6 @@ public class UserInf implements UserDetails {
 
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return userName;
     }
 
     public void setPassword(String password) {
@@ -123,10 +114,6 @@ public class UserInf implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
     }
 
     public void setEnabled(Boolean enabled) {

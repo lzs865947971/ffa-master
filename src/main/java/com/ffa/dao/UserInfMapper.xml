@@ -3,7 +3,7 @@
 <mapper namespace="com.ffa.dao.UserInfMapper">
   <resultMap id="BaseResultMap" type="com.ffa.po.UserInf">
     <id column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />
@@ -20,7 +20,7 @@
     </collection>
   </resultMap>
   <sql id="Base_Column_List">
-    user_id, user_name, password, name, tel, email, enabled, unit_id, unit_name
+    user_id, username, password, name, tel, email, enabled, unit_id, unit_name
   </sql>
   <select id="getAllUsersExceptCurrentHr" resultMap="BaseResultMap">
         select * from user_inf where user_id !=#{id};
@@ -30,19 +30,19 @@
     </update>
 
   <select id="getAllUsers" resultMap="UserWithRoles">
-    select user_inf.user_id, user_inf.user_name, user_inf.name, user_inf.tel, user_inf.email, user_inf.enabled, user_inf.unit_id, user_inf.unit_name,
-    r.`id` as rid,r.`name` as rname,r.`nameZh` as rnameZh from user_inf left join user_role hrr on
-    hr.`id`=hrr.`uid` left join role r on hrr.`rid`=r.`id` where hr.`id`!=#{uid}
+    select user_inf.user_id, user_inf.username, user_inf.name, user_inf.tel, user_inf.email, user_inf.enabled, user_inf.unit_id, user_inf.unit_name,
+    r.id as rid,r.name as rname,r.nameZh as rnameZh from user_inf left join user_role hrr on
+    hr.id=hrr.uid left join role r on hrr.rid=r.id where hr.id!=#{uid}
     <if test="keywords!=null">
       and user_inf.name like '%${keywords}%'
     </if>
     order by user_inf.user_id
   </select>
   <select id="getUserRolesById" resultType="com.ffa.po.Role">
-    select r.* from role r,user_role hrr where hrr.`rid`=r.`id` and hrr.`uid`=#{id}
+    select r.* from role r,user_role hrr where hrr.rid=r.id and hrr.uid=#{id}
   </select>
 <select id="loadUserByUsername" resultMap="BaseResultMap">
-    select * from user_inf where user_name=#{username}
+    select * from user_inf where username=#{username}
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
@@ -55,10 +55,10 @@
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.UserInf">
-    insert into user_inf (user_id, user_name, password,
+    insert into user_inf (user_id, username, password,
       name, tel, email, enabled,
       unit_id, unit_name)
-    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+    values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{enabled,jdbcType=TINYINT},
       #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR})
   </insert>
@@ -68,8 +68,8 @@
       <if test="userId != null">
         user_id,
       </if>
-      <if test="userName != null">
-        user_name,
+      <if test="username != null">
+        username,
       </if>
       <if test="password != null">
         password,
@@ -97,8 +97,8 @@
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
@@ -126,8 +126,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.UserInf">
     update user_inf
     <set>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         password = #{password,jdbcType=VARCHAR},
@@ -155,7 +155,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ffa.po.UserInf">
     update user_inf
-    set user_name = #{userName,jdbcType=VARCHAR},
+    set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
