@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 //@CrossOrigin可解决跨域
-@RequestMapping("/file")
+@RequestMapping("/file/basic")
 public class FileController {
 
     @Autowired

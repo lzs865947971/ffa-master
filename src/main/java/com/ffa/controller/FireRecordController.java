@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 //@CrossOrigin可解决跨域
-@RequestMapping("/fire")
+@RequestMapping("/fire/basic")
 public class FireRecordController {
 
     @Autowired

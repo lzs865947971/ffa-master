@@ -22,7 +22,7 @@ public class MenuService {
     MenuMapper menuMapper;
     @Autowired
     MenuRoleMapper menuRoleMapper;
-    public List<Menu> getMenusByHrId() {
+    public List<Menu> getMenusByUId() {
         return menuMapper.getMenusByUId(((UserInf) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserId());
     }
 

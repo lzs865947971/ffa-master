@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 //@CrossOrigin可解决跨域
-@RequestMapping("/risks")
+@RequestMapping("/risks/basic")
 public class SecurityRisksController {
 
     @Autowired
