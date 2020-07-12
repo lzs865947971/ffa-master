@@ -30,7 +30,10 @@
         unit_id = #{unitId,jdbcType=INTEGER}
       </if>
       <if test="unitName != null" >
-        and unit_name = #{unitName,jdbcType=VARCHAR}
+        and unit_name like '%${unitName}%'
+      </if>
+      <if test="principalName != null" >
+        and principal_name like '%${principalName}%'
       </if>
     </where>
   </select>

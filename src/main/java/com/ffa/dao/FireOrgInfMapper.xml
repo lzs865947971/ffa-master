@@ -41,7 +41,7 @@
         and fire_org_id = #{fireOrgId}
       </if>
       <if test="fireOrgTypeName != null">
-        and fire_org_type_name = #{fireOrgTypeName}
+        and fire_org_type_name like '%${fireOrgTypeName}%'
       </if>
       <if test="fireOrgTypeId != null">
         and fire_org_type_id = #{fireOrgTypeId}

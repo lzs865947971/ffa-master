@@ -25,7 +25,7 @@
     from fire_person_inf
     <where>
       <if test="fireOrgName != null">
-        fire_org_name = #{fireOrgName}
+        fire_org_name like '%${fireOrgName}%'
       </if>
       <if test="fireOrgId != null">
         and fire_org_id = #{fireOrgId}

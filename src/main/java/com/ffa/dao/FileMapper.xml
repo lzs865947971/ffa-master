@@ -16,13 +16,13 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
-    from file
+    from [file]
     where file_id = #{fileId,jdbcType=INTEGER}
   </select>
     <select id="getAllFile" parameterType="com.ffa.po.File" resultMap="BaseResultMap">
       select
       <include refid="Base_Column_List"/>
-      from file
+      from [file]
       <where>
         <if test="fileName != null">
           file_name like '%${fileName}%'
@@ -30,22 +30,22 @@
         <if test="unitName != null">
           and unit_name like '%${unitName}%'
         </if>
-        <if test="fireTypeId != null">
-          and file_type_id = #{fireTypeId}
+        <if test="fileTypeId != null">
+          and file_type_id = #{fileTypeId}
         </if>
         <if test="unitId != null" >
-          and unit_id = #{unitId,jdbcType=INTEGER}
+          and unit_id = #{unitId}
         </if>
 
       </where>
 
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from file
+    delete from [file]
     where file_id = #{fileId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.File">
-    insert into file (file_id, unit_id, unit_name,
+    insert into [file] (file_id, unit_id, unit_name,
       create_time, file_type_id, file_name,
       file_storage_path)
     values (#{fileId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR},
@@ -53,7 +53,7 @@
       #{fileStoragePath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.File">
-    insert into file
+    insert into [file]
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="fileId != null">
         file_id,
@@ -102,7 +102,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ffa.po.File">
-    update file
+    update [file]
     <set>
       <if test="unitId != null">
         unit_id = #{unitId,jdbcType=INTEGER},
@@ -126,7 +126,7 @@
     where file_id = #{fileId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ffa.po.File">
-    update file
+    update [file]
     set unit_id = #{unitId,jdbcType=INTEGER},
       unit_name = #{unitName,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=VARCHAR},

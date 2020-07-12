@@ -25,13 +25,13 @@
         key_part_id = #{keyPartId,jdbcType=INTEGER}
       </if>
       <if test="keyPartName != null" >
-        and key_part_name = #{keyPartName,jdbcType=VARCHAR}
+        and key_part_name like '%${keyPartName}%'
       </if>
       <if test="unitId != null" >
         and unit_id = #{unitId,jdbcType=INTEGER}
       </if>
       <if test="unitName != null" >
-        and unit_name = #{unitName,jdbcType=VARCHAR}
+        and unit_name like '%${unitName}%'
       </if>
     </where>
   </select>

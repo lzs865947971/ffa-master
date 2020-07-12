@@ -24,5 +24,5 @@ public interface FacilityInfMapper {
 //    Long getTotal(@Param("facility") FacilityInf facility);
 //
 //    List<FacilityInf> getAllFacilityInf(@Param("page") Integer page, @Param("size") Integer size, @Param("facility") FacilityInf facility);
-    List<FacilityInf> getAllFacilityInf(@Param("facility") FacilityInf facility);
+    List<FacilityInf> getAllFacilityInf(FacilityInf facility);
 }

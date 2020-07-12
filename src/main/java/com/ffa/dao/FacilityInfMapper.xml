@@ -22,23 +22,23 @@
   <select id="getAllFacilityInf" resultMap="BaseResultMap">
     select * from facility_inf
     <where>
-      <if test="facility.facilityId != null" >
-        facility_id = #{facility.facilityId}
+      <if test="facilityId != null" >
+        facility_id = #{facilityId}
       </if>
-      <if test="facility.facilityName != null" >
-        and facility_name = #{facility.facilityName}
+      <if test="facilityName != null" >
+        and facility_name like '%${facilityName}%'
       </if>
-      <if test="facility.unitId != null" >
-        and unit_id = #{facility.unitId}
+      <if test="unitId != null" >
+        and unit_id = #{unitId}
       </if>
-      <if test="facility.unitName != null" >
-        and unit_name = #{facility.unitName}
+      <if test="unitName != null" >
+        and unit_name like '%${unitName}%'
       </if>
-      <if test="facility.facilityTypeId != null" >
-        and facility_type_id = #{facility.facilityTypeId}
+      <if test="facilityTypeId != null" >
+        and facility_type_id = #{facilityTypeId}
       </if>
-      <if test="facility.facilityTypeName != null" >
-        and facility_type_name = #{facility.facilityTypeName}
+      <if test="facilityTypeName != null" >
+        and facility_type_name like '%${facilityTypeName}%'
       </if>
 <!--      <if test="page !=null and size!=null">-->
 <!--        select top #{size} *-->
