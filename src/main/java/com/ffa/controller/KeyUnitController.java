@@ -16,7 +16,6 @@ public class KeyUnitController {
     @Autowired
     KeyUnitService keyUnitService;
 
-
     @GetMapping("/")
     public List<KeyUnit> getAllKeyUnit(@RequestBody KeyUnit keyUnit){
         List<KeyUnit> keyUnitList = keyUnitService.getAllKeyUnit(keyUnit);
@@ -24,6 +23,16 @@ public class KeyUnitController {
         System.out.println(keyUnitList);
         return keyUnitList;
     }
+
+    @GetMapping("/list")
+    public List<KeyUnit> getAllKeyUnit(){
+        KeyUnit keyUnit = new KeyUnit();
+        List<KeyUnit> keyUnitList = keyUnitService.getAllKeyUnit(keyUnit);
+        //keyUnitList.stream(System.out);
+        System.out.println(keyUnitList);
+        return keyUnitList;
+    }
+
     @PostMapping("/")
     public RespBean addKeyUnit(@RequestBody KeyUnit keyUnit) {
         if (keyUnitService.addKeyUnit(keyUnit) == 1) {

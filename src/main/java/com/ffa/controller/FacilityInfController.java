@@ -2,6 +2,7 @@ package com.ffa.controller;
 
 import com.ffa.po.FacilityInf;
 import com.ffa.po.RespBean;
+import com.ffa.po.RespPageBean;
 import com.ffa.service.FacilityInfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +18,18 @@ public class FacilityInfController {
     FacilityInfService facilityInfService;
 
 
+//    @GetMapping("/")
+//    public RespPageBean getAllFacilityInf(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, FacilityInf facility){
+//        return facilityInfService.getEmployeeByPage(page, size, facility);
+//    }
     @GetMapping("/")
-    public List<FacilityInf> getAllFacilityInf(@RequestBody FacilityInf facilityInf){
-        return facilityInfService.getAllFacilityInf(facilityInf);
+    public List<FacilityInf> getAllFacilityInf(@RequestBody FacilityInf facility){
+        return  facilityInfService.getAllFacilityInf(facility);
     }
+
     @PostMapping("/")
-    public RespBean addFacilityInf(@RequestBody FacilityInf facilityInf) {
-        if (facilityInfService.addFacilityInf(facilityInf) == 1) {
+    public RespBean addFacilityInf(@RequestBody FacilityInf facility) {
+        if (facilityInfService.addFacilityInf(facility) == 1) {
             return RespBean.ok("添加成功!");
         }
         return RespBean.error("添加失败!");

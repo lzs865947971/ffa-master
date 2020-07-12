@@ -18,7 +18,7 @@ public class FireRecordController {
 
 
     @GetMapping("/")
-    public List<FireRecord> getAllFireRecord(@RequestBody FireRecord fireRecord){
+    public List<FireRecord> getAllFireRecord(FireRecord fireRecord){
         return fireRecordService.getAllFireRecord(fireRecord);
     }
     @PostMapping("/")

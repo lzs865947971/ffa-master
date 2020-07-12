@@ -35,13 +35,12 @@ public class UserInfService implements UserDetailsService {
         return userInf;
     }
 
-    public List<UserInf> getAllHrs(String keywords) {
+    public List<UserInf> getAllUsers(String keywords) {
         return userInfMapper.getAllUsers(UserInfUtils.getCurrentUser().getUserId(),keywords);
     }
 
-    public Integer updateHr(UserInf userInf) {
-        return userInfMapper.updateByPrimaryKeySelective(userInf);
-    }
+
+
 
     @Transactional
     public boolean updateHrRole(Integer uid, Integer[] rids) {
@@ -49,16 +48,20 @@ public class UserInfService implements UserDetailsService {
         return userRoleMapper.addRole(uid, rids) == rids.length;
     }
 
-    public Integer deleteHrById(Integer id) {
+    public Integer deleteUserInfById(Integer id) {
         return userInfMapper.deleteByPrimaryKey(id);
     }
 
-    public List<UserInf> getAllHrsExceptCurrentHr() {
+    public List<UserInf> getAllUsersExceptCurrentHr() {
         return userInfMapper.getAllUsersExceptCurrentHr(UserInfUtils.getCurrentUser().getUserId());
     }
 
-    public Integer updateHyById(UserInf userInf) {
+    public Integer updateUserInfById(UserInf userInf) {
         return userInfMapper.updateByPrimaryKeySelective(userInf);
+    }
+
+    public Integer addUserInf(UserInf userInf) {
+        return userInfMapper.insertSelective(userInf);
     }
 
     public boolean updateHrPasswd(String oldpass, String pass, Integer uid) {
