@@ -18,7 +18,7 @@ public class SecurityRisksController {
 
 
     @GetMapping("/")
-    public List<SecurityRisks> getAllSecurityRisks(@RequestBody SecurityRisks securityRisks){
+    public List<SecurityRisks> getAllSecurityRisks(SecurityRisks securityRisks){
         return securityRisksService.getAllSecurityRisks(securityRisks);
     }
     @PostMapping("/")

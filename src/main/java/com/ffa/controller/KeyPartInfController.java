@@ -17,7 +17,7 @@ public class KeyPartInfController {
     KeyPartInfService keyPartInfService;
 
     @GetMapping("/")
-    public List<KeyPartInf> getAllKeyPartInf(@RequestBody KeyPartInf keyPartInf){
+    public List<KeyPartInf> getAllKeyPartInf(KeyPartInf keyPartInf){
         return keyPartInfService.getAllKeyPartInf(keyPartInf);
     }
     @PostMapping("/")

@@ -18,7 +18,7 @@ public class FireOrgInfController {
 
 
     @GetMapping("/")
-    public List<FireOrgInf> getAllFireOrgInf(@RequestBody FireOrgInf fireOrgInf){
+    public List<FireOrgInf> getAllFireOrgInf(FireOrgInf fireOrgInf){
         return fireOrgInfService.getAllFireOrgInf(fireOrgInf);
     }
     @PostMapping("/")

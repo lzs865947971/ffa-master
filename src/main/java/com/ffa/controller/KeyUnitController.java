@@ -17,7 +17,7 @@ public class KeyUnitController {
     KeyUnitService keyUnitService;
 
     @GetMapping("/")
-    public List<KeyUnit> getAllKeyUnit(@RequestBody KeyUnit keyUnit){
+    public List<KeyUnit> getAllKeyUnit(KeyUnit keyUnit){
         List<KeyUnit> keyUnitList = keyUnitService.getAllKeyUnit(keyUnit);
         //keyUnitList.stream(System.out);
         System.out.println(keyUnitList);

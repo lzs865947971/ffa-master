@@ -18,7 +18,7 @@ public class SuperVisionInfController {
 
 
     @GetMapping("/")
-    public List<SuperVisionInf> getAllSuperVisionInf(@RequestBody SuperVisionInf superVisionInf){
+    public List<SuperVisionInf> getAllSuperVisionInf(SuperVisionInf superVisionInf){
         return superVisionInfService.getAllSuperVisionInf(superVisionInf);
     }
     @PostMapping("/")

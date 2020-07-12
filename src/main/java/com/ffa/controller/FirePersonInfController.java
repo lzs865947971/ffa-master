@@ -18,7 +18,7 @@ public class FirePersonInfController {
 
 
     @GetMapping("/")
-    public List<FirePersonInf> getAllFirePersonInf(@RequestBody FirePersonInf firePersonInf){
+    public List<FirePersonInf> getAllFirePersonInf(FirePersonInf firePersonInf){
         return firePersonInfService.getAllFirePersonInf(firePersonInf);
     }
 

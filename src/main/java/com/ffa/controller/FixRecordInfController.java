@@ -18,7 +18,7 @@ public class FixRecordInfController {
 
 
     @GetMapping("/")
-    public List<FixRecordInf> getAllFixRecordInf(@RequestBody FixRecordInf fixRecordInf){
+    public List<FixRecordInf> getAllFixRecordInf(FixRecordInf fixRecordInf){
         return fixRecordInfService.getAllFixRecordInf(fixRecordInf);
     }
     @PostMapping("/")

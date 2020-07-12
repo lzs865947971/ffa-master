@@ -18,7 +18,7 @@ public class FileController {
 
 
     @GetMapping("/")
-    public List<File> getAllFile(@RequestBody File file){
+    public List<File> getAllFile(File file){
         return fileService.getAllFile(file);
     }
     @PostMapping("/")

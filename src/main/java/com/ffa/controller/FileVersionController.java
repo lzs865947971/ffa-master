@@ -18,7 +18,7 @@ public class FileVersionController {
 
 
     @GetMapping("/")
-    public List<FileVersion> getAllFileVersion(@RequestBody FileVersion fileVersion){
+    public List<FileVersion> getAllFileVersion(FileVersion fileVersion){
         return fileVersionService.getAllFileVersion(fileVersion);
     }
     @PostMapping("/")

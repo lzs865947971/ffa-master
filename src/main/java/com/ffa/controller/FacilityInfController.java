@@ -23,7 +23,7 @@ public class FacilityInfController {
 //        return facilityInfService.getEmployeeByPage(page, size, facility);
 //    }
     @GetMapping("/")
-    public List<FacilityInf> getAllFacilityInf(@RequestBody FacilityInf facility){
+    public List<FacilityInf> getAllFacilityInf(FacilityInf facility){
         return  facilityInfService.getAllFacilityInf(facility);
     }
 
