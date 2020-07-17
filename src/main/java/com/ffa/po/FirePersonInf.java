@@ -9,7 +9,7 @@ public class FirePersonInf {
 
     private String firePersonName;
 
-    private Integer firePersonPicId;
+    private String firePersonPicId;
 
     private Integer fireRecordId;
 
@@ -45,11 +45,11 @@ public class FirePersonInf {
         this.firePersonName = firePersonName == null ? null : firePersonName.trim();
     }
 
-    public Integer getFirePersonPicId() {
+    public String getFirePersonPicId() {
         return firePersonPicId;
     }
 
-    public void setFirePersonPicId(Integer firePersonPicId) {
+    public void setFirePersonPicId(String firePersonPicId) {
         this.firePersonPicId = firePersonPicId;
     }
 

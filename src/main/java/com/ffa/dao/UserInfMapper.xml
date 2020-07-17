@@ -11,6 +11,7 @@
     <result column="enabled" jdbcType="TINYINT" property="enabled" />
     <result column="unit_id" jdbcType="INTEGER" property="unitId" />
     <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
+    <result column="userface" property="userface" jdbcType="VARCHAR"/>
   </resultMap>
   <resultMap id="UserWithRoles" type="com.ffa.po.UserInf" extends="BaseResultMap">
     <collection property="roles" ofType="com.ffa.po.Role">
@@ -22,17 +23,23 @@
   <sql id="Base_Column_List">
     user_id, username, password, name, tel, email, enabled, unit_id, unit_name
   </sql>
+  <select id="getMaxUserId" resultType="java.lang.Integer">
+    select max(user_id) from user_inf;
+  </select>
   <select id="getAllUsersExceptCurrentHr" resultMap="BaseResultMap">
         select * from user_inf where user_id !=#{id};
     </select>
+  <update id="updateUserface">
+        update user_inf set userface = #{url} where user_id=#{id};
+    </update>
   <update id="updatePasswd">
         update user_inf set password = #{encodePass} where user_id=#{uid};
     </update>
 
   <select id="getAllUsers" resultMap="UserWithRoles">
-    select user_inf.user_id, user_inf.username, user_inf.name, user_inf.tel, user_inf.email, user_inf.enabled, user_inf.unit_id, user_inf.unit_name,
+    select user_inf.user_id, user_inf.username, user_inf.name, user_inf.tel, user_inf.email, user_inf.enabled, user_inf.unit_id, user_inf.unit_name,user_inf.userface,
     r.id as rid,r.name as rname,r.nameZh as rnameZh from user_inf left join user_role hrr on
-    hr.id=hrr.uid left join role r on hrr.rid=r.id where hr.id!=#{uid}
+    user_inf.user_id=hrr.uid left join role r on hrr.rid=r.id where user_inf.user_id!=#{uid}
     <if test="keywords!=null">
       and user_inf.name like '%${keywords}%'
     </if>
@@ -57,10 +64,10 @@
   <insert id="insert" parameterType="com.ffa.po.UserInf">
     insert into user_inf (user_id, username, password,
       name, tel, email, enabled,
-      unit_id, unit_name)
+      unit_id, unit_name,userface)
     values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{enabled,jdbcType=TINYINT},
-      #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR})
+      #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR},#{userface,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.UserInf">
     insert into user_inf
@@ -92,6 +99,9 @@
       <if test="unitName != null">
         unit_name,
       </if>
+      <if test="userface != null">
+        userface,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -120,6 +130,9 @@
       </if>
       <if test="unitName != null">
         #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="userface != null">
+        #{userface,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -150,6 +163,9 @@
       <if test="unitName != null">
         unit_name = #{unitName,jdbcType=VARCHAR},
       </if>
+      <if test="userface != null">
+        userface = #{userface,jdbcType=VARCHAR},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
@@ -162,7 +178,8 @@
       email = #{email,jdbcType=VARCHAR},
       enabled = #{enabled,jdbcType=TINYINT},
       unit_id = #{unitId,jdbcType=INTEGER},
-      unit_name = #{unitName,jdbcType=VARCHAR}
+      unit_name = #{unitName,jdbcType=VARCHAR},
+      userface = #{userface,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

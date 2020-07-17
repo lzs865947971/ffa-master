@@ -6,7 +6,7 @@
     <result column="unit_id" jdbcType="INTEGER" property="unitId" />
     <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
     <result column="key_part_name" jdbcType="VARCHAR" property="keyPartName" />
-    <result column="key_part_pic_id" jdbcType="INTEGER" property="keyPartPicId" />
+    <result column="key_part_pic_id" jdbcType="VARCHAR" property="keyPartPicId" />
   </resultMap>
   <sql id="Base_Column_List">
     key_part_id, unit_id, unit_name, key_part_name, key_part_pic_id
@@ -44,7 +44,7 @@
     insert into key_part_inf (key_part_id, unit_id, unit_name,
       key_part_name, key_part_pic_id)
     values (#{keyPartId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR},
-      #{keyPartName,jdbcType=VARCHAR}, #{keyPartPicId,jdbcType=INTEGER})
+      #{keyPartName,jdbcType=VARCHAR}, #{keyPartPicId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.KeyPartInf">
     insert into key_part_inf
@@ -79,7 +79,7 @@
         #{keyPartName,jdbcType=VARCHAR},
       </if>
       <if test="keyPartPicId != null">
-        #{keyPartPicId,jdbcType=INTEGER},
+        #{keyPartPicId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -96,7 +96,7 @@
         key_part_name = #{keyPartName,jdbcType=VARCHAR},
       </if>
       <if test="keyPartPicId != null">
-        key_part_pic_id = #{keyPartPicId,jdbcType=INTEGER},
+        key_part_pic_id = #{keyPartPicId,jdbcType=VARCHAR},
       </if>
     </set>
     where key_part_id = #{keyPartId,jdbcType=INTEGER}
@@ -106,7 +106,7 @@
     set unit_id = #{unitId,jdbcType=INTEGER},
       unit_name = #{unitName,jdbcType=VARCHAR},
       key_part_name = #{keyPartName,jdbcType=VARCHAR},
-      key_part_pic_id = #{keyPartPicId,jdbcType=INTEGER}
+      key_part_pic_id = #{keyPartPicId,jdbcType=VARCHAR}
     where key_part_id = #{keyPartId,jdbcType=INTEGER}
   </update>
 </mapper>

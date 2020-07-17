@@ -5,11 +5,42 @@ public class SecurityRisks {
 
     private Integer unitId;
 
-    private Integer riskTypeId;
+    private String riskTypeId;
 
     private Integer riskKeyPartId;
 
     private String unitName;
+
+    private Integer state;
+
+    private String riskKeyPartName;
+
+    public String getRiskKeyPartName() {
+        return riskKeyPartName;
+    }
+
+    public void setRiskKeyPartName(String riskKeyPartName) {
+        this.riskKeyPartName = riskKeyPartName;
+    }
+//    private KeyPartInf keyPartInf;
+//
+//    public KeyPartInf getKeyPartInf() {
+//        return keyPartInf;
+//    }
+//
+//    public void setKeyPartInf(KeyPartInf keyPartInf) {
+//        this.keyPartInf = keyPartInf;
+//    }
+
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
 
     public Integer getRiskRegisterId() {
         return riskRegisterId;
@@ -27,11 +58,11 @@ public class SecurityRisks {
         this.unitId = unitId;
     }
 
-    public Integer getRiskTypeId() {
+    public String getRiskTypeId() {
         return riskTypeId;
     }
 
-    public void setRiskTypeId(Integer riskTypeId) {
+    public void setRiskTypeId(String riskTypeId) {
         this.riskTypeId = riskTypeId;
     }
 

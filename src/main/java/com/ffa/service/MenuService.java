@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @Service
-@CacheConfig(cacheNames = "menus_cache")
+//@CacheConfig(cacheNames = "menus_cache")
 public class MenuService {
     @Autowired
     MenuMapper menuMapper;
@@ -26,7 +26,7 @@ public class MenuService {
         return menuMapper.getMenusByUId(((UserInf) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserId());
     }
 
-    @Cacheable
+//    @Cacheable
     public List<Menu> getAllMenusWithRole() {
         return menuMapper.getAllMenusWithRole();
     }

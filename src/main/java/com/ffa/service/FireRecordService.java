@@ -5,6 +5,7 @@ import com.ffa.po.FireRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.*;
 import java.util.List;
 
 @Service
@@ -27,4 +28,12 @@ public class FireRecordService {
     }
 
     public Integer updateFireRecordById(FireRecord fireRecord){ return fireRecordMapper.updateByPrimaryKeySelective(fireRecord); }
+
+    public Integer addFireRecordList(List<FireRecord> list){
+        int successCount = 0;
+        for(FireRecord fr : list){
+            successCount += addFireRecord(fr);
+        }
+        return successCount;
+    }
 }

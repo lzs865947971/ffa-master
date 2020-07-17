@@ -1,13 +1,19 @@
 package com.ffa.controller;
 
+import com.ffa.utils.FastDFSUtils;
+import com.ffa.utils.PinyinUtils;
+import com.ffa.po.KeyUnit;
 import com.ffa.po.RespBean;
 import com.ffa.po.Role;
 import com.ffa.po.UserInf;
+import com.ffa.service.KeyUnitService;
 import com.ffa.service.RoleService;
 import com.ffa.service.UserInfService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +29,12 @@ public class UserInfController {
     @Autowired
     RoleService roleService;
 
+    @Autowired
+    KeyUnitService keyUnitService;
+
+    @Value("${ffa.nginx.host}")
+    String nginxHost;
+
     @GetMapping("/")
     public List<UserInf> getAllUserInf(String keywords){
         return userInfService.getAllUsers(keywords);
@@ -37,8 +49,8 @@ public class UserInfController {
     public RespBean updateUserPasswd(@RequestBody Map<String, Object> info) {
         String oldpass = (String) info.get("oldpass");
         String pass = (String) info.get("pass");
-        Integer hrid = (Integer) info.get("hrid");
-        if (userInfService.updateHrPasswd(oldpass, pass, hrid)) {
+        Integer uid = (Integer) info.get("uid");
+        if (userInfService.updateHrPasswd(oldpass, pass, uid)) {
             return RespBean.ok("更新成功!");
         }
         return RespBean.error("更新失败!");
@@ -46,6 +58,19 @@ public class UserInfController {
 
     @PostMapping("/")
     public RespBean addUserInf(@RequestBody UserInf userInf) {
+        KeyUnit keyUnit = new KeyUnit();
+        keyUnit.setUnitId(userInf.getUnitId());
+        try{
+            userInf.setUnitName(keyUnitService.getAllKeyUnit(keyUnit).get(0).getUnitName());
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        int userId = userInfService.getMaxUserId().intValue()+1;
+        userInf.setUsername(PinyinUtils.toPinyin(userInf.getName()) + userId);
+        userInf.setPassword("$2a$10$ySG2lkvjFHY5O0./CPIE1OI8VJsuKYEzOYzqIa7AJR6sEgSzUFOAm");
+        userInf.setUserface("http://192.168.43.123:8888/group1/M00/00/00/wKglhF8MuEyAYB1CAACwsYVT-AQ592.jpg");
+        userInf.setEnabled(true);
         if (userInfService.addUserInf(userInf) == 1) {
             return RespBean.ok("添加成功!");
         }
@@ -80,5 +105,15 @@ public class UserInfController {
         }
         return RespBean.error("更新失败!");
     }
+    @PostMapping("/userface")
+    public RespBean updateUserface(MultipartFile file, Integer userId) {
+        String upload = FastDFSUtils.upload(file);
+        String url = nginxHost + upload;
+        if (userInfService.updateUserface(url, userId) == 1) {
+            return RespBean.ok("更新成功!",url);
+        }
+        return RespBean.error("更新失败!");
+    }
+
 
 }

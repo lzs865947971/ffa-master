@@ -28,7 +28,19 @@ public class UserInf implements UserDetails {
 
     private String unitName;
 
+    private String userface;
+
     private List<Role> roles;
+
+    public String getUserface;
+
+    public String getUserface() {
+        return userface;
+    }
+
+    public void setUserface(String userface) {
+        this.userface = userface == null ? null : userface.trim();
+    }
 
     public List<Role> getRoles() {
         return roles;

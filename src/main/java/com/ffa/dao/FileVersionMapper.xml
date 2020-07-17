@@ -4,38 +4,42 @@
   <resultMap id="BaseResultMap" type="com.ffa.po.FileVersion">
     <id column="serial_number" jdbcType="INTEGER" property="serialNumber" />
     <result column="file_id" jdbcType="INTEGER" property="fileId" />
-    <result column="file_modify_time" jdbcType="VARCHAR" property="fileModifyTime" />
+    <result column="file_modify_time" jdbcType="DATE" property="fileModifyTime" />
     <result column="file_modify_person_name" jdbcType="VARCHAR" property="fileModifyPersonName" />
     <result column="perfile" jdbcType="VARCHAR" property="perfile" />
+    <result column="nowfile" jdbcType="VARCHAR" property="nowfile" />
+    <result column="last_fix_time" jdbcType="DATE" property="lastFixTime" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    serial_number, file_id, file_modify_time, file_modify_person_name, perfile
+    serial_number, file_id, file_modify_time, file_modify_person_name, perfile, nowfile,
+    last_fix_time, create_time
   </sql>
+  <select id="getAllFileVersion" parameterType="com.ffa.po.FileVersion" resultMap="BaseResultMap">
+    select * from file_version
+    <where>
+      <if test="fileId != null">
+        file_id = #{fileId}
+      </if>
+    </where>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from file_version
     where serial_number = #{serialNumber,jdbcType=INTEGER}
   </select>
-    <select id="getAllFileVersion" parameterType="com.ffa.po.FileVersion" resultMap="BaseResultMap">
-      select
-      <include refid="Base_Column_List"/>
-      from file_version
-      <where>
-        <if test="fileId != null">
-          file_id = #{fileId}
-        </if>
-      </where>
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from file_version
     where serial_number = #{serialNumber,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.FileVersion">
     insert into file_version (serial_number, file_id, file_modify_time,
-      file_modify_person_name, perfile)
-    values (#{serialNumber,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}, #{fileModifyTime,jdbcType=VARCHAR},
-      #{fileModifyPersonName,jdbcType=VARCHAR}, #{perfile,jdbcType=VARCHAR})
+      file_modify_person_name, perfile, nowfile,
+      last_fix_time, create_time)
+    values (#{serialNumber,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}, #{fileModifyTime,jdbcType=DATE},
+      #{fileModifyPersonName,jdbcType=VARCHAR}, #{perfile,jdbcType=VARCHAR}, #{nowfile,jdbcType=VARCHAR},
+      #{lastFixTime,jdbcType=DATE}, #{createTime,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FileVersion">
     insert into file_version
@@ -55,6 +59,15 @@
       <if test="perfile != null">
         perfile,
       </if>
+      <if test="nowfile != null">
+        nowfile,
+      </if>
+      <if test="lastFixTime != null">
+        last_fix_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="serialNumber != null">
@@ -64,13 +77,22 @@
         #{fileId,jdbcType=INTEGER},
       </if>
       <if test="fileModifyTime != null">
-        #{fileModifyTime,jdbcType=VARCHAR},
+        #{fileModifyTime,jdbcType=DATE},
       </if>
       <if test="fileModifyPersonName != null">
         #{fileModifyPersonName,jdbcType=VARCHAR},
       </if>
       <if test="perfile != null">
         #{perfile,jdbcType=VARCHAR},
+      </if>
+      <if test="nowfile != null">
+        #{nowfile,jdbcType=VARCHAR},
+      </if>
+      <if test="lastFixTime != null">
+        #{lastFixTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -81,7 +103,7 @@
         file_id = #{fileId,jdbcType=INTEGER},
       </if>
       <if test="fileModifyTime != null">
-        file_modify_time = #{fileModifyTime,jdbcType=VARCHAR},
+        file_modify_time = #{fileModifyTime,jdbcType=DATE},
       </if>
       <if test="fileModifyPersonName != null">
         file_modify_person_name = #{fileModifyPersonName,jdbcType=VARCHAR},
@@ -89,15 +111,27 @@
       <if test="perfile != null">
         perfile = #{perfile,jdbcType=VARCHAR},
       </if>
+      <if test="nowfile != null">
+        nowfile = #{nowfile,jdbcType=VARCHAR},
+      </if>
+      <if test="lastFixTime != null">
+        last_fix_time = #{lastFixTime,jdbcType=DATE},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
     </set>
     where serial_number = #{serialNumber,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ffa.po.FileVersion">
     update file_version
     set file_id = #{fileId,jdbcType=INTEGER},
-      file_modify_time = #{fileModifyTime,jdbcType=VARCHAR},
+      file_modify_time = #{fileModifyTime,jdbcType=DATE},
       file_modify_person_name = #{fileModifyPersonName,jdbcType=VARCHAR},
-      perfile = #{perfile,jdbcType=VARCHAR}
+      perfile = #{perfile,jdbcType=VARCHAR},
+      nowfile = #{nowfile,jdbcType=VARCHAR},
+      last_fix_time = #{lastFixTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=DATE}
     where serial_number = #{serialNumber,jdbcType=INTEGER}
   </update>
 </mapper>

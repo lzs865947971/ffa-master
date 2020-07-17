@@ -23,9 +23,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ffa.po.Role" >
-    insert into role (id, name, nameZh
+    insert into role (name, nameZh
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nameZh,jdbcType=VARCHAR}
+    values (#{name,jdbcType=VARCHAR}, #{nameZh,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.Role" >

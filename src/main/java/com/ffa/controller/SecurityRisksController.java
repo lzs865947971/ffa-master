@@ -1,9 +1,11 @@
 package com.ffa.controller;
 
-import com.ffa.po.RespBean;
-import com.ffa.po.SecurityRisks;
+import com.ffa.po.*;
+import com.ffa.service.KeyPartInfService;
+import com.ffa.service.KeyUnitService;
 import com.ffa.service.SecurityRisksService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,16 +17,39 @@ public class SecurityRisksController {
 
     @Autowired
     SecurityRisksService securityRisksService;
-
+    @Autowired
+    KeyUnitService keyUnitService;
+    @Autowired
+    KeyPartInfService keyPartInfService;
 
     @GetMapping("/")
-    public List<SecurityRisks> getAllSecurityRisks(SecurityRisks securityRisks){
+    public List<SecurityRisks> getAllSecurityRisks(Authentication authentication, SecurityRisks securityRisks){
+        UserInf userInf = (UserInf) authentication.getPrincipal();
+        if(userInf.getUnitId() != null){
+            securityRisks.setUnitId(userInf.getUnitId());
+        }
         return securityRisksService.getAllSecurityRisks(securityRisks);
     }
+
+    public SecurityRisks addParamToFixRecordInf(SecurityRisks securityRisks){
+        KeyUnit keyUnit = new KeyUnit();
+        keyUnit.setUnitId(securityRisks.getUnitId());
+        securityRisks.setUnitName(keyUnitService.getAllKeyUnit(keyUnit).get(0).getUnitName());
+        KeyPartInf keyPartInf = new KeyPartInf();
+        keyPartInf.setKeyPartId(securityRisks.getRiskKeyPartId());
+        securityRisks.setRiskKeyPartName(keyPartInfService.getAllKeyPartInf(keyPartInf).get(0).getKeyPartName());
+        return securityRisks;
+    }
+
     @PostMapping("/")
     public RespBean addSecurityRisks(@RequestBody SecurityRisks securityRisks) {
-        if (securityRisksService.addSecurityRisks(securityRisks) == 1) {
-            return RespBean.ok("添加成功!");
+        try{
+            if (securityRisksService.addSecurityRisks(addParamToFixRecordInf(securityRisks)) == 1) {
+                return RespBean.ok("添加成功!");
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
         }
         return RespBean.error("添加失败!");
     }
@@ -39,8 +64,13 @@ public class SecurityRisksController {
 
     @PutMapping("/")
     public RespBean updateSecurityRisksById(@RequestBody SecurityRisks securityRisks) {
-        if (securityRisksService.updateSecurityRisksById(securityRisks) == 1) {
-            return RespBean.ok("更新成功!");
+        try{
+            if (securityRisksService.updateSecurityRisksById(addParamToFixRecordInf(securityRisks)) == 1) {
+                return RespBean.ok("添加成功!");
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
         }
         return RespBean.error("更新失败!");
     }

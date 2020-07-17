@@ -1,15 +1,23 @@
 package com.ffa.po;
 
+import java.util.Date;
+
 public class FileVersion {
     private Integer serialNumber;
 
     private Integer fileId;
 
-    private String fileModifyTime;
+    private Date fileModifyTime;
 
     private String fileModifyPersonName;
 
     private String perfile;
+
+    private String nowfile;
+
+    private Date lastFixTime;
+
+    private Date createTime;
 
     public Integer getSerialNumber() {
         return serialNumber;
@@ -27,12 +35,12 @@ public class FileVersion {
         this.fileId = fileId;
     }
 
-    public String getFileModifyTime() {
+    public Date getFileModifyTime() {
         return fileModifyTime;
     }
 
-    public void setFileModifyTime(String fileModifyTime) {
-        this.fileModifyTime = fileModifyTime == null ? null : fileModifyTime.trim();
+    public void setFileModifyTime(Date fileModifyTime) {
+        this.fileModifyTime = fileModifyTime;
     }
 
     public String getFileModifyPersonName() {
@@ -49,5 +57,29 @@ public class FileVersion {
 
     public void setPerfile(String perfile) {
         this.perfile = perfile == null ? null : perfile.trim();
+    }
+
+    public String getNowfile() {
+        return nowfile;
+    }
+
+    public void setNowfile(String nowfile) {
+        this.nowfile = nowfile == null ? null : nowfile.trim();
+    }
+
+    public Date getLastFixTime() {
+        return lastFixTime;
+    }
+
+    public void setLastFixTime(Date lastFixTime) {
+        this.lastFixTime = lastFixTime;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

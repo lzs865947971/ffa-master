@@ -9,7 +9,7 @@ public class KeyPartInf {
 
     private String keyPartName;
 
-    private Integer keyPartPicId;
+    private String keyPartPicId;
 
     public Integer getKeyPartId() {
         return keyPartId;
@@ -43,11 +43,11 @@ public class KeyPartInf {
         this.keyPartName = keyPartName == null ? null : keyPartName.trim();
     }
 
-    public Integer getKeyPartPicId() {
+    public String getKeyPartPicId() {
         return keyPartPicId;
     }
 
-    public void setKeyPartPicId(Integer keyPartPicId) {
+    public void setKeyPartPicId(String keyPartPicId) {
         this.keyPartPicId = keyPartPicId;
     }
 }

@@ -18,5 +18,6 @@ public interface FileVersionMapper {
     int updateByPrimaryKeySelective(FileVersion record);
 
     int updateByPrimaryKey(FileVersion record);
-    List<FileVersion> getAllFileVersion(FileVersion record);
+
+    List<FileVersion> getAllFileVersion(FileVersion fileVersion);
 }

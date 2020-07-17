@@ -15,7 +15,7 @@ public class KeyUnit {
 
     private Integer supervisionId;
 
-    private Integer overallPictureId;
+    private String overallPictureId;
 
     private Integer facilitiyNum;
 
@@ -75,11 +75,11 @@ public class KeyUnit {
         this.supervisionId = supervisionId;
     }
 
-    public Integer getOverallPictureId() {
+    public String getOverallPictureId() {
         return overallPictureId;
     }
 
-    public void setOverallPictureId(Integer overallPictureId) {
+    public void setOverallPictureId(String overallPictureId) {
         this.overallPictureId = overallPictureId;
     }
 

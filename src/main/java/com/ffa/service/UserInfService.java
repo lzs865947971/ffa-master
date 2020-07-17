@@ -77,7 +77,11 @@ public class UserInfService implements UserDetailsService {
         return false;
     }
 
-//    public Integer updateUserface(String url, Integer id) {
-//        return hrMapper.updateUserface(url, id);
-//    }
+    public Integer updateUserface(String url, Integer id) {
+        return userInfMapper.updateUserface(url, id);
+    }
+
+    public Integer getMaxUserId(){
+        return userInfMapper.getMaxUserId();
+    }
 }

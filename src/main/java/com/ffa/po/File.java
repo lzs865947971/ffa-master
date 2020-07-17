@@ -9,7 +9,7 @@ public class File {
 
     private String createTime;
 
-    private Integer fileTypeId;
+    private String fileTypeId;
 
     private String fileName;
 
@@ -47,11 +47,11 @@ public class File {
         this.createTime = createTime == null ? null : createTime.trim();
     }
 
-    public Integer getFileTypeId() {
+    public String getFileTypeId() {
         return fileTypeId;
     }
 
-    public void setFileTypeId(Integer fileTypeId) {
+    public void setFileTypeId(String fileTypeId) {
         this.fileTypeId = fileTypeId;
     }
 

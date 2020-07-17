@@ -4,12 +4,14 @@
   <resultMap id="BaseResultMap" type="com.ffa.po.SecurityRisks">
     <id column="risk_register_id" jdbcType="INTEGER" property="riskRegisterId" />
     <result column="unit_id" jdbcType="INTEGER" property="unitId" />
-    <result column="risk_type_id" jdbcType="INTEGER" property="riskTypeId" />
+    <result column="risk_type_id" jdbcType="VARCHAR" property="riskTypeId" />
     <result column="risk_key_part_id" jdbcType="INTEGER" property="riskKeyPartId" />
     <result column="unit_name" jdbcType="VARCHAR" property="unitName" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="risk_key_part_name" jdbcType="VARCHAR" property="riskKeyPartName" />
   </resultMap>
   <sql id="Base_Column_List">
-    risk_register_id, unit_id, risk_type_id, risk_key_part_id, unit_name
+    risk_register_id, unit_id, risk_type_id, risk_key_part_id, unit_name, state,risk_key_part_name
   </sql>
   <select id="getAllSecurityRisks" parameterType="com.ffa.po.SecurityRisks" resultMap="BaseResultMap">
     select
@@ -20,13 +22,16 @@
         unit_name like '%${unitName}%'
       </if>
         <if test="riskTypeId != null">
-          and risk_type_id = #{riskTypeId}
+          and risk_type_id like '%${riskTypeId}%'
         </if>
         <if test="riskKeyPartId != null">
           and risk_key_part_id = #{riskTypeId}
         </if>
         <if test="unitId != null" >
           and unit_id = #{unitId,jdbcType=INTEGER}
+        </if>
+        <if test="state != null" >
+          and state = #{state,jdbcType=INTEGER}
         </if>
       </where>
 
@@ -45,7 +50,7 @@
   <insert id="insert" parameterType="com.ffa.po.SecurityRisks">
     insert into security_risks (risk_register_id, unit_id, risk_type_id,
       risk_key_part_id, unit_name)
-    values (#{riskRegisterId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{riskTypeId,jdbcType=INTEGER},
+    values (#{riskRegisterId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{riskTypeId,jdbcType=VARCHAR},
       #{riskKeyPartId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.SecurityRisks">
@@ -66,6 +71,12 @@
       <if test="unitName != null">
         unit_name,
       </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="riskKeyPartName != null">
+        risk_key_part_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="riskRegisterId != null">
@@ -75,13 +86,19 @@
         #{unitId,jdbcType=INTEGER},
       </if>
       <if test="riskTypeId != null">
-        #{riskTypeId,jdbcType=INTEGER},
+        #{riskTypeId,jdbcType=VARCHAR},
       </if>
       <if test="riskKeyPartId != null">
         #{riskKeyPartId,jdbcType=INTEGER},
       </if>
       <if test="unitName != null">
         #{unitName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="riskKeyPartName != null">
+        #{riskKeyPartName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -92,7 +109,7 @@
         unit_id = #{unitId,jdbcType=INTEGER},
       </if>
       <if test="riskTypeId != null">
-        risk_type_id = #{riskTypeId,jdbcType=INTEGER},
+        risk_type_id = #{riskTypeId,jdbcType=VARCHAR},
       </if>
       <if test="riskKeyPartId != null">
         risk_key_part_id = #{riskKeyPartId,jdbcType=INTEGER},
@@ -100,15 +117,22 @@
       <if test="unitName != null">
         unit_name = #{unitName,jdbcType=VARCHAR},
       </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="riskKeyPartName != null">
+        risk_key_part_name = #{riskKeyPartName,jdbcType=VARCHAR},
+      </if>
     </set>
     where risk_register_id = #{riskRegisterId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ffa.po.SecurityRisks">
     update security_risks
     set unit_id = #{unitId,jdbcType=INTEGER},
-      risk_type_id = #{riskTypeId,jdbcType=INTEGER},
+      risk_type_id = #{riskTypeId,jdbcType=VARCHAR},
       risk_key_part_id = #{riskKeyPartId,jdbcType=INTEGER},
-      unit_name = #{unitName,jdbcType=VARCHAR}
+      unit_name = #{unitName,jdbcType=VARCHAR},
+      state = #{unitName,jdbcType=INTEGER}
     where risk_register_id = #{riskRegisterId,jdbcType=INTEGER}
   </update>
 </mapper>

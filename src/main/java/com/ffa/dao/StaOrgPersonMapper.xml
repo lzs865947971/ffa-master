@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ffa.dao.StaOrgPersonMapper">
+  <resultMap id="BaseResultMap" type="com.ffa.po.vo.StaOrgPerson">
+    <result column="单位名称" jdbcType="INTEGER" property="unitName" />
+    <result column="消防人员类型" jdbcType="VARCHAR" property="fireOrgTypeName" />
+    <result column="消防人员数量" jdbcType="INTEGER" property="personNum" />
+  </resultMap>
+  <select id="selcetStaOrgPerson">
+    select key_unit.unit_name as 单位名称,
+	fire_org_inf.fire_org_type_name as 消防人员类型,COUNT(*) as 消防人员数量
+	from key_unit,fire_org_inf,fire_person_inf
+	where key_unit.unit_id=fire_org_inf.unit_id
+	and fire_org_inf.fire_org_id=fire_person_inf.fire_org_id
+	group by key_unit.unit_name,fire_org_inf.fire_org_type_name
+
+  </select>
+
+</mapper>

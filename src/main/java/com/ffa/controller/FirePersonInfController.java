@@ -1,10 +1,13 @@
 package com.ffa.controller;
 
+import com.ffa.utils.FastDFSUtils;
 import com.ffa.po.FirePersonInf;
 import com.ffa.po.RespBean;
 import com.ffa.service.FirePersonInfService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -44,6 +47,28 @@ public class FirePersonInfController {
             return RespBean.ok("更新成功!");
         }
         return RespBean.error("更新失败!");
+    }
+
+    @Value("${ffa.nginx.host}")
+    String nginxHost;
+
+    @PostMapping("/upload")
+    public RespBean addFile(MultipartFile file, FirePersonInf firePersonInf) {
+        String upload = FastDFSUtils.upload(file);
+        String url = nginxHost + upload;
+        firePersonInf.setFirePersonPicId(url);
+        if (firePersonInf.getFirePersonId() == null){
+            if(firePersonInfService.addFirePersonInf(firePersonInf) == 1){
+                return RespBean.ok("添加成功!");
+            }
+            return RespBean.error("添加失败!");
+        }
+        else{
+            if(firePersonInfService.addFirePersonInf(firePersonInf) == 1){
+                return RespBean.ok("修改成功!");
+            }
+            return RespBean.error("修改失败!");
+        }
     }
 
 }

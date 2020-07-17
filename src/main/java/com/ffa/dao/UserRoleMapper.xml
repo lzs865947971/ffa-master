@@ -10,7 +10,7 @@
     id, uid, rid
   </sql>
   <delete id="deleteByUserId">
-    delete from user_role where user_id=#{uid}
+    delete from user_role where uid=#{uid}
   </delete>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select

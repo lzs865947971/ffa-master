@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/system/basic/permiss")
+@RequestMapping("/sys/permission")
 public class PermissController {
     @Autowired
     RoleService roleService;

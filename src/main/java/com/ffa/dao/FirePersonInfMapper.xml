@@ -6,7 +6,7 @@
     <result column="fire_org_id" jdbcType="INTEGER" property="fireOrgId" />
     <result column="fire_org_name" jdbcType="VARCHAR" property="fireOrgName" />
     <result column="fire_person_name" jdbcType="VARCHAR" property="firePersonName" />
-    <result column="fire_person_pic_id" jdbcType="INTEGER" property="firePersonPicId" />
+    <result column="fire_person_pic_id" jdbcType="VARCHAR" property="firePersonPicId" />
     <result column="fire_record_id" jdbcType="INTEGER" property="fireRecordId" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -44,7 +44,7 @@
       fire_person_name, fire_person_pic_id, fire_record_id
       )
     values (#{firePersonId,jdbcType=INTEGER}, #{fireOrgId,jdbcType=INTEGER}, #{fireOrgName,jdbcType=VARCHAR},
-      #{firePersonName,jdbcType=VARCHAR}, #{firePersonPicId,jdbcType=INTEGER}, #{fireRecordId,jdbcType=INTEGER}
+      #{firePersonName,jdbcType=VARCHAR}, #{firePersonPicId,jdbcType=VARCHAR}, #{fireRecordId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ffa.po.FirePersonInf">
@@ -83,7 +83,7 @@
         #{firePersonName,jdbcType=VARCHAR},
       </if>
       <if test="firePersonPicId != null">
-        #{firePersonPicId,jdbcType=INTEGER},
+        #{firePersonPicId,jdbcType=VARCHAR},
       </if>
       <if test="fireRecordId != null">
         #{fireRecordId,jdbcType=INTEGER},
@@ -103,7 +103,7 @@
         fire_person_name = #{firePersonName,jdbcType=VARCHAR},
       </if>
       <if test="firePersonPicId != null">
-        fire_person_pic_id = #{firePersonPicId,jdbcType=INTEGER},
+        fire_person_pic_id = #{firePersonPicId,jdbcType=VARCHAR},
       </if>
       <if test="fireRecordId != null">
         fire_record_id = #{fireRecordId,jdbcType=INTEGER},
@@ -116,7 +116,7 @@
     set fire_org_id = #{fireOrgId,jdbcType=INTEGER},
       fire_org_name = #{fireOrgName,jdbcType=VARCHAR},
       fire_person_name = #{firePersonName,jdbcType=VARCHAR},
-      fire_person_pic_id = #{firePersonPicId,jdbcType=INTEGER},
+      fire_person_pic_id = #{firePersonPicId,jdbcType=VARCHAR},
       fire_record_id = #{fireRecordId,jdbcType=INTEGER}
     where fire_person_id = #{firePersonId,jdbcType=INTEGER}
   </update>

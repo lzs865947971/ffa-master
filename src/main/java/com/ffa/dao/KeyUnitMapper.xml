@@ -9,7 +9,7 @@
     <result column="unit_address" jdbcType="VARCHAR" property="unitAddress" />
     <result column="unit_tel" jdbcType="VARCHAR" property="unitTel" />
     <result column="supervision_id" jdbcType="INTEGER" property="supervisionId" />
-    <result column="overall_picture_id" jdbcType="INTEGER" property="overallPictureId" />
+    <result column="overall_picture_id" jdbcType="VARCHAR" property="overallPictureId" />
     <result column="facilitiy_num" jdbcType="INTEGER" property="facilitiyNum" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -50,7 +50,7 @@
       )
     values (#{unitId,jdbcType=INTEGER}, #{unitName,jdbcType=VARCHAR}, #{principalId,jdbcType=INTEGER},
       #{principalName,jdbcType=VARCHAR}, #{unitAddress,jdbcType=VARCHAR}, #{unitTel,jdbcType=VARCHAR},
-      #{supervisionId,jdbcType=INTEGER}, #{overallPictureId,jdbcType=INTEGER}, #{facilitiyNum,jdbcType=INTEGER}
+      #{supervisionId,jdbcType=INTEGER}, #{overallPictureId,jdbcType=VARCHAR}, #{facilitiyNum,jdbcType=INTEGER}
       )
   </insert>
 
@@ -109,7 +109,7 @@
         #{supervisionId,jdbcType=INTEGER},
       </if>
       <if test="overallPictureId != null">
-        #{overallPictureId,jdbcType=INTEGER},
+        #{overallPictureId,jdbcType=VARCHAR},
       </if>
       <if test="facilitiyNum != null">
         #{facilitiyNum,jdbcType=INTEGER},
@@ -139,7 +139,7 @@
         supervision_id = #{supervisionId,jdbcType=INTEGER},
       </if>
       <if test="overallPictureId != null">
-        overall_picture_id = #{overallPictureId,jdbcType=INTEGER},
+        overall_picture_id = #{overallPictureId,jdbcType=VARCHAR},
       </if>
       <if test="facilitiyNum != null">
         facilitiy_num = #{facilitiyNum,jdbcType=INTEGER},
@@ -156,7 +156,7 @@
       unit_address = #{unitAddress,jdbcType=VARCHAR},
       unit_tel = #{unitTel,jdbcType=VARCHAR},
       supervision_id = #{supervisionId,jdbcType=INTEGER},
-      overall_picture_id = #{overallPictureId,jdbcType=INTEGER},
+      overall_picture_id = #{overallPictureId,jdbcType=VARCHAR},
       facilitiy_num = #{facilitiyNum,jdbcType=INTEGER}
     where unit_id = #{unitId,jdbcType=INTEGER}
   </update>

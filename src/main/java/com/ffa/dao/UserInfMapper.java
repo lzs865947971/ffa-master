@@ -32,5 +32,7 @@ public interface UserInfMapper {
 
     Integer updatePasswd(@Param("uid") Integer uid, @Param("encodePass") String encodePass);
 
-   // Integer updateUserface(@Param("url") String url, @Param("id") Integer id);
+    Integer updateUserface(@Param("url") String url, @Param("id") Integer id);
+
+    Integer getMaxUserId();
 }

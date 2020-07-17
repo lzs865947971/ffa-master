@@ -15,6 +15,16 @@ public class FixRecordInf {
 
     private Integer fixState;
 
+    private Integer facilityState;
+
+    public Integer getFacilityState(){
+        return facilityState;
+    }
+
+    public void setFacilityState(Integer facilityState){
+        this.facilityState = facilityState;
+    }
+
     public Integer getSerialNumber() {
         return serialNumber;
     }
