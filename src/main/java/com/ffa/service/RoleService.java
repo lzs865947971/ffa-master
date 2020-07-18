@@ -26,6 +26,7 @@ public class RoleService {
     }
 
     public Integer addRole(Role role) {
+        //角色名称为：ROLE_ + 角色名，进行输入判断，自动识别并补全
         if (!role.getName().startsWith("ROLE_")) {
             role.setName("ROLE_" + role.getName());
         }

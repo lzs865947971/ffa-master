@@ -16,11 +16,12 @@ public class SuperVisionInfController {
     @Autowired
     SuperVisionInfService superVisionInfService;
 
-
+    //查询方法
     @GetMapping("/")
     public List<SuperVisionInf> getAllSuperVisionInf(SuperVisionInf superVisionInf){
         return superVisionInfService.getAllSuperVisionInf(superVisionInf);
     }
+    //添加方法
     @PostMapping("/")
     public RespBean addSuperVisionInf(@RequestBody SuperVisionInf superVisionInf) {
         if (superVisionInfService.addSuperVisionInf(superVisionInf) == 1) {
@@ -28,7 +29,7 @@ public class SuperVisionInfController {
         }
         return RespBean.error("添加失败!");
     }
-
+    //删除方法
     @DeleteMapping("/{id}")
     public RespBean deleteSuperVisionInfById(@PathVariable Integer id) {
         if (superVisionInfService.deleteSuperVisionInfById(id) == 1) {
@@ -37,6 +38,7 @@ public class SuperVisionInfController {
         return RespBean.error("删除失败！");
     }
 
+    //修改方法
     @PutMapping("/")
     public RespBean updateUser_infById(@RequestBody SuperVisionInf superVisionInf) {
         if (superVisionInfService.updateSuperVisionInfById(superVisionInf) == 1) {

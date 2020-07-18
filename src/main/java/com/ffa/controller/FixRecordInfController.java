@@ -22,25 +22,31 @@ public class FixRecordInfController {
     @Autowired
     FacilityInfService facilityInfService;
 
+    //查询方法，根据单位id查询
     @GetMapping("/")
     public List<FixRecordInf> getAllFixRecordInf(Authentication authentication, FixRecordInf fixRecordInf){
         UserInf userInf = (UserInf) authentication.getPrincipal();
+        //判断用户id不为空，添加单位id
         if(userInf.getUnitId() != null){
             fixRecordInf.setUnitId(userInf.getUnitId());
         }
         return fixRecordInfService.getAllFixRecordInf(fixRecordInf);
     }
 
+    //添加方法
     public FixRecordInf addParamToFixRecordInf(FixRecordInf fixRecordInf){
         KeyUnit keyUnit = new KeyUnit();
         keyUnit.setUnitId(fixRecordInf.getUnitId());
+        //添加单位名称
         fixRecordInf.setUnitName(keyUnitService.getAllKeyUnit(keyUnit).get(0).getUnitName());
         FacilityInf facilityInf = new FacilityInf();
         facilityInf.setFacilityId(fixRecordInf.getFacilityId());
+        //添加消防设施名称
         fixRecordInf.setFacilityName(facilityInfService.getAllFacilityInf(facilityInf).get(0).getFacilityName());
         return fixRecordInf;
     }
 
+    //添加方法
     @PostMapping("/")
     public RespBean addFixRecordInf(@RequestBody FixRecordInf fixRecordInf) {
         if (fixRecordInfService.addFixRecordInf(addParamToFixRecordInf(fixRecordInf)) == 1) {
@@ -49,6 +55,7 @@ public class FixRecordInfController {
         return RespBean.error("添加失败!");
     }
 
+    //删除方法
     @DeleteMapping("/{id}")
     public RespBean deleteFixRecordInfById(@PathVariable Integer id) {
         if (fixRecordInfService.deleteFixRecordInfById(id) == 1) {
@@ -57,6 +64,7 @@ public class FixRecordInfController {
         return RespBean.error("删除失败！");
     }
 
+    //更新方法
     @PutMapping("/")
     public RespBean updateFixRecordInfById(@RequestBody FixRecordInf fixRecordInf) {
         if (fixRecordInfService.updateFixRecordInfById(addParamToFixRecordInf(fixRecordInf)) == 1) {

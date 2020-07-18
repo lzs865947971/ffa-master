@@ -18,7 +18,7 @@ public class VerificationCode {
 	private String[] fontNames = { "宋体", "楷体", "隶书", "微软雅黑" };
 	private Color bgColor = new Color(255, 255, 255);// 定义验证码图片的背景颜色为白色
 	private Random random = new Random();
-	private String codes = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private String codes = "0123456789";
 	private String text;// 记录随机字符串
 
 	/**

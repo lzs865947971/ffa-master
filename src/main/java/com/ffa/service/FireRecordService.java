@@ -30,6 +30,7 @@ public class FireRecordService {
     public Integer updateFireRecordById(FireRecord fireRecord){ return fireRecordMapper.updateByPrimaryKeySelective(fireRecord); }
 
     public Integer addFireRecordList(List<FireRecord> list){
+        //添加FireRecord列表
         int successCount = 0;
         for(FireRecord fr : list){
             successCount += addFireRecord(fr);

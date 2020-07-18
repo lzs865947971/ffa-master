@@ -43,18 +43,23 @@ public class FileController {
         }
         return fileService.getAllFile(file);
     }
-
+    //文件上传类
     @PostMapping("/upload")
     public RespBean addFile(MultipartFile file, File fileData) {
+        //获取fastdfs文件上传路径，添加到fileData数据
         String upload = FastDFSUtils.upload(file);
 //        String url = nginxHost + upload;
         fileData.setFileStoragePath(upload);
+
         KeyUnit keyUnit = new KeyUnit();
         keyUnit.setUnitId(fileData.getUnitId());
+        //为fileData设置UnitName
         fileData.setUnitName(keyUnitService.getAllKeyUnit(keyUnit).get(0).getUnitName());
+        //添加日期
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         fileData.setCreateTime(sdf.format(date));
+
         if(fileData.getFileId() == null){
             if (fileService.addFile(fileData) == 1) {
                 return RespBean.ok("添加成功!");
@@ -68,10 +73,13 @@ public class FileController {
             return RespBean.error("修改失败!");
         }
     }
-
+    /*
+    文件下载类，调用fastdfs的downloadFile方法，向前端返回文件流格式
+     */
     @GetMapping("/download")
     public ResponseEntity<byte[]> download(String fileName,String fileId) throws UnsupportedEncodingException {
         HttpHeaders headers = new HttpHeaders();
+        //设置数据header
         headers.setContentDispositionFormData("attachment", new String(fileName.getBytes("UTF-8"), "ISO-8859-1"));
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
         byte[] bytes = FastDFSUtils.downloadFile(fileId);

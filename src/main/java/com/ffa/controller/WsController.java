@@ -15,10 +15,14 @@ import java.util.Date;
 public class WsController {
     @Autowired
     SimpMessagingTemplate simpMessagingTemplate;
-
+    /*
+    聊天消息发送方法
+    */
     @MessageMapping("/ws/chat")
     public void handleMsg(Authentication authentication, ChatMsg chatMsg) {
+        //获取当前用户
         UserInf userInf = (UserInf) authentication.getPrincipal();
+        //添加消息数据
         chatMsg.setFrom(userInf.getUsername());
         chatMsg.setFromNickname(userInf.getName());
         chatMsg.setDate(new Date());

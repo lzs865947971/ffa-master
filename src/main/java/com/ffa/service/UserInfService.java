@@ -66,6 +66,7 @@ public class UserInfService implements UserDetailsService {
 
     public boolean updateHrPasswd(String oldpass, String pass, Integer uid) {
         UserInf userInf = userInfMapper.selectByPrimaryKey(uid);
+        //对新密码加密处理后与旧密码比较
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         if (encoder.matches(oldpass, userInf.getPassword())) {
             String encodePass = encoder.encode(pass);

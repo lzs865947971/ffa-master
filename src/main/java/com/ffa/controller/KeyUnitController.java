@@ -19,6 +19,7 @@ public class KeyUnitController {
     @Autowired
     KeyUnitService keyUnitService;
 
+    //查询方法
     @GetMapping("/")
     public List<KeyUnit> getAllKeyUnit(KeyUnit keyUnit){
         List<KeyUnit> keyUnitList = keyUnitService.getAllKeyUnit(keyUnit);
@@ -27,6 +28,7 @@ public class KeyUnitController {
         return keyUnitList;
     }
 
+    //查询方法
     @GetMapping("/list")
     public List<KeyUnit> getAllKeyUnit(){
         KeyUnit keyUnit = new KeyUnit();
@@ -36,6 +38,7 @@ public class KeyUnitController {
         return keyUnitList;
     }
 
+    //添加方法
     @PostMapping("/")
     public RespBean addKeyUnit(@RequestBody KeyUnit keyUnit) {
         if (keyUnitService.addKeyUnit(keyUnit) == 1) {
@@ -44,14 +47,14 @@ public class KeyUnitController {
         return RespBean.error("添加失败!");
     }
 
+    //删除方法
     @DeleteMapping("/{id}")
     public RespBean deleteKeyUnitById(@PathVariable Integer id) {
-        if (keyUnitService.deleteKeyUnitById(id) == 1) {
-            return RespBean.ok("删除成功！");
-        }
-        return RespBean.error("删除失败！");
+        keyUnitService.deleteKeyUnitById(id);
+        return RespBean.ok("删除成功！");
     }
 
+    //更新方法
     @PutMapping("/")
     public RespBean updateKeyUnitById(@RequestBody KeyUnit keyUnit) {
         if (keyUnitService.updateKeyUnitById(keyUnit) == 1) {
@@ -63,11 +66,15 @@ public class KeyUnitController {
     @Value("${ffa.nginx.host}")
     String nginxHost;
 
+    //部位平面布局图上传方法
     @PostMapping("/upload")
     public RespBean addFile(MultipartFile file, KeyUnit keyUnit) {
+        //获取fastdfs上传文件地址
         String upload = FastDFSUtils.upload(file);
         String url = nginxHost + upload;
+        //添加文件地址
         keyUnit.setOverallPictureId(url);
+        //判断partId是否为空？调用添加方法：调用更新方法
         if(keyUnit.getUnitId() == null){
             if (keyUnitService.addKeyUnit(keyUnit) == 1) {
                 return RespBean.ok("添加成功!");

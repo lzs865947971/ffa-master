@@ -45,10 +45,9 @@ public class FacilityInfController {
 
     @DeleteMapping("/{id}")
     public RespBean deleteFacilityInfById(@PathVariable Integer id) {
-        if (facilityInfService.deleteFacilityInfById(id) == 1) {
-            return RespBean.ok("删除成功！");
-        }
-        return RespBean.error("删除失败！");
+        facilityInfService.deleteFacilityInfById(id);
+        return RespBean.ok("删除成功！");
+
     }
 
     @PutMapping("/")

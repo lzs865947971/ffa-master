@@ -6,7 +6,7 @@
     <result column="消防人员类型" jdbcType="VARCHAR" property="fireOrgTypeName" />
     <result column="消防人员数量" jdbcType="INTEGER" property="personNum" />
   </resultMap>
-  <select id="selcetStaOrgPerson">
+  <select id="selcetStaOrgPerson"  resultMap="BaseResultMap">
     select key_unit.unit_name as 单位名称,
 	fire_org_inf.fire_org_type_name as 消防人员类型,COUNT(*) as 消防人员数量
 	from key_unit,fire_org_inf,fire_person_inf

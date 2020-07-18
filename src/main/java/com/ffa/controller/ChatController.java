@@ -14,7 +14,8 @@ import java.util.List;
 public class ChatController {
     @Autowired
     UserInfService userInfService;
-    @GetMapping("/hrs")
+    @GetMapping("/users")
+    //获取所有用户列表
     public List<UserInf> getAllHrs() {
         return userInfService.getAllUsersExceptCurrentHr();
     }

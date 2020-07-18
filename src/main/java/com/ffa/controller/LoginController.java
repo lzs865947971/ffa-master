@@ -20,11 +20,13 @@ public class LoginController {
     @Autowired
     UserInfService userInfService;
 
+    //登录方法
     @GetMapping("/login")
     public RespBean login(){
         return RespBean.error("尚未登陆，请登录");
     }
 
+    //验证码生成方法
     @GetMapping("/verifyCode")
     public void verifyCode(HttpSession session, HttpServletResponse resp) throws IOException {
         VerificationCode code = new VerificationCode();

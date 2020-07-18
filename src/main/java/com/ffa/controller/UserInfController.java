@@ -21,6 +21,10 @@ import java.util.Map;
 @RestController
 //@CrossOrigin可解决跨域
 @RequestMapping("/sys/user")
+
+/*
+系统用户管理类
+ */
 public class UserInfController {
 
     @Autowired
@@ -35,6 +39,7 @@ public class UserInfController {
     @Value("${ffa.nginx.host}")
     String nginxHost;
 
+    //查询用户列表
     @GetMapping("/")
     public List<UserInf> getAllUserInf(String keywords){
         return userInfService.getAllUsers(keywords);
@@ -56,6 +61,7 @@ public class UserInfController {
         return RespBean.error("更新失败!");
     }
 
+    //添加用户方法，用户名默认为用户姓名全拼小写+用户编号，密码默认为123，并设置默认头像
     @PostMapping("/")
     public RespBean addUserInf(@RequestBody UserInf userInf) {
         KeyUnit keyUnit = new KeyUnit();
@@ -67,8 +73,11 @@ public class UserInfController {
             System.out.println(e);
         }
         int userId = userInfService.getMaxUserId().intValue()+1;
+        //用户姓名全拼小写+用户编号
         userInf.setUsername(PinyinUtils.toPinyin(userInf.getName()) + userId);
+        //密码默认为123
         userInf.setPassword("$2a$10$ySG2lkvjFHY5O0./CPIE1OI8VJsuKYEzOYzqIa7AJR6sEgSzUFOAm");
+        //设置默认头像
         userInf.setUserface("http://192.168.43.123:8888/group1/M00/00/00/wKglhF8MuEyAYB1CAACwsYVT-AQ592.jpg");
         userInf.setEnabled(true);
         if (userInfService.addUserInf(userInf) == 1) {
@@ -77,6 +86,7 @@ public class UserInfController {
         return RespBean.error("添加失败!");
     }
 
+    //删除用户方法
     @DeleteMapping("/{id}")
     public RespBean deleteUserInfById(@PathVariable Integer id) {
         if (userInfService.deleteUserInfById(id) == 1) {
@@ -84,7 +94,7 @@ public class UserInfController {
         }
         return RespBean.error("删除失败！");
     }
-
+    //获取全部角色
     @GetMapping("/roles")
     public List<Role> getAllRoles() {
         return roleService.getAllRoles();

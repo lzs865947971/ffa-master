@@ -22,15 +22,19 @@ public class SecurityRisksController {
     @Autowired
     KeyPartInfService keyPartInfService;
 
+    //安全隐患查询方法，根据用户单位id查询
     @GetMapping("/")
     public List<SecurityRisks> getAllSecurityRisks(Authentication authentication, SecurityRisks securityRisks){
+        //获取当前用户
         UserInf userInf = (UserInf) authentication.getPrincipal();
+        //判断用户单位id不为空，添加单位id
         if(userInf.getUnitId() != null){
             securityRisks.setUnitId(userInf.getUnitId());
         }
         return securityRisksService.getAllSecurityRisks(securityRisks);
     }
 
+    //为securityRisks添加字段
     public SecurityRisks addParamToFixRecordInf(SecurityRisks securityRisks){
         KeyUnit keyUnit = new KeyUnit();
         keyUnit.setUnitId(securityRisks.getUnitId());
@@ -41,6 +45,7 @@ public class SecurityRisksController {
         return securityRisks;
     }
 
+    //添加方法
     @PostMapping("/")
     public RespBean addSecurityRisks(@RequestBody SecurityRisks securityRisks) {
         try{
@@ -54,6 +59,7 @@ public class SecurityRisksController {
         return RespBean.error("添加失败!");
     }
 
+    //删除方法
     @DeleteMapping("/{id}")
     public RespBean deleteSecurityRisksById(@PathVariable Integer id) {
         if (securityRisksService.deleteSecurityRisksById(id) == 1) {
@@ -62,6 +68,7 @@ public class SecurityRisksController {
         return RespBean.error("删除失败！");
     }
 
+    //更新方法
     @PutMapping("/")
     public RespBean updateSecurityRisksById(@RequestBody SecurityRisks securityRisks) {
         try{
